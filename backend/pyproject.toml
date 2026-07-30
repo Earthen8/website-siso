@@ -1,0 +1,20 @@
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.flake8]
+max-line-length = 88
+# W503 (line break before binary operator) and E203 (whitespace before ':')
+# conflict with Black — ignore them.
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "migrations",
+    "staticfiles",
+    "mediafiles",
+]
