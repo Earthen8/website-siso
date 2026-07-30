@@ -25,5 +25,4 @@ docker-compose.override.yml
 .vscode/
 
 # Rules
-INSTRUCTION.md
 .agents/
