@@ -3,10 +3,11 @@ import Link from "next/link";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About SISO" },
-  { href: "/program-kerja", label: "Program Kerja" },
-  { href: "/articles", label: "Articles" },
-  { href: "/contact", label: "Contact" },
+  { href: "/program-kerja", label: "Programs & Events" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/articles", label: "Articles and Achievements" },
 ];
+
 
 export default function Header() {
   return (
