@@ -42,7 +42,7 @@ export default function Header() {
       <nav className={styles.navContainer} aria-label="Main Navigation">
         {/* Brand Logo */}
         <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
-          SISO
+          <img src="/logo.png" alt="SISO" className={styles.logoImage} />
         </Link>
 
         {/* Desktop Navigation List */}

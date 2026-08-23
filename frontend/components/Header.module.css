@@ -42,6 +42,13 @@
   opacity: 0.8;
 }
 
+.logoImage {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .navList {
   display: flex;
   align-items: center;
