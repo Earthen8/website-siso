@@ -219,6 +219,44 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* ── 6. Open Recruitment / Join SISO ── */}
+      <section className={styles.recruitmentSection}>
+        <div className={styles.recruitmentCard}>
+          <div className={styles.recruitmentBadge}>
+            <span className={styles.recruitmentBadgePulse} />
+            Open Recruitment
+          </div>
+          <h2 className={styles.recruitmentTitle}>
+            Ready to Create Impact with SISO?
+          </h2>
+          <p className={styles.recruitmentDesc}>
+            Bergabunglah dengan keluarga besar STEM Prasetiya Mulya Innovation Student Organization. Kembangkan potensi kepemimpinanmu, perluas relasi, dan berkolaborasi dalam berbagai proyek inovatif.
+          </p>
+          <div className={styles.recruitmentActions}>
+            <Link href="/join-siso" className={styles.recruitmentBtnPrimary}>
+              <span>Daftar Sekarang</span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </Link>
+            <Link href="/program-kerja" className={styles.recruitmentBtnSecondary}>
+              Lihat Program Kerja
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

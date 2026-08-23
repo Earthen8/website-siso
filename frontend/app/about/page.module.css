@@ -310,7 +310,7 @@
 }
 
 .structureMainCard {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(142,155,166,0.75) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(142, 155, 166, 0.75) 100%);
   width: 483px;
   height: 277px;
   border-radius: 60px;
@@ -331,7 +331,7 @@
 }
 
 .structureGridCard {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(142,155,166,0.75) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(142, 155, 166, 0.75) 100%);
   height: 298px;
   border-radius: 60px;
   padding: 32px;
@@ -372,29 +372,180 @@
   opacity: 0.5;
 }
 
+/* --- Open Recruitment / Join SISO --- */
+.recruitmentSection {
+  background-color: #ffffff;
+  padding: 64px 192px 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.recruitmentCard {
+  background: linear-gradient(135deg, #144580 0%, #2c4570 50%, #417eb8 100%);
+  border: 4px solid #000000;
+  border-radius: 40px;
+  padding: 72px 64px;
+  width: 100%;
+  max-width: 1433px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 16px 36px rgba(20, 69, 128, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.recruitmentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.recruitmentBadgePulse {
+  width: 8px;
+  height: 8px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #4ade80;
+}
+
+.recruitmentTitle {
+  font-size: 44px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.recruitmentDesc {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 720px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.recruitmentActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.recruitmentBtnPrimary {
+  background-color: #ffffff;
+  color: #144580;
+  padding: 16px 36px;
+  border-radius: 9999px;
+  font-size: 18px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid #ffffff;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.recruitmentBtnPrimary:hover {
+  transform: translateY(-3px);
+  background-color: #f0f4f8;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.recruitmentBtnSecondary {
+  background: transparent;
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 9999px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+}
+
+.recruitmentBtnSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
 @media (max-width: 1200px) {
-  .heroContainer, .visionMissionSection, .valuesSection, .philosophySection, .structureSection {
+
+  .heroContainer,
+  .visionMissionSection,
+  .valuesSection,
+  .philosophySection,
+  .structureSection,
+  .recruitmentSection {
     padding: 64px 32px;
   }
-  .visionMissionContent, .philosophyContent {
+
+  .visionMissionContent,
+  .philosophyContent {
     flex-direction: column;
     align-items: center;
   }
+
   .valuesGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .structureGrid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .statsGrid, .missionGrid, .valuesGrid {
+
+  .statsGrid,
+  .missionGrid,
+  .valuesGrid {
     grid-template-columns: 1fr;
   }
-  .visionCard, .philosophyImageWrapper {
+
+  .visionCard,
+  .philosophyImageWrapper {
     width: 100%;
     height: auto;
     aspect-ratio: 1;
+  }
+
+  .recruitmentCard {
+    padding: 48px 24px;
+    border-radius: 24px;
+  }
+
+  .recruitmentTitle {
+    font-size: 32px;
+  }
+
+  .recruitmentDesc {
+    font-size: 16px;
+  }
+
+  .recruitmentActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .recruitmentBtnPrimary,
+  .recruitmentBtnSecondary {
+    width: 100%;
+    justify-content: center;
   }
 }
