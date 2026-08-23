@@ -42,7 +42,7 @@ export default function Header() {
       <nav className={styles.navContainer} aria-label="Main Navigation">
         {/* Brand Logo */}
         <Link href="/" className={styles.logo} onClick={closeMobileMenu}>
-          <img src="/logo.png" alt="SISO" className={styles.logoImage} />
+          <img src="/logo-siso.png" alt="SISO" className={styles.logoImage} />
         </Link>
 
         {/* Desktop Navigation List */}
@@ -86,9 +86,8 @@ export default function Header() {
 
         {/* Mobile Dropdown Menu */}
         <div
-          className={`${styles.mobileMenu} ${
-            mobileMenuOpen ? styles.mobileMenuOpen : ""
-          }`}
+          className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.mobileMenuOpen : ""
+            }`}
         >
           {NAV_LINKS.map((link) => {
             const active = isLinkActive(link.href);
@@ -96,9 +95,8 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`${styles.mobileNavLink} ${
-                  active ? styles.mobileNavLinkActive : ""
-                }`}
+                className={`${styles.mobileNavLink} ${active ? styles.mobileNavLinkActive : ""
+                  }`}
                 onClick={closeMobileMenu}
               >
                 {link.label}
