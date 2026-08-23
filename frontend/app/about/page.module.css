@@ -1,0 +1,400 @@
+.heroContainer {
+  padding: 96px 128px 128px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroContent {
+  width: 100%;
+  max-width: 1468px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 6vw, 96px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #000000;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.2rem, 2.5vw, 36px);
+  font-weight: 400;
+  line-height: 1.625;
+  color: #000000;
+  margin: 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  padding-top: 48px;
+}
+
+.statCard {
+  background-color: rgba(65, 126, 184, 0.75);
+  height: 240px;
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.statNumber {
+  font-size: clamp(4rem, 8vw, 96px);
+  font-weight: 400;
+  line-height: 1;
+  color: #000000;
+  margin: 0 0 8px 0;
+}
+
+.statLabel {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+}
+
+.statIconWrapper {
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Section Title Wrapper --- */
+.sectionTitleContainer {
+  padding-bottom: 80px;
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: clamp(2.5rem, 5vw, 80px);
+  font-weight: 700;
+  color: #000000;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.sectionTitleCentered {
+  text-align: center;
+}
+
+/* --- Vision & Mission --- */
+.visionMissionSection {
+  background-color: #ffffff;
+  padding: 128px 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visionMissionContent {
+  display: flex;
+  gap: 48px;
+  width: 100%;
+  max-width: 1433px;
+}
+
+.visionCard {
+  background-color: #144580;
+  width: 447px;
+  min-height: 477px;
+  border-radius: 20px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+.visionTitle {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.visionText {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.missionContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.missionHeader {
+  background-color: #144580;
+  height: 68px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.missionHeaderTitle {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.missionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  min-height: 378px;
+}
+
+.missionCard {
+  background-color: #144580;
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.missionText {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+/* --- Organizational Values --- */
+.valuesSection {
+  background-color: #ffffff;
+  padding: 128px 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  width: 100%;
+  max-width: 1433px;
+}
+
+.valueCard {
+  background-color: rgba(142, 155, 166, 0.75);
+  border: 5px solid #000000;
+  border-radius: 30px;
+  min-height: 446px;
+  padding: 96px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.valueIconWrapper {
+  background-color: #8e9ba6;
+  border: 5px solid #000000;
+  border-radius: 30px;
+  width: 131px;
+  height: 131px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.valueTitle {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.valueText {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+/* --- Logo Philosophy --- */
+.philosophySection {
+  background-color: #ffffff;
+  padding: 128px 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.philosophyContent {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+  max-width: 1433px;
+}
+
+.philosophyImageWrapper {
+  width: 642px;
+  height: 642px;
+  border-radius: 50%;
+  background-color: #8e9ba6;
+  border: 5px solid #000000;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.philosophyCards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.philosophyCard {
+  background-color: rgba(142, 155, 166, 0.75);
+  border-radius: 60px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.philosophyCardTitle {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.philosophyCardText {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+/* --- Organizational Structure --- */
+.structureSection {
+  background-color: #ffffff;
+  padding: 128px 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.structureContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 1433px;
+}
+
+.structureMainCard {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(142,155,166,0.75) 100%);
+  width: 483px;
+  height: 277px;
+  border-radius: 60px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.structureGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+  width: 100%;
+}
+
+.structureGridCard {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(142,155,166,0.75) 100%);
+  height: 298px;
+  border-radius: 60px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.structureCardTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  z-index: 2;
+}
+
+.structureCardText {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.structureCardTitleSmall {
+  font-size: 22px;
+  font-weight: 700;
+  z-index: 2;
+  margin-bottom: 8px;
+}
+
+.structureCardImage {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+@media (max-width: 1200px) {
+  .heroContainer, .visionMissionSection, .valuesSection, .philosophySection, .structureSection {
+    padding: 64px 32px;
+  }
+  .visionMissionContent, .philosophyContent {
+    flex-direction: column;
+    align-items: center;
+  }
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .structureGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .statsGrid, .missionGrid, .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+  .visionCard, .philosophyImageWrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
