@@ -5,7 +5,7 @@ const NAV_LINKS = [
   { href: "/about", label: "About SISO" },
   { href: "/program-kerja", label: "Programs & Events" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/articles", label: "Articles and Achievements" },
+  { href: "/articles-and-achieve", label: "Articles and Achievements" },
 ];
 
 
