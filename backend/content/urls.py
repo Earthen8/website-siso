@@ -21,6 +21,9 @@ urlpatterns = [
     # Achievements
     path("achievements/", views.AchievementListView.as_view(), name="achievement-list"),
 
+    # Media / documentations
+    path("media-assets/", views.MediaAssetListView.as_view(), name="media-asset-list"),
+
     # Articles
     path("articles/", views.ArticleListView.as_view(), name="article-list"),
     path("articles/<slug:slug>/", views.ArticleDetailView.as_view(), name="article-detail"),

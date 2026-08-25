@@ -15,7 +15,11 @@ __pycache__/
 backend/.venv/
 .env
 .env.*
+!.env.example
 .pytest_cache/
+backend/db.sqlite3
+backend/mediafiles/
+backend/staticfiles/
 
 # Docker
 docker-compose.override.yml

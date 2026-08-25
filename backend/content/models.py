@@ -89,11 +89,20 @@ class ProgramKerja(models.Model):
     date = models.DateField(null=True, blank=True)
     cover_image = models.ImageField(upload_to="programs/", blank=True, null=True)
     is_visible = models.BooleanField(default=True)
+    is_featured = models.BooleanField(
+        default=False,
+        help_text="Tampilkan di Highlighted Programs di halaman Home.",
+    )
 
     class Meta:
         ordering = ["-date"]
         verbose_name = "Program Kerja"
         verbose_name_plural = "Program Kerja"
+        indexes = [
+            models.Index(fields=["is_visible", "category"], name="program_visible_category_idx"),
+            models.Index(fields=["is_visible", "is_featured"], name="program_visible_featured_idx"),
+            models.Index(fields=["is_visible", "date"], name="program_visible_date_idx"),
+        ]
 
     def __str__(self):
         return self.title
@@ -107,6 +116,7 @@ class MediaAsset(models.Model):
 
     file = models.FileField(upload_to="media_assets/")
     type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    caption = models.CharField(max_length=255, blank=True)
     program = models.ForeignKey(
         ProgramKerja,
         on_delete=models.CASCADE,
@@ -157,6 +167,9 @@ class Article(models.Model):
 
     class Meta:
         ordering = ["-published_at"]
+        indexes = [
+            models.Index(fields=["is_visible", "category"], name="article_visible_category_idx"),
+        ]
 
     def __str__(self):
         return self.title
@@ -228,6 +241,7 @@ class Section(models.Model):
         ("home", "Home"),
         ("about", "About SISO"),
         ("program", "Program Kerja & Events"),
+        ("articles", "Articles"),
         ("contact", "Contact"),
     ]
 
@@ -239,6 +253,9 @@ class Section(models.Model):
 
     class Meta:
         ordering = ["page", "order"]
+        indexes = [
+            models.Index(fields=["page", "is_visible"], name="section_page_visible_idx"),
+        ]
 
     def __str__(self):
         return f"{self.get_page_display()} - {self.section_type}"

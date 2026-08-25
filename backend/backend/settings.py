@@ -26,6 +26,23 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
+    if origin.strip()
+]
+
+# Hardening that only makes sense once we're actually behind HTTPS in production.
+# Left off in DEBUG so local http://localhost dev keeps working.
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
 # ── Application ───────────────────────────────────────────────────────────────
 
 INSTALLED_APPS = [
@@ -41,7 +58,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "corsheaders",
-    "content",
+    "content.apps.ContentConfig",
 ]
 
 MIDDLEWARE = [
@@ -76,17 +93,28 @@ TEMPLATES = [
 WSGI_APPLICATION = "backend.wsgi.application"
 
 # ── Database ──────────────────────────────────────────────────────────────────
+# Docker Compose sets POSTGRES_HOST=db. Without it, local venv uses SQLite
+# so `manage.py runserver` works before Postgres is up.
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "siso"),
-        "USER": os.getenv("POSTGRES_USER", "siso"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
-        "HOST": os.getenv("POSTGRES_HOST", "db"),
-        "PORT": os.getenv("POSTGRES_PORT", "5432"),
+_postgres_host = os.getenv("POSTGRES_HOST")
+if _postgres_host:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("POSTGRES_DB", "siso"),
+            "USER": os.getenv("POSTGRES_USER", "siso"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
+            "HOST": _postgres_host,
+            "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # ── Auth ──────────────────────────────────────────────────────────────────────
 
@@ -127,5 +155,17 @@ CORS_ALLOWED_ORIGINS = [o.strip() for o in _cors_origins.split(",") if o.strip()
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
-    ]
+    ],
+    # Public read API — Django Admin uses its own session auth, not DRF.
+    "DEFAULT_AUTHENTICATION_CLASSES": [],
+    "DEFAULT_THROTTLE_RATES": {
+        "form_submission": "10/hour",
+    },
+}
+
+# ── Unfold (Django Admin CMS) ─────────────────────────────────────────────────
+
+UNFOLD = {
+    "SITE_TITLE": "SISO CMS",
+    "SITE_HEADER": "SISO Prasmul",
 }
