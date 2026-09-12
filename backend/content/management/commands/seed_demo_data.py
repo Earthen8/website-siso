@@ -179,4 +179,40 @@ class Command(BaseCommand):
             )
         self.stdout.write(self.style.SUCCESS("✓ Achievements seeded"))
 
+        # 5. Divisions & BPH Members
+        divisions_data = [
+            {"name": "Research & Development (R&D)", "slug": "rnd", "jobdesc": "Fokus pada riset teknologi baru, workshop rekayasa perangkat lunak, AI, dan inovasi hardware.", "order": 1},
+            {"name": "Media, Komunikasi & Informasi (Medkominfo)", "slug": "medkominfo", "jobdesc": "Mengelola publikasi branding visual, website organisasi, serta dokumentasi seluruh proker SISO.", "order": 2},
+            {"name": "Pengembangan Sumber Daya Mahasiswa (PSDM)", "slug": "psdm", "jobdesc": "Membina keakraban internal, pelatihan soft skills, serta kaderisasi kepemimpinan anggota.", "order": 3},
+            {"name": "Hubungan Eksternal & Kemitraan", "slug": "eksternal", "jobdesc": "Membangun relasi strategis dengan korporasi teknologi, alumni, dan himpunan universitas lain.", "order": 4},
+        ]
+
+        div_map = {}
+        for d in divisions_data:
+            div_obj, _ = Division.objects.update_or_create(
+                slug=d["slug"],
+                defaults=d,
+            )
+            div_map[d["slug"]] = div_obj
+        self.stdout.write(self.style.SUCCESS("✓ Divisions seeded"))
+
+        members_data = [
+            {"name": "Nicholas Nathaniel", "role": "Ketua Himpunan", "order": 1, "generation_year": 2026, "division": None},
+            {"name": "Clarissa Stephanie", "role": "Wakil Ketua Himpunan", "order": 2, "generation_year": 2026, "division": None},
+            {"name": "Bryan Adrian", "role": "Sekretaris Umum", "order": 3, "generation_year": 2026, "division": None},
+            {"name": "Jessica Aurelia", "role": "Bendahara Umum", "order": 4, "generation_year": 2026, "division": None},
+            {"name": "Darren Emmanuel", "role": "Kepala Divisi R&D", "order": 5, "generation_year": 2026, "division": div_map["rnd"]},
+            {"name": "Amanda Valerie", "role": "Kepala Divisi Medkominfo", "order": 6, "generation_year": 2026, "division": div_map["medkominfo"]},
+            {"name": "Farhan Pratama", "role": "Kepala Divisi PSDM", "order": 7, "generation_year": 2026, "division": div_map["psdm"]},
+            {"name": "Natasha Olivia", "role": "Kepala Divisi Eksternal", "order": 8, "generation_year": 2026, "division": div_map["eksternal"]},
+        ]
+
+        for m in members_data:
+            BPHMember.objects.update_or_create(
+                name=m["name"],
+                generation_year=m["generation_year"],
+                defaults=m,
+            )
+        self.stdout.write(self.style.SUCCESS("✓ BPH Members seeded"))
+
         self.stdout.write(self.style.SUCCESS("All sample data successfully seeded!"))
