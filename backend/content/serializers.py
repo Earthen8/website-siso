@@ -36,7 +36,7 @@ class BPHMemberSerializer(serializers.ModelSerializer):
 class MediaAssetSerializer(serializers.ModelSerializer):
     class Meta:
         model = MediaAsset
-        fields = ["id", "file", "type"]
+        fields = ["id", "file", "type", "caption"]
 
 
 class ProgramKerjaSerializer(serializers.ModelSerializer):
@@ -46,7 +46,7 @@ class ProgramKerjaSerializer(serializers.ModelSerializer):
         model = ProgramKerja
         fields = [
             "id", "title", "slug", "category", "description",
-            "date", "cover_image", "is_visible", "media_assets",
+            "date", "cover_image", "is_visible", "is_featured", "media_assets",
         ]
 
 

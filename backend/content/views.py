@@ -1,5 +1,8 @@
+from datetime import date
+
 from django.http import Http404
 from rest_framework import generics
+from rest_framework.throttling import ScopedRateThrottle
 
 from .models import (
     Achievement,
@@ -9,6 +12,7 @@ from .models import (
     Division,
     FAQ,
     FormSubmission,
+    MediaAsset,
     Organization,
     ProgramKerja,
     Section,
@@ -21,10 +25,29 @@ from .serializers import (
     DivisionSerializer,
     FAQSerializer,
     FormSubmissionSerializer,
+    MediaAssetSerializer,
     OrganizationSerializer,
     ProgramKerjaSerializer,
     SectionSerializer,
 )
+
+
+def _is_truthy(value: str | None) -> bool | None:
+    if value is None:
+        return None
+    return value.lower() in ("true", "1", "yes")
+
+
+def _apply_limit(queryset, raw_limit: str | None):
+    if not raw_limit:
+        return queryset
+    try:
+        limit = int(raw_limit)
+    except (TypeError, ValueError):
+        return queryset
+    if limit < 1:
+        return queryset
+    return queryset[: min(limit, 100)]
 
 
 # ── Organization (singleton) ──────────────────────────────────────────────────
@@ -69,19 +92,28 @@ class ProgramListView(generics.ListAPIView):
     serializer_class = ProgramKerjaSerializer
 
     def get_queryset(self):
-        queryset = ProgramKerja.objects.all()
+        queryset = ProgramKerja.objects.prefetch_related("media_assets")
         category = self.request.query_params.get("category")
-        visible = self.request.query_params.get("visible")
+        visible = _is_truthy(self.request.query_params.get("visible"))
+        featured = _is_truthy(self.request.query_params.get("featured"))
+        upcoming = _is_truthy(self.request.query_params.get("upcoming"))
 
         if category:
             queryset = queryset.filter(category=category)
         if visible is not None:
-            queryset = queryset.filter(is_visible=visible.lower() in ["true", "1", "yes"])
-        return queryset
+            queryset = queryset.filter(is_visible=visible)
+        if featured is True:
+            queryset = queryset.filter(is_featured=True)
+        if upcoming is True:
+            queryset = queryset.filter(date__gte=date.today()).order_by("date")
+
+        return _apply_limit(queryset, self.request.query_params.get("limit"))
 
 
 class ProgramDetailView(generics.RetrieveAPIView):
-    queryset = ProgramKerja.objects.all()
+    queryset = ProgramKerja.objects.filter(is_visible=True).prefetch_related(
+        "media_assets"
+    )
     serializer_class = ProgramKerjaSerializer
     lookup_field = "slug"
 
@@ -89,8 +121,26 @@ class ProgramDetailView(generics.RetrieveAPIView):
 # ── Achievement ───────────────────────────────────────────────────────────────
 
 class AchievementListView(generics.ListAPIView):
-    queryset = Achievement.objects.all()
     serializer_class = AchievementSerializer
+
+    def get_queryset(self):
+        return _apply_limit(
+            Achievement.objects.all(),
+            self.request.query_params.get("limit"),
+        )
+
+
+# ── Media Assets (documentations / gallery) ───────────────────────────────────
+
+class MediaAssetListView(generics.ListAPIView):
+    serializer_class = MediaAssetSerializer
+
+    def get_queryset(self):
+        queryset = MediaAsset.objects.all()
+        asset_type = self.request.query_params.get("type")
+        if asset_type:
+            queryset = queryset.filter(type=asset_type)
+        return _apply_limit(queryset, self.request.query_params.get("limit"))
 
 
 # ── Article ───────────────────────────────────────────────────────────────────
@@ -134,6 +184,8 @@ class FAQListView(generics.ListAPIView):
 class FormSubmissionCreateView(generics.CreateAPIView):
     serializer_class = FormSubmissionSerializer
     queryset = FormSubmission.objects.none()
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "form_submission"
 
 
 # ── Section ───────────────────────────────────────────────────────────────────
@@ -144,10 +196,10 @@ class SectionListView(generics.ListAPIView):
     def get_queryset(self):
         queryset = Section.objects.all()
         page = self.request.query_params.get("page")
-        visible = self.request.query_params.get("visible")
+        visible = _is_truthy(self.request.query_params.get("visible"))
 
         if page:
             queryset = queryset.filter(page=page)
         if visible is not None:
-            queryset = queryset.filter(is_visible=visible.lower() in ["true", "1", "yes"])
+            queryset = queryset.filter(is_visible=visible)
         return queryset

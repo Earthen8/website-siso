@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.http import HttpRequest
-# pyrefly: ignore [missing-import]
 from unfold.admin import ModelAdmin
 
 from .models import (
@@ -63,9 +62,9 @@ class MediaAssetInline(admin.TabularInline):
 
 @admin.register(ProgramKerja)
 class ProgramKerjaAdmin(ModelAdmin):
-    list_display = ("title", "category", "date", "is_visible")
-    list_editable = ("is_visible",)
-    list_filter = ("category", "is_visible")
+    list_display = ("title", "category", "date", "is_featured", "is_visible")
+    list_editable = ("is_featured", "is_visible")
+    list_filter = ("category", "is_featured", "is_visible")
     search_fields = ("title",)
     prepopulated_fields = {"slug": ("title",)}
     inlines = [MediaAssetInline]
@@ -73,8 +72,9 @@ class ProgramKerjaAdmin(ModelAdmin):
 
 @admin.register(MediaAsset)
 class MediaAssetAdmin(ModelAdmin):
-    list_display = ("file", "type", "program")
+    list_display = ("file", "type", "caption", "program")
     list_filter = ("type",)
+    search_fields = ("caption",)
 
 
 # ── Achievement ───────────────────────────────────────────────────────────────
@@ -128,3 +128,9 @@ class SectionAdmin(ModelAdmin):
     list_display = ("page", "section_type", "is_visible", "order")
     list_editable = ("is_visible", "order")
     list_filter = ("page", "is_visible")
+    search_fields = ("section_type",)
+
+
+admin.site.site_header = "SISO Prasmul CMS"
+admin.site.site_title = "SISO CMS"
+admin.site.index_title = "Kelola konten website"
