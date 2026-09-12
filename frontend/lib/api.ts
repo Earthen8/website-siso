@@ -114,8 +114,25 @@ export async function fetchAchievements(limit?: number): Promise<Achievement[]> 
   });
 }
 
-export async function fetchMedia(limit?: number): Promise<MediaAsset[]> {
-  const query = limit ? `?limit=${limit}` : "";
+export interface FetchMediaParams {
+  limit?: number;
+  type?: "photo" | "video";
+}
+
+export async function fetchMedia(
+  params?: number | FetchMediaParams
+): Promise<MediaAsset[]> {
+  let query = "";
+  if (typeof params === "number") {
+    query = `?limit=${params}`;
+  } else if (params && typeof params === "object") {
+    const q = new URLSearchParams();
+    if (params.limit) q.set("limit", String(params.limit));
+    if (params.type) q.set("type", params.type);
+    const qs = q.toString();
+    if (qs) query = `?${qs}`;
+  }
+
   return apiFetch<MediaAsset[]>(`/media-assets/${query}`, {
     next: { revalidate: 300 },
   });

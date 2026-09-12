@@ -65,6 +65,7 @@ const FALLBACK_LEADERS: BPHMember[] = [
   {
     id: 1,
     name: "Nicholas Nathaniel",
+    photo: null,
     role: "Ketua Himpunan",
     order: 1,
     generation_year: 2026,
@@ -73,6 +74,7 @@ const FALLBACK_LEADERS: BPHMember[] = [
   {
     id: 2,
     name: "Clarissa Stephanie",
+    photo: null,
     role: "Wakil Ketua Himpunan",
     order: 2,
     generation_year: 2026,
@@ -81,6 +83,7 @@ const FALLBACK_LEADERS: BPHMember[] = [
   {
     id: 3,
     name: "Bryan Adrian",
+    photo: null,
     role: "Sekretaris Umum",
     order: 3,
     generation_year: 2026,
@@ -89,6 +92,7 @@ const FALLBACK_LEADERS: BPHMember[] = [
   {
     id: 4,
     name: "Jessica Aurelia",
+    photo: null,
     role: "Bendahara Umum",
     order: 4,
     generation_year: 2026,
