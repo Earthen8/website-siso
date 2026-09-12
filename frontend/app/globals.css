@@ -15,6 +15,21 @@
   --color-text-muted: #5b6472;
   --color-border: #e2e8f0;
 
+  /* SISO Extended Tokens */
+  --siso-navy-dark: #0a192f;
+  --siso-navy: #144580;
+  --siso-navy-light: #1e5ba3;
+  --siso-blue-accent: #2575fc;
+  --siso-cyan-accent: #00d2ff;
+  --siso-gold: #f59e0b;
+  --siso-bg-light: #f8fafc;
+  --siso-bg-alt: #f1f5f9;
+  --siso-text-main: #0f172a;
+  --siso-text-muted: #475569;
+  --siso-text-light: #94a3b8;
+  --siso-card-shadow: 0 10px 30px -10px rgba(20, 69, 128, 0.12);
+  --siso-card-shadow-hover: 0 20px 40px -12px rgba(20, 69, 128, 0.22);
+
   /* Typography */
   --font-sans: "Inter", system-ui, sans-serif;
 

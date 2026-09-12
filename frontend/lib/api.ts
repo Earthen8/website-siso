@@ -26,11 +26,19 @@ export type {
   Achievement,
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000/api/v1";
+function getApiBase(): string {
+  if (typeof window === "undefined") {
+    return (
+      process.env.INTERNAL_API_BASE_URL ??
+      process.env.NEXT_PUBLIC_API_BASE_URL ??
+      "http://localhost:8000/api/v1"
+    );
+  }
+  return process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000/api/v1";
+}
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const url = `${API_BASE}${path}`;
+  const url = `${getApiBase()}${path}`;
   const res = await fetch(url, init);
   if (!res.ok) {
     throw new Error(`API error ${res.status} ${res.statusText} — ${url}`);
@@ -135,7 +143,7 @@ export function fetchFAQs(): Promise<FAQ[]> {
 }
 
 export async function submitForm(data: FormSubmissionPayload): Promise<void> {
-  const url = `${API_BASE}/contact/submissions/`;
+  const url = `${getApiBase()}/contact/submissions/`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
