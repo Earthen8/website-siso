@@ -54,6 +54,8 @@ export interface ProgramKerja {
   date: string | null;
   cover_image: string | null;
   is_visible: boolean;
+  location?: string | null;
+  registration_url?: string | null;
   media_assets: MediaAsset[];
 }
 
