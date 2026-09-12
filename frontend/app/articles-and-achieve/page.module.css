@@ -1,0 +1,411 @@
+/* ── Common Utilities ── */
+.section {
+  padding: 80px 192px;
+  background-color: #ffffff;
+}
+.sectionAlt {
+  background-color: #f7f9fa;
+}
+.sectionBadge {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #4a90e2;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+.sectionTitle {
+  font-size: 32px;
+  font-weight: 800;
+  color: #144580;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.sectionTitle::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background-color: #144580;
+}
+
+/* ── Hero Section ── */
+.heroSection {
+  padding: 80px 192px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+}
+.heroContent {
+  flex: 1;
+  max-width: 500px;
+}
+.heroTitle {
+  font-size: 56px;
+  font-weight: 800;
+  color: #144580;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.heroSubtitle {
+  font-size: 18px;
+  color: #718096;
+  line-height: 1.6;
+}
+.heroImageWrapper {
+  flex: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 400px;
+  position: relative;
+  background-color: #e2e8f0;
+}
+.heroImage {
+  object-fit: cover;
+}
+
+/* ── News & Updates ── */
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.newsCard {
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+  text-decoration: none;
+}
+.newsCard:hover {
+  transform: translateY(-4px);
+}
+.newsImage {
+  width: 100%;
+  height: 200px;
+  background-color: #e2e8f0;
+  object-fit: cover;
+}
+.newsBody {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.newsDate {
+  font-size: 12px;
+  font-weight: 700;
+  color: #a0aec0;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.newsTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.newsExcerpt {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  flex: 1;
+}
+.newsBtn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #144580;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ── Filter Tags (Retained from original) ── */
+.filterContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.filterTag {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.filterTag:hover {
+  background-color: #e2e8f0;
+}
+.filterTagActive {
+  background-color: #144580;
+  color: #ffffff;
+}
+.filterTagActive:hover {
+  background-color: #1e3a8a;
+}
+
+/* ── Student Publications ── */
+.pubList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pubCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.pubIcon {
+  width: 48px;
+  height: 48px;
+  background-color: #144580;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.pubBody {
+  flex: 1;
+}
+.pubTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+.pubAuthor {
+  font-size: 14px;
+  color: #4a90e2;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.pubDesc {
+  font-size: 14px;
+  color: #718096;
+  line-height: 1.5;
+}
+.pubBadge {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ── Research and Studies ── */
+.researchGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.researchCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.researchIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #eef2f6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a90e2;
+  flex-shrink: 0;
+}
+.researchBody {
+  display: flex;
+  flex-direction: column;
+}
+.researchTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+}
+.researchDesc {
+  font-size: 14px;
+  color: #718096;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.researchLink {
+  font-size: 14px;
+  font-weight: 700;
+  color: #144580;
+  text-decoration: none;
+}
+.researchLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Students Achievements ── */
+.achieveGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.achieveCard {
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.achieveIcon {
+  width: 40px;
+  height: 40px;
+  background-color: #eef2f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #144580;
+  flex-shrink: 0;
+}
+.achieveBody {
+  display: flex;
+  flex-direction: column;
+}
+.achieveName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a202c;
+}
+.achieveRole {
+  font-size: 12px;
+  color: #718096;
+}
+
+/* ── Scholarship & Competition ── */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.infoCard {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+.infoTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 24px;
+}
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex: 1;
+}
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 4px;
+}
+.infoLabel {
+  color: #a0aec0;
+}
+.infoValue {
+  font-weight: 600;
+  color: #4a5568;
+}
+.infoValueHighlight {
+  color: #4a90e2;
+  font-weight: 700;
+}
+.infoValueHighlightGreen {
+  color: #10b981;
+  font-weight: 700;
+}
+.infoBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #144580;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.infoBtn:hover {
+  background-color: #2c4570;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1200px) {
+  .section, .sectionAlt, .heroSection {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+  .newsGrid, .infoGrid, .achieveGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .heroSection {
+    flex-direction: column;
+    text-align: center;
+  }
+  .heroImageWrapper {
+    width: 100%;
+    height: 300px;
+  }
+  .pubCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .researchGrid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .section, .sectionAlt, .heroSection {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .newsGrid, .infoGrid, .achieveGrid {
+    grid-template-columns: 1fr;
+  }
+}

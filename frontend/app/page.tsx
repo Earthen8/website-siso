@@ -183,7 +183,7 @@ export default async function HomePage() {
       {isSectionVisible(sections, "vision_mission") && (
         <section className={`section-block ${styles.altBg}`}>
           <div className="container">
-            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 5vw, 80px)" }}>
               VISION &amp; MISSION
             </h2>
             <div className={styles.visionMissionGrid}>
@@ -214,7 +214,7 @@ export default async function HomePage() {
         highlightedPrograms.length > 0 && (
           <section className="section-block">
             <div className="container">
-              <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+              <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 5vw, 80px)" }}>
                 HIGHLIGHTED PROGRAMS
               </h2>
               <div className={styles.programsGrid}>
@@ -258,7 +258,7 @@ export default async function HomePage() {
       {isSectionVisible(sections, "upcoming_events") && upcomingEvents.length > 0 && (
         <section className={`section-block ${styles.altBg}`}>
           <div className="container">
-            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 5vw, 80px)" }}>
               UPCOMING EVENTS
             </h2>
             <div className={styles.eventsList}>
@@ -301,7 +301,7 @@ export default async function HomePage() {
         achievements.length > 0 && (
           <section className="section-block">
             <div className="container">
-              <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+              <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 5vw, 80px)" }}>
                 STUDENT ACHIEVEMENTS
               </h2>
               <AchievementCarousel achievements={achievements} />
@@ -313,7 +313,7 @@ export default async function HomePage() {
       {isSectionVisible(sections, "documentations") && media.length > 0 && (
         <section className={`section-block ${styles.altBg}`}>
           <div className="container">
-            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 5vw, 80px)" }}>
               DOCUMENTATIONS
             </h2>
             <div className={styles.documentationGrid}>
@@ -342,7 +342,7 @@ export default async function HomePage() {
       {isSectionVisible(sections, "social_media") && (
         <section className="section-block" style={{ paddingInline: 0 }}>
           <div className="container">
-            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 5vw, 80px)" }}>
               OUR SOCIAL MEDIA
             </h2>
           </div>
@@ -388,7 +388,7 @@ export default async function HomePage() {
       {isSectionVisible(sections, "value_proposition") && (
         <section className={`section-block ${styles.altBg}`}>
           <div className="container">
-            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            <h2 className={`section-title ${styles.centered}`} style={{ fontSize: "clamp(2rem, 5vw, 84px)" }}>
               Value Proposition
             </h2>
             <div className={styles.valueGrid}>
