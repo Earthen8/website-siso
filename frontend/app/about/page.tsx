@@ -122,7 +122,7 @@ export default async function AboutPage() {
   const missionPoints = rawMission
     ? rawMission
         .split("\n")
-        .map((m: string) => m.replace(/^[-\d.]\s*/, "").trim())
+        .map((m: string) => m.trim().replace(/^(?:(?:\d+[.)]|[-*•.])\s*)+/, "").trim())
         .filter(Boolean)
     : FALLBACK_MISSION_POINTS;
 
