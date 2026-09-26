@@ -83,6 +83,150 @@ function formatEventDate(dateString?: string | null): string {
   }
 }
 
+function parseTimelineDate(dateString: string) {
+  try {
+    const d = new Date(dateString);
+    return {
+      day: d.getDate(),
+      month: d.toLocaleDateString("id-ID", { month: "short" }).toUpperCase(),
+      year: d.getFullYear(),
+      isUpcoming: d.getTime() >= Date.now(),
+      fullDate: d.toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+    };
+  } catch {
+    return {
+      day: "--",
+      month: "TBA",
+      year: "",
+      isUpcoming: true,
+      fullDate: dateString,
+    };
+  }
+}
+
+interface TimelineProgramData {
+  id: number;
+  title: string;
+  slug: string;
+  category: ProgramCategory;
+  description: string;
+  date: string | null;
+  location?: string | null;
+  registration_url?: string | null;
+}
+
+const DEMO_TIMELINE_PROGRAMS: TimelineProgramData[] = [
+  {
+    id: 991,
+    title: "STEM Innovation Summit 2026",
+    slug: "stem-innovation-summit-2026",
+    category: "event",
+    description:
+      "Konferensi tahunan inovasi teknologi dan sains terbesar mahasiswa STEM Prasetiya Mulya.",
+    date: "2026-10-02",
+    location: "Auditorium Kampus BSD",
+    registration_url: null,
+  },
+  {
+    id: 992,
+    title: "AI & Deep Learning Bootcamp",
+    slug: "ai-deep-learning-bootcamp",
+    category: "workshop",
+    description:
+      "Pelatihan intensif pemodelan deep learning, computer vision, dan implementasi transformer modern.",
+    date: "2026-11-17",
+    location: "Lab Komputasi STEM & Hybrid",
+    registration_url: null,
+  },
+  {
+    id: 993,
+    title: "Prasmul Hackathon Techfest",
+    slug: "prasmul-hackathon-techfest",
+    category: "competition",
+    description:
+      "Kompetisi 48 jam penciptaan solusi digital dan hardware untuk tantangan industri riil.",
+    date: "2026-11-24",
+    location: "Main Hall Kampus BSD",
+    registration_url: null,
+  },
+];
+
+function TimelineItem({
+  program,
+  isLast,
+}: {
+  program: TimelineProgramData;
+  isLast: boolean;
+}) {
+  const { day, month, isUpcoming, fullDate } = parseTimelineDate(program.date || "");
+
+  return (
+    <div className={styles.timelineItem}>
+      <div className={styles.timelineNodeCol}>
+        <div className={`${styles.dateBadge} ${isUpcoming ? styles.dateBadgeUpcoming : ""}`}>
+          <span className={styles.dateDay}>{day}</span>
+          <span className={styles.dateMonth}>{month}</span>
+        </div>
+        {!isLast && <div className={styles.timelineLine} />}
+      </div>
+
+      <div className={styles.timelineCard}>
+        <div className={styles.timelineCardHeader}>
+          <div className={styles.timelineBadges}>
+            <span className={styles.categoryBadge}>
+              {CATEGORY_META[program.category]?.title || program.category}
+            </span>
+            <span className={isUpcoming ? styles.statusUpcoming : styles.statusPast}>
+              {isUpcoming ? "● Mendatang" : "✓ Terlaksana"}
+            </span>
+          </div>
+          <span className={styles.timelineFullDate}>{fullDate}</span>
+        </div>
+
+        <h3 className={styles.timelineTitle}>
+          <Link href={`/program-kerja/${program.slug}`}>{program.title}</Link>
+        </h3>
+
+        <p className={styles.timelineDesc}>{program.description}</p>
+
+        <div className={styles.timelineFooter}>
+          {program.location ? (
+            <span className={styles.timelineLocation}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              {program.location}
+            </span>
+          ) : (
+            <span />
+          )}
+
+          <div className={styles.timelineActions}>
+            <Link href={`/program-kerja/${program.slug}`} className={styles.timelineLink}>
+              Detail Program &rarr;
+            </Link>
+            {program.registration_url && isUpcoming && (
+              <a
+                href={program.registration_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.timelineRegisterBtn}
+              >
+                Daftar
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface Props {
   searchParams: { category?: string };
 }
@@ -90,10 +234,21 @@ interface Props {
 export default async function ProgramKerjaPage({ searchParams }: Props) {
   const activeCategory = searchParams.category as ProgramCategory | undefined;
 
-  // TODO: [Backend Integration] Search & Pagination
-  // DRF endpoint support `category` & `visible`.
-  // Ke depannya dapat ditambahkan support query parameter `search` dan `page` untuk penomoran halaman.
-  const programs = await fetchPrograms(activeCategory).catch(() => []);
+  const allPrograms = await fetchPrograms().catch(() => []);
+  const programs = activeCategory
+    ? allPrograms.filter((p) => p.category === activeCategory)
+    : allPrograms;
+
+  const timelinePrograms = allPrograms
+    .filter((p) => Boolean(p.date))
+    .sort((a, b) => new Date(a.date!).getTime() - new Date(b.date!).getTime());
+
+  const timelineList =
+    timelinePrograms.length > 0
+      ? timelinePrograms
+      : programs.length === 0
+        ? DEMO_TIMELINE_PROGRAMS
+        : [];
 
   // Filter categories list
   const categoryKeys: ProgramCategory[] = [
@@ -285,92 +440,48 @@ export default async function ProgramKerjaPage({ searchParams }: Props) {
         </div>
       </section>
 
-      {/* ── 4. Interactive Schedule & Calendar Section ──────────────────────── */}
-      {/* 
-        TODO: [Backend Integration] Live Calendar Synchronization
-        Endpoint /api/v1/programs/calendar/ atau iCal sync untuk feed tanggal otomatis.
-      */}
-      <section className={`${styles.calendarSection} ${styles.altBg}`}>
+      {/* ── 4. Vertical Timeline & Roadmap Section ──────────────────────────── */}
+      <section className={`${styles.timelineSection} ${styles.altBg}`}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Jadwal &amp; Timeline</span>
-            <h2 className={styles.sectionTitle}>Activity Calendar</h2>
+            <span className={styles.sectionBadge}>Roadmap &amp; Linimasa</span>
+            <h2 className={styles.sectionTitle}>Agenda &amp; Timeline Kegiatan</h2>
             <p className={styles.sectionSubtitle}>
-              Pantau jadwal kegiatan dan jangan lewatkan tanggal penting pelaksanaan program SISO.
+              Linimasa pelaksanaan program kerja dan milestone penting SISO sepanjang periode kepengurusan.
             </p>
           </div>
 
-          <div className={styles.calendarCard}>
-            <div className={styles.calendarMonthHeader}>
-              <div className={styles.calendarMonthTitle}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="2" />
-                  <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2" />
-                  <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2" />
+          {timelineList.length > 0 ? (
+            <div className={styles.timelineWrapper}>
+              {timelineList.map((prog, index) => (
+                <TimelineItem
+                  key={prog.id}
+                  program={prog}
+                  isLast={index === timelineList.length - 1}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.timelineEmpty}>
+              <div className={styles.emptyIconBox}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
-                Oktober – November 2026
               </div>
-              <div className={styles.calendarLegend}>
-                <span>
-                  <span className={styles.legendDot} style={{ background: "#2575fc" }} />
-                  Workshop / Event
-                </span>
-                <span>
-                  <span className={styles.legendDot} style={{ background: "#f59e0b" }} />
-                  Competition
-                </span>
-              </div>
+              <h3 className={styles.emptyTitle}>Linimasa Sedang Diperbarui</h3>
+              <p className={styles.emptyDesc}>
+                Pengurus SISO sedang menyusun jadwal pelaksanaan kegiatan untuk periode ini. Pantau terus halaman ini untuk pembaruan agenda resmi.
+              </p>
             </div>
-
-            <div className={styles.calendarGridWrapper}>
-              <div className={styles.calendarHeaderDays}>
-                <span>Sen</span>
-                <span>Sel</span>
-                <span>Rab</span>
-                <span>Kam</span>
-                <span>Jum</span>
-                <span>Sab</span>
-                <span>Min</span>
-              </div>
-
-              <div className={styles.calendarDaysGrid}>
-                {/* Visual Representation of 28 Days */}
-                {Array.from({ length: 28 }).map((_, i) => {
-                  const dayNum = i + 1;
-                  const isSummit = dayNum === 2;
-                  const isBootcamp = dayNum === 17;
-                  const isHackathon = dayNum === 24;
-
-                  return (
-                    <div key={i} className={styles.calendarDayCell}>
-                      <span className={styles.calendarDayNumber}>{dayNum}</span>
-                      {isSummit && (
-                        <Link href="/program-kerja/stem-innovation-summit-2026" className={styles.calendarEventChip}>
-                          Summit 2026
-                        </Link>
-                      )}
-                      {isBootcamp && (
-                        <Link href="/program-kerja/ai-deep-learning-bootcamp" className={styles.calendarEventChip}>
-                          AI Bootcamp
-                        </Link>
-                      )}
-                      {isHackathon && (
-                        <Link href="/program-kerja/prasmul-hackathon-techfest" className={styles.calendarEventChip}>
-                          Hackathon
-                        </Link>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
       {/* ── 5. Categories Exploration Section ───────────────────────────────── */}
-      <section className={styles.categoriesSection}>
+      {/* <section className={styles.categoriesSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>Eksplorasi Jalur Minat</span>
@@ -431,7 +542,7 @@ export default async function ProgramKerjaPage({ searchParams }: Props) {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
