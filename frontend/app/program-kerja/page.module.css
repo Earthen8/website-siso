@@ -85,7 +85,7 @@
 .filterSection {
   background: #ffffff;
   border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-  padding-block: 20px;
+  padding-block: 14px;
   position: sticky;
   top: 70px;
   z-index: 40;
@@ -95,57 +95,90 @@
 .filterBar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   overflow-x: auto;
-  scrollbar-width: none;
-  padding-block: 4px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  padding-top: 2px;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 69, 128, 0.2) transparent;
 }
 
 .filterBar::-webkit-scrollbar {
-  display: none;
+  height: 5px;
+}
+
+.filterBar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+}
+
+.filterBar::-webkit-scrollbar-thumb {
+  background: rgba(20, 69, 128, 0.22);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+.filterBar::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 69, 128, 0.45);
+}
+
+/* Spacer ensuring the last item is never clipped right at the edge */
+.filterBar::after {
+  content: "";
+  flex-shrink: 0;
+  width: 12px;
 }
 
 .filterChip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 8px 18px;
   border-radius: 9999px;
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
   color: var(--siso-text-muted, #475569);
   background: var(--siso-bg-alt, #f1f5f9);
-  border: 1px solid transparent;
+  border: 1px solid rgba(226, 232, 240, 0.85);
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
 .filterChip:hover {
   background: rgba(20, 69, 128, 0.08);
   color: var(--siso-navy, #144580);
+  border-color: rgba(20, 69, 128, 0.2);
 }
 
 .filterChipActive {
   background: var(--siso-navy, #144580);
   color: #ffffff;
+  border-color: var(--siso-navy, #144580);
   box-shadow: 0 4px 14px -2px rgba(20, 69, 128, 0.35);
 }
 
 .filterChipActive:hover {
   background: var(--siso-navy-light, #1e5ba3);
   color: #ffffff;
+  border-color: var(--siso-navy-light, #1e5ba3);
 }
 
 .activeFilterNotice {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 16px;
-  padding: 12px 20px;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 18px;
   background: rgba(20, 69, 128, 0.06);
   border-radius: 12px;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--siso-navy, #144580);
 }
 
@@ -602,6 +635,13 @@
 @media (max-width: 1024px) {
   .categoryGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .filterBar {
+    margin-inline: calc(-1 * var(--space-md, 1.5rem));
+    padding-inline: var(--space-md, 1.5rem);
   }
 }
 

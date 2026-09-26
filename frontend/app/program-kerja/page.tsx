@@ -116,7 +116,7 @@ export default async function ProgramKerjaPage({ searchParams }: Props) {
               <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2" />
               <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2" />
             </svg>
-            Kalender &amp; Inisiatif SISO Prasmul
+            Inisiatif SISO Prasmul
           </div>
           <h1 className={styles.heroTitle}>
             Programs That Shape{" "}
@@ -135,6 +135,7 @@ export default async function ProgramKerjaPage({ searchParams }: Props) {
           <div className={styles.filterBar}>
             <Link
               href="/program-kerja"
+              scroll={false}
               className={`${styles.filterChip} ${!activeCategory ? styles.filterChipActive : ""}`}
             >
               Semua Program ({programs.length})
@@ -145,6 +146,7 @@ export default async function ProgramKerjaPage({ searchParams }: Props) {
                 <Link
                   key={catKey}
                   href={`/program-kerja?category=${catKey}`}
+                  scroll={false}
                   className={`${styles.filterChip} ${isActive ? styles.filterChipActive : ""}`}
                 >
                   {CATEGORY_META[catKey].title}
@@ -158,7 +160,7 @@ export default async function ProgramKerjaPage({ searchParams }: Props) {
               <span>
                 Menampilkan kategori: <strong>{CATEGORY_META[activeCategory]?.title || activeCategory}</strong>
               </span>
-              <Link href="/program-kerja" className={styles.resetFilterLink}>
+              <Link href="/program-kerja" scroll={false} className={styles.resetFilterLink}>
                 ✕ Reset Filter
               </Link>
             </div>
