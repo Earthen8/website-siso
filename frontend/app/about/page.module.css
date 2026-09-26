@@ -318,6 +318,7 @@
   .visionMissionGrid {
     grid-template-columns: 1fr;
   }
+
   .missionGrid {
     grid-template-columns: 1fr;
   }
@@ -397,7 +398,7 @@
 
 .philosophyContent {
   display: grid;
-  grid-template-columns: minmax(320px, 450px) 1fr;
+  grid-template-columns: minmax(320px, 400px) 1fr;
   gap: clamp(32px, 5vw, 64px);
   align-items: center;
 }
@@ -413,7 +414,7 @@
 .philosophyLogoImg {
   object-fit: contain;
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   height: auto;
   filter: drop-shadow(0 12px 28px rgba(20, 69, 128, 0.12));
   transition: transform 0.3s ease;
@@ -653,6 +654,7 @@
   .structureGrid {
     grid-template-columns: 1fr;
   }
+
   .leaderCard {
     flex-direction: column;
     text-align: center;

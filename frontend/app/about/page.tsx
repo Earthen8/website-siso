@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { fetchOrganization, fetchDivisions, fetchMembers, type BPHMember } from "@/lib/api";
 import styles from "./page.module.css";
+import OrgStructure from "./OrgStructure";
 
 export const revalidate = 300;
 
@@ -169,8 +170,6 @@ export default async function AboutPage() {
 
   // Leadership & Members Grouping
   const activeMembers = members.length > 0 ? members : FALLBACK_LEADERS;
-  const topLeaders = activeMembers.slice(0, 2);
-  const otherMembers = activeMembers.slice(2);
 
   return (
     <div className={styles.pageWrapper}>
@@ -410,7 +409,7 @@ export default async function AboutPage() {
       </section>
 
       {/* ── 5. Organizational Structure ─────────────────────────────────────── */}
-      {/* 
+      {/*
         TODO: [Backend Integration] Year Filter / Generation Switcher
         Gunakan query param ?generation=XXXX untuk menampilkan susunan kepengurusan tahun lain.
       */}
@@ -424,61 +423,7 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          <div className={styles.structureContainer}>
-            {/* Leadership Tier: Ketua & Wakil */}
-            <div className={styles.leadershipRow}>
-              {topLeaders.map((leader) => (
-                <div className={styles.leaderCard} key={leader.id}>
-                  <div className={styles.leaderAvatar}>
-                    {leader.photo ? (
-                      <Image
-                        src={leader.photo}
-                        alt={leader.name}
-                        fill
-                        style={{ objectFit: "cover" }}
-                      />
-                    ) : (
-                      <span>{getInitials(leader.name)}</span>
-                    )}
-                  </div>
-                  <div>
-                    <span className={styles.leaderRoleBadge}>{leader.role}</span>
-                    <h3 className={styles.leaderName}>{leader.name}</h3>
-                    <p className={styles.leaderGen}>Generasi {leader.generation_year} • BPH Inti</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Core Officers & Division Heads */}
-            {otherMembers.length > 0 && (
-              <div className={styles.structureGrid}>
-                {otherMembers.map((member) => (
-                  <div className={styles.memberCard} key={member.id}>
-                    <div className={styles.memberAvatar}>
-                      {member.photo ? (
-                        <Image
-                          src={member.photo}
-                          alt={member.name}
-                          fill
-                          style={{ objectFit: "cover" }}
-                        />
-                      ) : (
-                        <span>{getInitials(member.name)}</span>
-                      )}
-                    </div>
-                    <div>
-                      <p className={styles.memberRole}>{member.role}</p>
-                      <h4 className={styles.memberName}>{member.name}</h4>
-                      <p className={styles.memberDivision}>
-                        {member.division ? `Divisi ${member.division}` : "Pengurus Harian"}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <OrgStructure members={activeMembers} divisions={divisions} />
         </div>
       </section>
 
