@@ -100,16 +100,16 @@ const FALLBACK_MISSION_POINTS = [
 
 const FALLBACK_VALUE_PROPS = [
   {
-    title: "Networking Luas",
-    text: "Terhubung langsung dengan mahasiswa STEM lintas angkatan, alumni berprestasi, dan jaringan korporasi teknologi ternama.",
+    title: "Kolaborasi Multidisipliner STEM",
+    text: "Menyatukan talenta sains, komputasi, dan rekayasa lintas program studi untuk mengeksplorasi solusi komprehensif atas permasalahan riil.",
   },
   {
-    title: "Skill Development",
-    text: "Asah kemampuan teknis (Coding, AI, IoT, Robotics) dan soft skill kepemimpinan melalui bootcamp dan workshop aplikatif.",
+    title: "Riset Terapan & Inovasi Teknologi",
+    text: "Mengembangkan kapabilitas deep-tech (AI, IoT, Robotics, Data Science) melalui workshop intensif, hands-on prototyping, dan mentorship industri.",
   },
   {
-    title: "Real-World Impact",
-    text: "Buktikan kapabilitas melalui proyek riset riil, program pengabdian masyarakat, dan kompetisi sains & teknologi bergengsi.",
+    title: "Akselerasi Prestasi & Dampak Industri",
+    text: "Menginkubasi tim kompetisi sains-teknologi di kancah nasional maupun global, serta membuka akses karir ke ekosistem industri masa depan.",
   },
 ];
 
@@ -148,11 +148,20 @@ export default async function HomePage() {
     (getSection(sections, "vision_mission")?.config?.mission_points as string[]) ??
     FALLBACK_MISSION_POINTS;
 
+  const valuePropSection = getSection(sections, "value_proposition");
+  const valuePropConfig = valuePropSection?.config as
+    | {
+        badge?: string;
+        title?: string;
+        subtitle?: string;
+        items?: { title: string; text: string }[];
+      }
+    | undefined;
+
   const valueProps: { title: string; text: string }[] =
-    (getSection(sections, "value_proposition")?.config?.items as {
-      title: string;
-      text: string;
-    }[]) ?? FALLBACK_VALUE_PROPS;
+    valuePropConfig?.items && valuePropConfig.items.length > 0
+      ? valuePropConfig.items
+      : FALLBACK_VALUE_PROPS;
 
   const socialPosts: { image: string; url: string }[] =
     (getSection(sections, "social_media")?.config?.posts as {
@@ -704,13 +713,18 @@ export default async function HomePage() {
 
       {/* ── 9. Value Proposition ───────────────────────────────────────────── */}
       {isSectionVisible(sections, "value_proposition") && (
-        <section className={`section-block ${styles.altBg}`}>
+        <section className={`section-block ${styles.altBg}`} id="value-proposition">
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Nilai Keunggulan</span>
-              <h2 className={styles.sectionHeading}>Why Join SISO?</h2>
+              <span className={styles.sectionBadge}>
+                {valuePropConfig?.badge || "Nilai Keunggulan"}
+              </span>
+              <h2 className={styles.sectionHeading}>
+                {valuePropConfig?.title || "Value Proposition"}
+              </h2>
               <p className={styles.sectionSubtitle}>
-                Manfaat nyata dan ekosistem bertumbuh yang akan Anda dapatkan sebagai bagian dari keluarga besar SISO.
+                {valuePropConfig?.subtitle ||
+                  "Pilar keunggulan dan nilai transformatif SISO dalam memberdayakan mahasiswa STEM melalui kolaborasi multidisipliner, riset terapan, dan kesiapan industri global."}
               </p>
             </div>
 
@@ -718,33 +732,56 @@ export default async function HomePage() {
               {valueProps.map((item, idx) => (
                 <div className={styles.valueCard} key={item.title}>
                   <div className={styles.valueIconWrap}>
-                    {idx === 0 && (
-                      <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="5" r="3" stroke="currentColor" strokeWidth="2" />
-                        <circle cx="5" cy="19" r="3" stroke="currentColor" strokeWidth="2" />
-                        <circle cx="19" cy="19" r="3" stroke="currentColor" strokeWidth="2" />
-                        <path d="M12 8v5M12 13l-5 4M12 13l5 4" stroke="currentColor" strokeWidth="2" />
+                    {idx % 3 === 0 && (
+                      <svg
+                        width="34"
+                        height="34"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="12" r="2.5" />
+                        <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(30 12 12)" />
+                        <ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-30 12 12)" />
                       </svg>
                     )}
-                    {idx === 1 && (
-                      <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
+                    {idx % 3 === 1 && (
+                      <svg
+                        width="34"
+                        height="34"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                        <rect x="9" y="9" width="6" height="6" />
+                        <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
                       </svg>
                     )}
-                    {idx === 2 && (
-                      <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-                        <path
-                          d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        />
+                    {idx % 3 === 2 && (
+                      <svg
+                        width="34"
+                        height="34"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
                       </svg>
                     )}
                   </div>

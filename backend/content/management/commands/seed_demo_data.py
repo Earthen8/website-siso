@@ -72,20 +72,23 @@ class Command(BaseCommand):
                 "type": "value_proposition",
                 "order": 8,
                 "config": {
+                    "badge": "Nilai Keunggulan",
+                    "title": "Value Proposition",
+                    "subtitle": "Pilar keunggulan dan nilai transformatif SISO dalam memberdayakan mahasiswa STEM melalui kolaborasi multidisipliner, riset terapan, dan kesiapan industri global.",
                     "items": [
                         {
-                            "title": "Networking & Komunitas",
-                            "text": "Terhubung langsung dengan mahasiswa STEM lintas jurusan, alumni sukses, dan praktisi industri teknologi ternama.",
+                            "title": "Kolaborasi Multidisipliner STEM",
+                            "text": "Menyatukan talenta sains, komputasi, dan rekayasa lintas program studi untuk mengeksplorasi solusi komprehensif atas permasalahan riil.",
                         },
                         {
-                            "title": "Skill Development",
-                            "text": "Asah keahlian teknis (AI, Web, IoT, Data) dan soft skill kepemimpinan melalui bootcamp serta proyek riil.",
+                            "title": "Riset Terapan & Inovasi Teknologi",
+                            "text": "Mengembangkan kapabilitas deep-tech (AI, IoT, Robotics, Data Science) melalui workshop intensif, hands-on prototyping, dan mentorship industri.",
                         },
                         {
-                            "title": "Real-World Impact",
-                            "text": "Wujudkan solusi nyata bagi masyarakat dan raih prestasi membanggakan di kompetisi teknologi nasional maupun global.",
+                            "title": "Akselerasi Prestasi & Dampak Industri",
+                            "text": "Menginkubasi tim kompetisi sains-teknologi di kancah nasional maupun global, serta membuka akses karir ke ekosistem industri masa depan.",
                         },
-                    ]
+                    ],
                 },
             },
         ]
