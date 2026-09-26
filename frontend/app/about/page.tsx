@@ -48,16 +48,20 @@ const DEFAULT_ORGANIZATIONAL_VALUES = [
 
 const DEFAULT_PHILOSOPHY_POINTS = [
   {
-    title: "Sinergi Multidisiplin STEM",
-    text: "Menyatukan sains, teknologi, rekayasa, dan matematika menjadi satu kekuatan solutif bagi tantangan masa depan.",
+    title: "Burung Phoenix (Transformasi & Resiliensi)",
+    text: "Melambangkan tekad pantang menyerah, kebangkitan berkelanjutan, dan aspirasi mahasiswa STEM untuk membumbung tinggi menjadi pelopor inovasi.",
   },
   {
-    title: "Dinamika Evolusi & Inovasi",
-    text: "Simbol pergerakan mahasiswa yang terus belajar, bereksplorasi, dan adaptif terhadap kemajuan zaman.",
+    title: "Struktur Molekular & Jejaring Saintifik",
+    text: "Ikatan atom melingkar di atas kepala melambangkan fondasi sains, teknologi presisi, dan sinergi riset kolaboratif antardisiplin ilmu STEM.",
   },
   {
-    title: "Dampak Nyata bagi Masyarakat",
-    text: "Fokus tidak hanya pada pencapaian akademik di kampus, melainkan manfaat nyata bagi kemajuan Indonesia.",
+    title: "Dinamika Sayap & Pertumbuhan Organik",
+    text: "Lekukan sayap dinamis yang menyerupai sulur alami mencerminkan inovasi teknologi yang hidup, adaptif terhadap zaman, dan berdampak berkelanjutan.",
+  },
+  {
+    title: "Warna Deep Navy & Putih Bersih",
+    text: "Navy merefleksikan kedalaman intelektual, integritas, dan profesionalisme, sementara putih melambangkan transparansi, keterbukaan ide, dan kemurnian tujuan.",
   },
 ];
 
@@ -121,33 +125,47 @@ export default async function AboutPage() {
   const rawMission = org?.misi || "";
   const missionPoints = rawMission
     ? rawMission
-        .split("\n")
-        .map((m: string) => m.trim().replace(/^(?:(?:\d+[.)]|[-*•.])\s*)+/, "").trim())
-        .filter(Boolean)
+      .split("\n")
+      .map((m: string) => m.trim().replace(/^(?:(?:\d+[.)]|[-*•.])\s*)+/, "").trim())
+      .filter(Boolean)
     : FALLBACK_MISSION_POINTS;
 
   // Organizational Values
   const valuesData =
     org?.nilai && org.nilai.length > 0
       ? org.nilai.map((v) => {
-          const match = DEFAULT_ORGANIZATIONAL_VALUES.find(
-            (def) => def.title.toLowerCase() === v.toLowerCase()
-          );
-          return {
-            title: v,
-            text: match ? match.text : "Nilai fundamental pergerakan mahasiswa STEM SISO Prasmul.",
-          };
-        })
+        const match = DEFAULT_ORGANIZATIONAL_VALUES.find(
+          (def) => def.title.toLowerCase() === v.toLowerCase()
+        );
+        return {
+          title: v,
+          text: match ? match.text : "Nilai fundamental pergerakan mahasiswa STEM SISO Prasmul.",
+        };
+      })
       : DEFAULT_ORGANIZATIONAL_VALUES;
 
   // Logo Philosophy
   const rawPhilosophy = org?.filosofi_logo || "";
-  const philosophyItems = rawPhilosophy
-    ? rawPhilosophy.split("\n\n").filter(Boolean).map((pt, i) => ({
-        title: DEFAULT_PHILOSOPHY_POINTS[i]?.title || `Filosofi Bagian ${i + 1}`,
-        text: pt,
-      }))
-    : DEFAULT_PHILOSOPHY_POINTS;
+  const parsedPhilosophyLines = rawPhilosophy
+    ? rawPhilosophy
+      .split(/\n+/)
+      .map((line) => line.trim().replace(/^(?:(?:\d+[.)]|[-*•.])\s*)+/, "").trim())
+      .filter(Boolean)
+    : [];
+
+  const philosophyItems =
+    parsedPhilosophyLines.length > 1
+      ? parsedPhilosophyLines.map((line, i) => {
+        const match = line.match(/^([^:-]+)[:\-]\s*(.+)$/);
+        if (match) {
+          return { title: match[1].trim(), text: match[2].trim() };
+        }
+        return {
+          title: DEFAULT_PHILOSOPHY_POINTS[i]?.title || `Pilar Filosofi 0${i + 1}`,
+          text: line,
+        };
+      })
+      : DEFAULT_PHILOSOPHY_POINTS;
 
   // Leadership & Members Grouping
   const activeMembers = members.length > 0 ? members : FALLBACK_LEADERS;
@@ -365,25 +383,22 @@ export default async function AboutPage() {
           </div>
 
           <div className={styles.philosophyContent}>
-            <div className={styles.philosophyImageCard}>
-              <div className={styles.philosophyImageWrapper}>
-                <Image
-                  src={org?.logo || "/logo-siso.png"}
-                  alt="Lambang SISO Prasmul"
-                  width={140}
-                  height={140}
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
-              <p className={styles.philosophyImageTitle}>SISO Prasmul</p>
-              <p className={styles.philosophyImageSub}>Official Identity &amp; Insignia</p>
+            <div className={styles.philosophyLogoWrapper}>
+              <Image
+                src={org?.logo || "/logo-siso.png"}
+                alt="Lambang Resmi SISO Prasmul"
+                width={400}
+                height={400}
+                className={styles.philosophyLogoImg}
+                priority
+              />
             </div>
 
             <div className={styles.philosophyCards}>
               {philosophyItems.map((pt, i) => (
                 <div key={i} className={styles.philosophyCard}>
                   <span className={styles.philosophyIconBadge}>0{i + 1}</span>
-                  <div>
+                  <div className={styles.philosophyCardBody}>
                     <h3 className={styles.philosophyCardTitle}>{pt.title}</h3>
                     <p className={styles.philosophyCardText}>{pt.text}</p>
                   </div>

@@ -29,8 +29,10 @@ class Command(BaseCommand):
         )
         org.nilai = ["Innovation", "Collaboration", "Integrity", "Excellence"]
         org.filosofi_logo = (
-            "Logo SISO melambangkan sinergi multidisiplin STEM (Science, Technology, Engineering, Mathematics) "
-            "dengan dinamika pergerakan mahasiswa yang terus berevolusi ke masa depan."
+            "1. Burung Phoenix (Transformasi & Resiliensi): Melambangkan tekad pantang menyerah, kebangkitan berkelanjutan, dan aspirasi mahasiswa STEM untuk membumbung tinggi menjadi pelopor inovasi.\n"
+            "2. Struktur Molekular & Jejaring Saintifik: Ikatan atom melingkar di atas kepala melambangkan fondasi sains, teknologi presisi, dan sinergi riset kolaboratif antardisiplin ilmu STEM.\n"
+            "3. Dinamika Sayap & Pertumbuhan Organik: Lekukan sayap dinamis yang menyerupai sulur alami mencerminkan inovasi teknologi yang hidup, adaptif terhadap zaman, dan berdampak berkelanjutan.\n"
+            "4. Warna Deep Navy & Putih Bersih: Navy merefleksikan kedalaman intelektual, integritas, dan profesionalisme, sementara putih melambangkan transparansi, keterbukaan ide, dan kemurnian tujuan."
         )
         org.save()
         self.stdout.write(self.style.SUCCESS("✓ Organization seeded"))
