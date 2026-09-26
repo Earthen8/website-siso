@@ -12,7 +12,7 @@ interface NavLinkItem {
 
 const NAV_LINKS: NavLinkItem[] = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Siso" },
+  { href: "/about", label: "About SISO" },
   { href: "/program-kerja", label: "Programs & Events" },
   { href: "/gallery", label: "Gallery" },
   { href: "/articles-and-achieve", label: "Articles and Achievements" },
