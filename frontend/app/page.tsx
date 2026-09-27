@@ -144,8 +144,14 @@ export default async function HomePage() {
       fetchMedia(4).catch(() => []),
     ]);
 
+  const visionSection = getSection(sections, "vision_mission");
+  const visionText: string =
+    (visionSection?.config?.vision_text as string) ??
+    org?.visi ??
+    "Menjadi episentrum pergerakan mahasiswa STEM yang unggul, inovatif, dan berintegritas dalam menciptakan solusi teknologi yang aplikatif.";
+
   const missionPoints: string[] =
-    (getSection(sections, "vision_mission")?.config?.mission_points as string[]) ??
+    (visionSection?.config?.mission_points as string[]) ??
     FALLBACK_MISSION_POINTS;
 
   const valuePropSection = getSection(sections, "value_proposition");
@@ -329,10 +335,7 @@ export default async function HomePage() {
                     </svg>
                   </div>
                   <h3>Our Vision</h3>
-                  <p>
-                    {org?.visi ??
-                      "Menjadi episentrum pergerakan mahasiswa STEM yang unggul, inovatif, dan berintegritas dalam menciptakan solusi teknologi yang aplikatif."}
-                  </p>
+                  <p>{visionText}</p>
                 </div>
               </div>
 

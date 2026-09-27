@@ -165,7 +165,123 @@ REST_FRAMEWORK = {
 
 # ── Unfold (Django Admin CMS) ─────────────────────────────────────────────────
 
+from django.urls import reverse_lazy
+
 UNFOLD = {
     "SITE_TITLE": "SISO CMS",
     "SITE_HEADER": "SISO Prasmul",
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": "Kelola Konten Per Halaman",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "1. Halaman Home",
+                        "icon": "home",
+                        "link": reverse_lazy("admin:content_homesection_changelist"),
+                    },
+                    {
+                        "title": "2. Halaman About",
+                        "icon": "info",
+                        "link": reverse_lazy("admin:content_aboutsection_changelist"),
+                    },
+                    {
+                        "title": "3. Halaman Program Kerja",
+                        "icon": "event_note",
+                        "link": reverse_lazy("admin:content_programsection_changelist"),
+                    },
+                    {
+                        "title": "4. Halaman Artikel & Prestasi",
+                        "icon": "article",
+                        "link": reverse_lazy("admin:content_articlesection_changelist"),
+                    },
+                    {
+                        "title": "5. Halaman Contact & FAQ",
+                        "icon": "contact_support",
+                        "link": reverse_lazy("admin:content_contactsection_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Master Data & Database",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Profil Organisasi & BPH",
+                        "icon": "badge",
+                        "link": reverse_lazy("admin:content_organization_changelist"),
+                    },
+                    {
+                        "title": "Divisi",
+                        "icon": "group_work",
+                        "link": reverse_lazy("admin:content_division_changelist"),
+                    },
+                    {
+                        "title": "Anggota BPH",
+                        "icon": "people",
+                        "link": reverse_lazy("admin:content_bphmember_changelist"),
+                    },
+                    {
+                        "title": "Katalog Program Kerja",
+                        "icon": "calendar_month",
+                        "link": reverse_lazy("admin:content_programkerja_changelist"),
+                    },
+                    {
+                        "title": "Katalog Artikel",
+                        "icon": "feed",
+                        "link": reverse_lazy("admin:content_article_changelist"),
+                    },
+                    {
+                        "title": "Prestasi Mahasiswa",
+                        "icon": "emoji_events",
+                        "link": reverse_lazy("admin:content_achievement_changelist"),
+                    },
+                    {
+                        "title": "Media Assets (Foto/Logo)",
+                        "icon": "image",
+                        "link": reverse_lazy("admin:content_mediaasset_changelist"),
+                    },
+                    {
+                        "title": "FAQ",
+                        "icon": "quiz",
+                        "link": reverse_lazy("admin:content_faq_changelist"),
+                    },
+                    {
+                        "title": "Kontak Info",
+                        "icon": "call",
+                        "link": reverse_lazy("admin:content_contactinfo_changelist"),
+                    },
+                    {
+                        "title": "Form Submissions (Pesan/Aspirasi)",
+                        "icon": "mail",
+                        "link": reverse_lazy("admin:content_formsubmission_changelist"),
+                    },
+                    {
+                        "title": "Semua Section (Master/Raw)",
+                        "icon": "view_quilt",
+                        "link": reverse_lazy("admin:content_section_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Autentikasi & Akun",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Pengguna (Users)",
+                        "icon": "person",
+                        "link": reverse_lazy("admin:auth_user_changelist"),
+                    },
+                    {
+                        "title": "Grup (Groups)",
+                        "icon": "groups",
+                        "link": reverse_lazy("admin:auth_group_changelist"),
+                    },
+                ],
+            },
+        ],
+    },
 }

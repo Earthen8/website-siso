@@ -105,7 +105,39 @@ class Command(BaseCommand):
                     "config": s["config"],
                 },
             )
-        self.stdout.write(self.style.SUCCESS("✓ Home sections configured"))
+
+        other_sections = [
+            # About page
+            {"page": "about", "type": "about", "order": 1, "config": {}},
+            {"page": "about", "type": "vision_mission", "order": 2, "config": {}},
+            {"page": "about", "type": "values", "order": 3, "config": {}},
+            {"page": "about", "type": "philosophy", "order": 4, "config": {}},
+            {"page": "about", "type": "structure", "order": 5, "config": {}},
+            # Program page
+            {"page": "program", "type": "hero", "order": 1, "config": {}},
+            {"page": "program", "type": "filter", "order": 2, "config": {}},
+            {"page": "program", "type": "catalog", "order": 3, "config": {}},
+            {"page": "program", "type": "timeline", "order": 4, "config": {}},
+            # Articles page
+            {"page": "articles", "type": "hero", "order": 1, "config": {}},
+            {"page": "articles", "type": "catalog", "order": 2, "config": {}},
+            {"page": "articles", "type": "achievements", "order": 3, "config": {}},
+            # Contact page
+            {"page": "contact", "type": "info", "order": 1, "config": {}},
+            {"page": "contact", "type": "form", "order": 2, "config": {}},
+            {"page": "contact", "type": "faq", "order": 3, "config": {}},
+        ]
+        for s in other_sections:
+            Section.objects.update_or_create(
+                page=s["page"],
+                section_type=s["type"],
+                defaults={
+                    "is_visible": True,
+                    "order": s["order"],
+                    "config": s["config"],
+                },
+            )
+        self.stdout.write(self.style.SUCCESS("✓ All page sections configured"))
 
         # 3. Highlighted Programs & Upcoming Events
         today = datetime.date.today()

@@ -80,18 +80,31 @@ class Section(models.Model):
         ordering = ["page", "order"]
 ```
 
-```python
-# backend/content/admin.py
-@admin.register(Section)
-class SectionAdmin(admin.ModelAdmin):
-    list_display = ("page", "section_type", "is_visible", "order")
-    list_editable = ("is_visible", "order")   # <- toggle + reorder, inline, tanpa reload halaman
-    list_filter = ("page", "is_visible")
+# Proxy Models untuk klasifikasi menu Admin per-halaman:
+class HomeSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "1. Halaman Home"
+
+class AboutSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "2. Halaman About"
+
+# (Dan proxy untuk Halaman Program Kerja, Artikel, serta Contact & FAQ)
 ```
 
-Next.js fetch `GET /api/v1/sections?page=home&visible=true`, sudah terurut, dan hanya render yang dikembalikan. Matikan "Video Profile (OPSIONAL)" tinggal centang di Django Admin — tanpa deploy.
+```python
+# backend/content/admin.py
+@admin.register(HomeSection)
+class HomeSectionAdmin(SectionBaseAdmin):
+    list_display = ("display_name_col", "is_visible", "order")
+    # Memfilter otomatis hanya section untuk halaman bersangkutan
+    def get_queryset(self, request):
+        return super().get_queryset(request).filter(page="home")
+```
 
-Rekomendasi pakai `django-admin-interface` atau `django-unfold` untuk tampilan admin yang lebih rapi, karena akan dipakai langsung oleh anggota BPH non-teknis.
+Next.js fetch `GET /api/v1/sections?page=home&visible=true`, sudah terurut, dan hanya render yang dikembalikan. Matikan "Video Profile (OPSIONAL)" atau ubah teks Visi/Misi tinggal buka menu halaman terkait di Django Admin (Unfold CMS) — tanpa deploy dan tanpa menyentuh JSON mentah.
 
 ---
 

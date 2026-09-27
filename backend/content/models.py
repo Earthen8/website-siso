@@ -257,5 +257,76 @@ class Section(models.Model):
             models.Index(fields=["page", "is_visible"], name="section_page_visible_idx"),
         ]
 
+    SECTION_LABELS = {
+        ("home", "hero"): "Hero Section",
+        ("home", "about"): "Sambutan & Ringkasan About",
+        ("home", "vision_mission"): "Visi & Misi (Vision & Mission)",
+        ("home", "highlighted_programs"): "Program Unggulan (Highlighted Programs)",
+        ("home", "upcoming_events"): "Agenda Terdekat (Upcoming Events)",
+        ("home", "student_achievements"): "Prestasi Mahasiswa",
+        ("home", "documentations"): "Galeri Dokumentasi",
+        ("home", "social_media"): "Feed Media Sosial",
+        ("home", "value_proposition"): "Value Proposition",
+        ("about", "about"): "Pengantar Organisasi",
+        ("about", "vision_mission"): "Visi & Misi Organisasi",
+        ("about", "values"): "Nilai Organisasi (Core Values)",
+        ("about", "philosophy"): "Filosofi Logo SISO",
+        ("about", "structure"): "Struktur Organisasi (BPH & Divisi)",
+        ("program", "hero"): "Hero Program Kerja",
+        ("program", "filter"): "Filter Kategori Program",
+        ("program", "catalog"): "Katalog Program Kerja",
+        ("program", "timeline"): "Linimasa / Roadmap Agenda",
+        ("articles", "hero"): "Hero Artikel & Prestasi",
+        ("articles", "catalog"): "Katalog Artikel",
+        ("articles", "achievements"): "Daftar Prestasi Mahasiswa",
+        ("contact", "info"): "Informasi Kontak & Sosmed",
+        ("contact", "form"): "Formulir Aspirasi & Pesan",
+        ("contact", "faq"): "Frequently Asked Questions (FAQ)",
+    }
+
+    @property
+    def display_name(self) -> str:
+        return self.SECTION_LABELS.get(
+            (self.page, self.section_type),
+            self.section_type.replace("_", " ").title(),
+        )
+
     def __str__(self):
-        return f"{self.get_page_display()} - {self.section_type}"
+        return f"{self.get_page_display()} — {self.display_name}"
+
+
+# ── Per-Page Proxy Models for Section Management ──────────────────────────────
+
+class HomeSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name = "Section Home"
+        verbose_name_plural = "1. Halaman Home"
+
+
+class AboutSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name = "Section About"
+        verbose_name_plural = "2. Halaman About"
+
+
+class ProgramSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name = "Section Program"
+        verbose_name_plural = "3. Halaman Program Kerja"
+
+
+class ArticleSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name = "Section Artikel"
+        verbose_name_plural = "4. Halaman Artikel & Prestasi"
+
+
+class ContactSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name = "Section Contact"
+        verbose_name_plural = "5. Halaman Contact & FAQ"
