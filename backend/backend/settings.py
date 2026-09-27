@@ -243,11 +243,6 @@ UNFOLD = {
                         "icon": "image",
                         "link": reverse_lazy("admin:content_mediaasset_changelist"),
                     },
-                    {
-                        "title": "Semua Section (Master/Raw)",
-                        "icon": "view_quilt",
-                        "link": reverse_lazy("admin:content_section_changelist"),
-                    },
                 ],
             },
             {
