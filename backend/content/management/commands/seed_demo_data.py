@@ -123,10 +123,13 @@ class Command(BaseCommand):
             {"page": "articles", "type": "hero", "order": 1, "config": {}},
             {"page": "articles", "type": "catalog", "order": 2, "config": {}},
             {"page": "articles", "type": "achievements", "order": 3, "config": {}},
-            # Contact page
-            {"page": "contact", "type": "info", "order": 1, "config": {}},
-            {"page": "contact", "type": "form", "order": 2, "config": {}},
-            {"page": "contact", "type": "faq", "order": 3, "config": {}},
+            # Gallery page
+            {"page": "gallery", "type": "hero", "order": 1, "config": {}},
+            {"page": "gallery", "type": "filter", "order": 2, "config": {}},
+            {"page": "gallery", "type": "photos", "order": 3, "config": {}},
+            {"page": "gallery", "type": "videos", "order": 4, "config": {}},
+            {"page": "gallery", "type": "events", "order": 5, "config": {}},
+            {"page": "gallery", "type": "docs", "order": 6, "config": {}},
         ]
         for s in other_sections:
             Section.objects.update_or_create(

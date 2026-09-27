@@ -19,7 +19,7 @@ from .models import (
     AboutSection,
     ProgramSection,
     ArticleSection,
-    ContactSection,
+    GallerySection,
 )
 
 
@@ -320,12 +320,12 @@ class ArticleSectionAdmin(SectionBaseAdmin):
         return super().get_queryset(request).filter(page="articles")
 
 
-@admin.register(ContactSection)
-class ContactSectionAdmin(SectionBaseAdmin):
+@admin.register(GallerySection)
+class GallerySectionAdmin(SectionBaseAdmin):
     list_display = ("display_name_col", "is_visible", "order")
 
     def get_queryset(self, request: HttpRequest):
-        return super().get_queryset(request).filter(page="contact")
+        return super().get_queryset(request).filter(page="gallery")
 
 
 @admin.register(Section)

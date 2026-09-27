@@ -199,9 +199,9 @@ UNFOLD = {
                         "link": reverse_lazy("admin:content_articlesection_changelist"),
                     },
                     {
-                        "title": "5. Halaman Contact & FAQ",
-                        "icon": "contact_support",
-                        "link": reverse_lazy("admin:content_contactsection_changelist"),
+                        "title": "5. Halaman Gallery",
+                        "icon": "photo_library",
+                        "link": reverse_lazy("admin:content_gallerysection_changelist"),
                     },
                 ],
             },

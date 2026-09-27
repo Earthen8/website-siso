@@ -242,7 +242,7 @@ class Section(models.Model):
         ("about", "About SISO"),
         ("program", "Program Kerja & Events"),
         ("articles", "Articles"),
-        ("contact", "Contact"),
+        ("gallery", "Gallery & Dokumentasi"),
     ]
 
     page = models.CharField(max_length=30, choices=PAGE_CHOICES)
@@ -280,9 +280,12 @@ class Section(models.Model):
         ("articles", "hero"): "Hero Artikel & Prestasi",
         ("articles", "catalog"): "Katalog Artikel",
         ("articles", "achievements"): "Daftar Prestasi Mahasiswa",
-        ("contact", "info"): "Informasi Kontak & Sosmed",
-        ("contact", "form"): "Formulir Aspirasi & Pesan",
-        ("contact", "faq"): "Frequently Asked Questions (FAQ)",
+        ("gallery", "hero"): "Hero Galeri & Arsip",
+        ("gallery", "filter"): "Filter Kategori Galeri",
+        ("gallery", "photos"): "Galeri Foto Kegiatan",
+        ("gallery", "videos"): "Video Dokumentasi & Aftermovie",
+        ("gallery", "events"): "Arsip Program Kerja",
+        ("gallery", "docs"): "Publikasi & Laporan Tahunan (PDF)",
     }
 
     @property
@@ -326,8 +329,8 @@ class ArticleSection(Section):
         verbose_name_plural = "4. Halaman Artikel & Prestasi"
 
 
-class ContactSection(Section):
+class GallerySection(Section):
     class Meta:
         proxy = True
-        verbose_name = "Section Contact"
-        verbose_name_plural = "5. Halaman Contact & FAQ"
+        verbose_name = "Section Gallery"
+        verbose_name_plural = "5. Halaman Gallery"
