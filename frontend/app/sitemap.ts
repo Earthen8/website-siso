@@ -9,8 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: BASE, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     { url: `${BASE}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE}/program-kerja`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE}/articles`, lastModified: new Date(), changeFrequency: "daily", priority: 0.8 },
-    { url: `${BASE}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE}/articles-and-achieve`, lastModified: new Date(), changeFrequency: "daily", priority: 0.8 },
   ];
 
   // Fetch dynamic routes — fall back to static-only if the API is unavailable.

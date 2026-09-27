@@ -9,8 +9,7 @@ const SOCIAL_LINKS = [
 const FOOTER_LINKS = [
   { href: "/about", label: "About SISO" },
   { href: "/program-kerja", label: "Program Kerja" },
-  { href: "/articles", label: "Articles" },
-  { href: "/contact", label: "Contact" },
+  { href: "/articles-and-achieve", label: "Articles & Achievements" },
 ];
 
 export default function Footer() {
