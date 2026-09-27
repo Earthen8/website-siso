@@ -187,7 +187,8 @@ export default async function HomePage() {
       />
 
       {/* ── 1. Hero Section ─────────────────────────────────────────────────── */}
-      <section className={styles.hero}>
+      {isSectionVisible(sections, "hero") && (
+        <section className={styles.hero}>
         <div className={styles.heroMedia}>
           <Image
             src="/images/hero-team.jpg"
@@ -252,7 +253,8 @@ export default async function HomePage() {
             <span>Scroll untuk menjelajahi</span>
           </a>
         </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 2. About SISO ───────────────────────────────────────────────────── */}
       {isSectionVisible(sections, "about") && (

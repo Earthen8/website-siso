@@ -61,7 +61,6 @@ class BPHMember(models.Model):
         related_name="members",
     )
     order = models.PositiveIntegerField(default=0)
-    # generation_year preserves historical BPH data across annual handovers.
     generation_year = models.PositiveIntegerField()
 
     class Meta:

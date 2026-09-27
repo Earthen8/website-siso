@@ -191,7 +191,8 @@ export default async function AboutPage() {
   return (
     <div className={styles.pageWrapper}>
       {/* ── 1. Hero & Stats Section ─────────────────────────────────────────── */}
-      <section className={styles.heroContainer}>
+      {isSectionVisible(sections, "about") && (
+        <section className={styles.heroContainer}>
         <div className={`container ${styles.heroContent}`}>
           <div className={styles.heroBadge}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -277,10 +278,12 @@ export default async function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 2. Vision & Mission Section ─────────────────────────────────────── */}
-      <section className={styles.visionMissionSection}>
+      {isSectionVisible(sections, "vision_mission") && (
+        <section className={styles.visionMissionSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>Landasan Pergerakan</span>
@@ -338,10 +341,12 @@ export default async function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 3. Organizational Values ────────────────────────────────────────── */}
-      <section className={`${styles.valuesSection} ${styles.altBg}`}>
+      {isSectionVisible(sections, "values") && (
+        <section className={`${styles.valuesSection} ${styles.altBg}`}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>Budaya & Karakter</span>
@@ -385,10 +390,12 @@ export default async function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 4. Logo Philosophy ──────────────────────────────────────────────── */}
-      <section className={styles.philosophySection}>
+      {isSectionVisible(sections, "philosophy") && (
+        <section className={styles.philosophySection}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>Identitas Visual</span>
@@ -423,14 +430,16 @@ export default async function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 5. Organizational Structure ─────────────────────────────────────── */}
       {/*
         TODO: [Backend Integration] Year Filter / Generation Switcher
         Gunakan query param ?generation=XXXX untuk menampilkan susunan kepengurusan tahun lain.
       */}
-      <section className={`${styles.structureSection} ${styles.altBg}`}>
+      {isSectionVisible(sections, "structure") && (
+        <section className={`${styles.structureSection} ${styles.altBg}`}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>Badan Pengurus Harian</span>
@@ -442,7 +451,8 @@ export default async function AboutPage() {
 
           <OrgStructure members={activeMembers} divisions={divisions} />
         </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 6. Open Recruitment / Join SISO ─────────────────────────────────── */}
       {isSectionVisible(sections, "recruitment") && (
