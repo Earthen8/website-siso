@@ -2,16 +2,12 @@ from datetime import date
 
 from django.http import Http404
 from rest_framework import generics
-from rest_framework.throttling import ScopedRateThrottle
 
 from .models import (
     Achievement,
     Article,
     BPHMember,
-    ContactInfo,
     Division,
-    FAQ,
-    FormSubmission,
     MediaAsset,
     Organization,
     ProgramKerja,
@@ -21,10 +17,7 @@ from .serializers import (
     AchievementSerializer,
     ArticleSerializer,
     BPHMemberSerializer,
-    ContactInfoSerializer,
     DivisionSerializer,
-    FAQSerializer,
-    FormSubmissionSerializer,
     MediaAssetSerializer,
     OrganizationSerializer,
     ProgramKerjaSerializer,
@@ -161,31 +154,6 @@ class ArticleDetailView(generics.RetrieveAPIView):
     serializer_class = ArticleSerializer
     lookup_field = "slug"
 
-
-# ── Contact ───────────────────────────────────────────────────────────────────
-
-class ContactInfoView(generics.RetrieveAPIView):
-    serializer_class = ContactInfoSerializer
-
-    def get_object(self):
-        obj = ContactInfo.objects.first()
-        if obj is None:
-            raise Http404("Contact info has not been set up yet.")
-        return obj
-
-
-class FAQListView(generics.ListAPIView):
-    queryset = FAQ.objects.filter(is_visible=True)
-    serializer_class = FAQSerializer
-
-
-# ── Form Submission ───────────────────────────────────────────────────────────
-
-class FormSubmissionCreateView(generics.CreateAPIView):
-    serializer_class = FormSubmissionSerializer
-    queryset = FormSubmission.objects.none()
-    throttle_classes = [ScopedRateThrottle]
-    throttle_scope = "form_submission"
 
 
 # ── Section ───────────────────────────────────────────────────────────────────

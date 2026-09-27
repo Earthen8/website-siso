@@ -175,65 +175,6 @@ class Article(models.Model):
         return self.title
 
 
-# ── Contact ───────────────────────────────────────────────────────────────────
-
-class ContactInfo(models.Model):
-    """Singleton — social links and location info for the Contact page."""
-
-    email = models.EmailField(blank=True)
-    instagram = models.URLField(blank=True)
-    tiktok = models.URLField(blank=True)
-    youtube = models.URLField(blank=True)
-    spotify = models.URLField(blank=True)
-    whatsapp = models.URLField(blank=True)
-    line = models.CharField(max_length=100, blank=True)
-    location = models.TextField(blank=True)
-    maps_embed = models.TextField(blank=True)
-
-    objects = SingletonManager()
-
-    class Meta:
-        verbose_name = "Contact Info"
-        verbose_name_plural = "Contact Info"
-
-    def __str__(self):
-        return "Contact Info"
-
-
-class FAQ(models.Model):
-    question = models.CharField(max_length=300)
-    answer = models.TextField()
-    order = models.PositiveIntegerField(default=0)
-    is_visible = models.BooleanField(default=True)
-
-    class Meta:
-        ordering = ["order"]
-        verbose_name = "FAQ"
-
-    def __str__(self):
-        return self.question
-
-
-# ── Form Submissions ──────────────────────────────────────────────────────────
-
-class FormSubmission(models.Model):
-    TYPE_CHOICES = [
-        ("kritik_saran", "Kritik & Saran"),
-        ("request_seminar", "Request Seminar"),
-    ]
-
-    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    payload = models.JSONField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ["-created_at"]
-        verbose_name = "Form Submission"
-
-    def __str__(self):
-        return f"{self.get_type_display()} — {self.created_at:%Y-%m-%d %H:%M}"
-
-
 # ── Section (content toggle) ──────────────────────────────────────────────────
 
 class Section(models.Model):

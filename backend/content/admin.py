@@ -7,10 +7,7 @@ from .models import (
     Achievement,
     Article,
     BPHMember,
-    ContactInfo,
     Division,
-    FAQ,
-    FormSubmission,
     MediaAsset,
     Organization,
     ProgramKerja,
@@ -100,31 +97,6 @@ class ArticleAdmin(ModelAdmin):
     list_filter = ("category", "is_visible")
     search_fields = ("title",)
     prepopulated_fields = {"slug": ("title",)}
-
-
-# ── Contact ───────────────────────────────────────────────────────────────────
-
-@admin.register(ContactInfo)
-class ContactInfoAdmin(SingletonAdmin):
-    pass
-
-
-@admin.register(FAQ)
-class FAQAdmin(ModelAdmin):
-    list_display = ("question", "order", "is_visible")
-    list_editable = ("order", "is_visible")
-
-
-# ── Form Submissions ──────────────────────────────────────────────────────────
-
-@admin.register(FormSubmission)
-class FormSubmissionAdmin(ModelAdmin):
-    list_display = ("type", "created_at")
-    list_filter = ("type",)
-    readonly_fields = ("type", "payload", "created_at")
-
-    def has_add_permission(self, request: HttpRequest) -> bool:
-        return False  # Submissions come from the public form only.
 
 
 # ── Section Management (Per-Page & Master) ────────────────────────────────────

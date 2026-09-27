@@ -27,9 +27,4 @@ urlpatterns = [
     # Articles
     path("articles/", views.ArticleListView.as_view(), name="article-list"),
     path("articles/<slug:slug>/", views.ArticleDetailView.as_view(), name="article-detail"),
-
-    # Contact
-    path("contact/", views.ContactInfoView.as_view(), name="contact"),
-    path("faq/", views.FAQListView.as_view(), name="faq-list"),
-    path("contact/submissions/", views.FormSubmissionCreateView.as_view(), name="form-submission"),
 ]

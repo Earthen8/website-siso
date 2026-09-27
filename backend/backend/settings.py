@@ -158,9 +158,7 @@ REST_FRAMEWORK = {
     ],
     # Public read API — Django Admin uses its own session auth, not DRF.
     "DEFAULT_AUTHENTICATION_CLASSES": [],
-    "DEFAULT_THROTTLE_RATES": {
-        "form_submission": "10/hour",
-    },
+    "DEFAULT_THROTTLE_RATES": {},
 }
 
 # ── Unfold (Django Admin CMS) ─────────────────────────────────────────────────
@@ -243,21 +241,6 @@ UNFOLD = {
                         "title": "Media Assets (Foto/Logo)",
                         "icon": "image",
                         "link": reverse_lazy("admin:content_mediaasset_changelist"),
-                    },
-                    {
-                        "title": "FAQ",
-                        "icon": "quiz",
-                        "link": reverse_lazy("admin:content_faq_changelist"),
-                    },
-                    {
-                        "title": "Kontak Info",
-                        "icon": "call",
-                        "link": reverse_lazy("admin:content_contactinfo_changelist"),
-                    },
-                    {
-                        "title": "Form Submissions (Pesan/Aspirasi)",
-                        "icon": "mail",
-                        "link": reverse_lazy("admin:content_formsubmission_changelist"),
                     },
                     {
                         "title": "Semua Section (Master/Raw)",

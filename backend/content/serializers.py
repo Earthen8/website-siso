@@ -4,10 +4,7 @@ from .models import (
     Achievement,
     Article,
     BPHMember,
-    ContactInfo,
     Division,
-    FAQ,
-    FormSubmission,
     MediaAsset,
     Organization,
     ProgramKerja,
@@ -62,28 +59,6 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = [
             "id", "title", "slug", "body", "category", "published_at", "is_visible",
         ]
-
-
-class ContactInfoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ContactInfo
-        fields = [
-            "id", "email", "instagram", "tiktok", "youtube",
-            "spotify", "whatsapp", "line", "location", "maps_embed",
-        ]
-
-
-class FAQSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FAQ
-        fields = ["id", "question", "answer", "order", "is_visible"]
-
-
-class FormSubmissionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FormSubmission
-        fields = ["id", "type", "payload", "created_at"]
-        read_only_fields = ["id", "created_at"]
 
 
 class SectionSerializer(serializers.ModelSerializer):

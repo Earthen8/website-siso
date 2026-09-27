@@ -120,10 +120,7 @@ Next.js fetch `GET /api/v1/sections?page=home&visible=true`, sudah terurut, dan 
 | `MediaAsset` | file, type (photo/video), program (FK) | Dokumentasi kegiatan |
 | `Achievement` | student_name, title, description, date, image | Prestasi mahasiswa |
 | `Article` | title, slug, body, category (jurnal/kajian/achievement/beasiswa), published_at, is_visible | Articles/News |
-| `ContactInfo` (singleton) | email, instagram, tiktok, youtube, spotify, whatsapp, line, location, maps_embed | Contact |
-| `FAQ` | question, answer, order, is_visible | Contact (opsional) |
 | `Section` | lihat point ke-4 | Mekanisme toggle, cross-cutting |
-| `FormSubmission` | type (kritik_saran / request_seminar), payload (JSON), created_at | Form kontak |
 
 `generation_year` di `BPHMember` lebih penting dari kelihatannya — ini yang memungkinkan riwayat BPH tersimpan, bukan tertimpa tiap pergantian tahun.
 
@@ -134,13 +131,13 @@ Next.js fetch `GET /api/v1/sections?page=home&visible=true`, sudah terurut, dan 
 | Route | Halaman | Catatan |
 |---|---|---|
 | `/` | Home | hero, highlight, CTA — semua dibangun dari `Section` |
-| `/about` | About SISO | visi misi, struktur, nilai |
+| `/about` | About SISO | visi misi, struktur, nilai, recruitment |
 | `/about/divisi/[slug]` | Detail divisi | foto grup, jobdesc, anggota |
 | `/program-kerja` | Listing Program Kerja & Events | filter by category |
 | `/program-kerja/[slug]` | Detail event | deskripsi, dokumentasi, pengurus |
 | `/articles` | Listing Articles/News | filter by category |
 | `/articles/[slug]` | Detail artikel | |
-| `/contact` | Contact | form, maps, sosial media |
+| `/gallery` | Gallery & Dokumentasi | grid foto & video kegiatan |
 | `/admin` (atau `cms.sisoprasmul.com`) | Django Admin | staff-only, idealnya subdomain terpisah |
 
 **Header / Footer / Loading Page** bukan route — melainkan `layout.tsx` (header/footer, persist di semua halaman) dan `loading.tsx` (splash/skeleton) di Next.js.
@@ -156,11 +153,10 @@ GET  /api/v1/members
 GET  /api/v1/divisions
 GET  /api/v1/programs?category=&visible=true
 GET  /api/v1/programs/{slug}
+GET  /api/v1/achievements
+GET  /api/v1/media-assets
 GET  /api/v1/articles?category=
 GET  /api/v1/articles/{slug}
-GET  /api/v1/contact
-GET  /api/v1/faq
-POST /api/v1/contact/submissions
 ```
 
 Versi-kan API sejak hari pertama (`/api/v1/`) — kalian *akan* butuh ubah backend lintas generasi tanpa merusak frontend yang mungkin dipegang generasi berbeda.

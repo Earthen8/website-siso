@@ -1,10 +1,7 @@
 import type {
   Article,
   BPHMember,
-  ContactInfo,
   Division,
-  FAQ,
-  FormSubmissionPayload,
   MediaAsset,
   Organization,
   ProgramKerja,
@@ -15,10 +12,7 @@ import type {
 export type {
   Article,
   BPHMember,
-  ContactInfo,
   Division,
-  FAQ,
-  FormSubmissionPayload,
   MediaAsset,
   Organization,
   ProgramKerja,
@@ -149,24 +143,4 @@ export function fetchArticle(slug: string): Promise<Article> {
   return apiFetch<Article>(`/articles/${slug}/`, {
     next: { revalidate: 300 },
   });
-}
-
-export function fetchContact(): Promise<ContactInfo> {
-  return apiFetch<ContactInfo>("/contact/", { next: { revalidate: 3600 } });
-}
-
-export function fetchFAQs(): Promise<FAQ[]> {
-  return apiFetch<FAQ[]>("/faq/", { next: { revalidate: 3600 } });
-}
-
-export async function submitForm(data: FormSubmissionPayload): Promise<void> {
-  const url = `${getApiBase()}/contact/submissions/`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) {
-    throw new Error(`Form submission failed: ${res.status} ${res.statusText}`);
-  }
 }

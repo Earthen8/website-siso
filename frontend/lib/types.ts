@@ -79,29 +79,3 @@ export interface Article {
   published_at: string | null;
   is_visible: boolean;
 }
-
-export interface ContactInfo {
-  id: number;
-  email: string;
-  instagram: string;
-  tiktok: string;
-  youtube: string;
-  spotify: string;
-  whatsapp: string;
-  line: string;
-  location: string;
-  maps_embed: string;
-}
-
-export interface FAQ {
-  id: number;
-  question: string;
-  answer: string;
-  order: number;
-  is_visible: boolean;
-}
-
-export interface FormSubmissionPayload {
-  type: "kritik_saran" | "request_seminar";
-  payload: Record<string, unknown>;
-}
