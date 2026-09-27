@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { fetchArticles, fetchAchievements } from "@/lib/api";
-import type { Article, ArticleCategory, Achievement } from "@/lib/types";
+import { fetchArticles, fetchAchievements, fetchSections } from "@/lib/api";
+import type { Article, ArticleCategory, Achievement, Section } from "@/lib/types";
 import styles from "./page.module.css";
+
+function isSectionVisible(sections: Section[], sectionType: string): boolean {
+  if (sections.length === 0) return true;
+  const sec = sections.find((s) => s.section_type === sectionType);
+  return sec ? sec.is_visible : true;
+}
 
 export const revalidate = 60;
 
@@ -292,7 +298,8 @@ export default async function ArticlesPage({ searchParams }: Props) {
   // 1. Endpoint /api/v1/articles/ mendukung filter ?category= dan ?limit=.
   // 2. Endpoint /api/v1/achievements/ mendukung pagination dan pencarian nama mahasiswa.
   // 3. Admin dapat mengelola artikel berita, jurnal, kajian ilmiah via Django Admin.
-  const [articles, achievements] = await Promise.all([
+  const [sections, articles, achievements] = await Promise.all([
+    fetchSections("articles").catch(() => []),
     fetchArticles(activeCategory).catch(() => []),
     fetchAchievements(6).catch(() => []),
   ]);
@@ -311,86 +318,103 @@ export default async function ArticlesPage({ searchParams }: Props) {
   return (
     <div className={styles.pageWrapper}>
       {/* ── 1. Hero Section ─────────────────────────────────────────────────── */}
-      <section className={styles.heroContainer}>
-        <div className={`container ${styles.heroContent}`}>
-          <div className={styles.heroBadge}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-              <path
-                d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-            </svg>
-            Wawasan &amp; Prestasi • SISO Prasmul
+      {isSectionVisible(sections, "hero") && (
+        <section className={styles.heroContainer}>
+          <div className={`container ${styles.heroContent}`}>
+            <div className={styles.heroBadge}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
+              Wawasan &amp; Prestasi • SISO Prasmul
+            </div>
+
+            <h1 className={styles.heroTitle}>
+              Empowering Minds,{" "}
+              <span className={styles.heroTitleHighlight}>
+                Celebrating Milestones
+              </span>
+            </h1>
+
+            <p className={styles.heroSubtitle}>
+              Pusat publikasi ilmiah, artikel kajian teknologi, informasi beasiswa,
+              serta rekam jejak prestasi mahasiswa STEM Universitas Prasetiya
+              Mulya dalam berkarya dan berinovasi untuk bangsa.
+            </p>
+
+            <div className={styles.heroStatsRow}>
+              <div className={styles.heroStatItem}>
+                <span className={styles.heroStatDot} />
+                <span>25+ Artikel &amp; Publikasi</span>
+              </div>
+              <div className={styles.heroStatItem}>
+                <span className={styles.heroStatDot} />
+                <span>18+ Prestasi Mahasiswa</span>
+              </div>
+              <div className={styles.heroStatItem}>
+                <span className={styles.heroStatDot} />
+                <span>Peluang Beasiswa &amp; Hibah</span>
+              </div>
+              <div className={styles.heroStatItem}>
+                <span className={styles.heroStatDot} />
+                <span>Terbuka untuk Civitas STEM</span>
+              </div>
+            </div>
           </div>
-
-          <h1 className={styles.heroTitle}>
-            Empowering Minds,{" "}
-            <span className={styles.heroTitleHighlight}>
-              Celebrating Milestones
-            </span>
-          </h1>
-
-          <p className={styles.heroSubtitle}>
-            Pusat publikasi ilmiah, artikel kajian teknologi, informasi beasiswa,
-            serta rekam jejak prestasi mahasiswa STEM Universitas Prasetiya
-            Mulya dalam berkarya dan berinovasi untuk bangsa.
-          </p>
-
-          <div className={styles.heroStatsRow}>
-            <div className={styles.heroStatItem}>
-              <span className={styles.heroStatDot} />
-              <span>25+ Artikel &amp; Publikasi</span>
-            </div>
-            <div className={styles.heroStatItem}>
-              <span className={styles.heroStatDot} />
-              <span>18+ Prestasi Mahasiswa</span>
-            </div>
-            <div className={styles.heroStatItem}>
-              <span className={styles.heroStatDot} />
-              <span>Peluang Beasiswa &amp; Hibah</span>
-            </div>
-            <div className={styles.heroStatItem}>
-              <span className={styles.heroStatDot} />
-              <span>Terbuka untuk Civitas STEM</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 2. Quick Jump Navigation Bar ────────────────────────────────────── */}
-      <nav className={styles.navSection} aria-label="Navigasi rubrik artikel dan prestasi">
-        <div className="container">
-          <div className={styles.navBar}>
-            <a href="#news" className={styles.navChip}>
-              Berita &amp; Artikel
-            </a>
-            <a href="#publications" className={styles.navChip}>
-              Publikasi Mahasiswa
-            </a>
-            <a href="#research" className={styles.navChip}>
-              Kajian &amp; Riset
-            </a>
-            <a href="#achievements" className={styles.navChip}>
-              Prestasi Mahasiswa
-            </a>
-            <a href="#scholarships" className={styles.navChip}>
-              Info Beasiswa
-            </a>
-            <a href="#competitions" className={styles.navChip}>
-              Agenda Kompetisi
-            </a>
+      {isSectionVisible(sections, "quick_nav") && (
+        <nav className={styles.navSection} aria-label="Navigasi rubrik artikel dan prestasi">
+          <div className="container">
+            <div className={styles.navBar}>
+              {isSectionVisible(sections, "news") && (
+                <a href="#news" className={styles.navChip}>
+                  Berita &amp; Artikel
+                </a>
+              )}
+              {isSectionVisible(sections, "publications") && (
+                <a href="#publications" className={styles.navChip}>
+                  Publikasi Mahasiswa
+                </a>
+              )}
+              {isSectionVisible(sections, "research") && (
+                <a href="#research" className={styles.navChip}>
+                  Kajian &amp; Riset
+                </a>
+              )}
+              {isSectionVisible(sections, "achievements") && (
+                <a href="#achievements" className={styles.navChip}>
+                  Prestasi Mahasiswa
+                </a>
+              )}
+              {isSectionVisible(sections, "scholarships") && (
+                <a href="#scholarships" className={styles.navChip}>
+                  Info Beasiswa
+                </a>
+              )}
+              {isSectionVisible(sections, "competitions") && (
+                <a href="#competitions" className={styles.navChip}>
+                  Agenda Kompetisi
+                </a>
+              )}
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      )}
 
       {/* ── 3. News & Updates Section ───────────────────────────────────────── */}
-      <section id="news" className={styles.section}>
+      {isSectionVisible(sections, "news") && (
+        <section id="news" className={styles.section}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>Publikasi &amp; Berita</span>
@@ -522,6 +546,7 @@ export default async function ArticlesPage({ searchParams }: Props) {
           )}
         </div>
       </section>
+      )}
 
       {/* ── 4. Student Publications Section ─────────────────────────────────── */}
       {/* 
@@ -534,161 +559,105 @@ export default async function ArticlesPage({ searchParams }: Props) {
         - badge = models.CharField(...)
         - published_year = models.IntegerField(...)
       */}
-      <section id="publications" className={`${styles.section} ${styles.altBg}`}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Karya Tulis Ilmiah</span>
-            <h2 className={styles.sectionTitle}>Student Publications</h2>
-            <p className={styles.sectionSubtitle}>
-              Makalah teknis, whitepaper, dan laporan riset independen karya
-              civitas akademika mahasiswa STEM SISO yang siap diunduh.
-            </p>
-          </div>
+      {isSectionVisible(sections, "publications") && (
+        <section id="publications" className={`${styles.section} ${styles.altBg}`}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>Karya Tulis Ilmiah</span>
+              <h2 className={styles.sectionTitle}>Student Publications</h2>
+              <p className={styles.sectionSubtitle}>
+                Makalah teknis, whitepaper, dan laporan riset independen karya
+                civitas akademika mahasiswa STEM SISO yang siap diunduh.
+              </p>
+            </div>
 
-          <div className={styles.pubList}>
-            {STUDENT_PUBLICATIONS.map((pub, idx) => (
-              <div key={pub.title + idx} className={styles.pubCard}>
-                <div className={styles.pubIconWrapper}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    />
-                    <polyline
-                      points="14 2 14 8 20 8"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    />
-                    <line
-                      x1="16"
-                      y1="13"
-                      x2="8"
-                      y2="13"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    />
-                    <line
-                      x1="16"
-                      y1="17"
-                      x2="8"
-                      y2="17"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                </div>
-                <div className={styles.pubBody}>
-                  <div className={styles.pubHeaderRow}>
-                    <h3 className={styles.pubTitle}>{pub.title}</h3>
-                    <span className={styles.pubBadge}>{pub.badge}</span>
-                  </div>
-                  <p className={styles.pubAuthor}>Oleh: {pub.author}</p>
-                  <p className={styles.pubDesc}>{pub.desc}</p>
-                  <div className={styles.pubFooter}>
-                    <span className={styles.pubFormatTag}>{pub.format}</span>
-                    <a
-                      href="#download-publication"
-                      className={styles.pubDownloadBtn}
-                      aria-label={`Unduh ${pub.title}`}
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
+            <div className={styles.pubList}>
+              {STUDENT_PUBLICATIONS.map((pub, idx) => (
+                <div key={pub.title + idx} className={styles.pubCard}>
+                  <div className={styles.pubIconWrapper}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
                         stroke="currentColor"
                         strokeWidth="2"
+                      />
+                      <polyline
+                        points="14 2 14 8 20 8"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="16"
+                        y1="13"
+                        x2="8"
+                        y2="13"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="16"
+                        y1="17"
+                        x2="8"
+                        y2="17"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </div>
+                  <div className={styles.pubBody}>
+                    <div className={styles.pubHeaderRow}>
+                      <h3 className={styles.pubTitle}>{pub.title}</h3>
+                      <span className={styles.pubBadge}>{pub.badge}</span>
+                    </div>
+                    <p className={styles.pubAuthor}>Oleh: {pub.author}</p>
+                    <p className={styles.pubDesc}>{pub.desc}</p>
+                    <div className={styles.pubFooter}>
+                      <span className={styles.pubFormatTag}>{pub.format}</span>
+                      <a
+                        href="#download-publication"
+                        className={styles.pubDownloadBtn}
+                        aria-label={`Unduh ${pub.title}`}
                       >
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                      </svg>
-                      Unduh Makalah (PDF)
-                    </a>
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                          <polyline points="7 10 12 15 17 10" />
+                          <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        Unduh Makalah (PDF)
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 5. Research and Studies Section ─────────────────────────────────── */}
-      {/* 
-        TODO: [Backend Integration] Research & Study Papers
-        Dapat disinkronisasikan otomatis dengan artikel bertipe `kajian` atau
-        membuat endpoint spesifik `/api/v1/research-studies/` untuk melampirkan metodologi & dataset.
-      */}
-      <section id="research" className={styles.section}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Eksplorasi &amp; Analisis</span>
-            <h2 className={styles.sectionTitle}>Research and Studies</h2>
-            <p className={styles.sectionSubtitle}>
-              Kajian mendalam mengenai arah kemajuan sains terapan, kecerdasan
-              buatan, ketahanan siber, dan dinamika kemahasiswaan STEM.
-            </p>
-          </div>
+      {isSectionVisible(sections, "research") && (
+        <section id="research" className={styles.section}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>Eksplorasi &amp; Analisis</span>
+              <h2 className={styles.sectionTitle}>Research and Studies</h2>
+              <p className={styles.sectionSubtitle}>
+                Kajian mendalam mengenai arah kemajuan sains terapan, kecerdasan
+                buatan, ketahanan siber, dan dinamika kemahasiswaan STEM.
+              </p>
+            </div>
 
-          <div className={styles.researchGrid}>
-            {RESEARCH_STUDIES.map((study, idx) => (
-              <div key={study.title + idx} className={styles.researchCard}>
-                <div className={styles.researchIcon}>
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                    <polyline points="2 17 12 22 22 17" />
-                    <polyline points="2 12 12 17 22 12" />
-                  </svg>
-                </div>
-                <div className={styles.researchBody}>
-                  <span className={styles.researchPill}>{study.field}</span>
-                  <h3 className={styles.researchTitle}>{study.title}</h3>
-                  <p className={styles.researchDesc}>{study.desc}</p>
-                  <Link
-                    href={`/articles-and-achieve?category=kajian#news`}
-                    className={styles.researchLink}
-                  >
-                    Eksplorasi Kajian Terkait &rarr;
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Students Achievements Section (Hall of Fame) ─────────────────── */}
-      {/* 
-        TODO: [Backend Integration] Achievement Image & Certificate Upload
-        Model `Achievement` telah tersedia di backend. Ke depannya dapat ditambahkan:
-        - sertifikat URL atau link media berita resmi kompetisi.
-        - filter berdasarkan tahun pencapaian dan kategori kompetisi.
-      */}
-      <section id="achievements" className={`${styles.section} ${styles.altBg}`}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Prestasi Mahasiswa</span>
-            <h2 className={styles.sectionTitle}>Students Achievements</h2>
-            <p className={styles.sectionSubtitle}>
-              Apresiasi torehan prestasi, medali, dan penghargaan yang berhasil
-              diraub delegasi mahasiswa STEM SISO di tingkat nasional maupun
-              internasional.
-            </p>
-          </div>
-
-          <div className={styles.achieveGrid}>
-            {displayAchievements.map((item) => (
-              <div key={item.id} className={styles.achieveCard}>
-                <div className={styles.achieveHeader}>
-                  <div className={styles.achieveIconWrapper}>
+            <div className={styles.researchGrid}>
+              {RESEARCH_STUDIES.map((study, idx) => (
+                <div key={study.title + idx} className={styles.researchCard}>
+                  <div className={styles.researchIcon}>
                     <svg
                       width="24"
                       height="24"
@@ -697,24 +666,81 @@ export default async function ArticlesPage({ searchParams }: Props) {
                       stroke="currentColor"
                       strokeWidth="2"
                     >
-                      <circle cx="12" cy="8" r="7" />
-                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                      <polyline points="2 17 12 22 22 17" />
+                      <polyline points="2 12 12 17 22 12" />
                     </svg>
                   </div>
-                  <div className={styles.achieveMeta}>
-                    <h3 className={styles.achieveName}>{item.student_name}</h3>
-                    <span className={styles.achieveDate}>
-                      {formatDisplayDate(item.date)}
-                    </span>
+                  <div className={styles.researchBody}>
+                    <span className={styles.researchPill}>{study.field}</span>
+                    <h3 className={styles.researchTitle}>{study.title}</h3>
+                    <p className={styles.researchDesc}>{study.desc}</p>
+                    <Link
+                      href={`/articles-and-achieve?category=kajian#news`}
+                      className={styles.researchLink}
+                    >
+                      Eksplorasi Kajian Terkait &rarr;
+                    </Link>
                   </div>
                 </div>
-                <h4 className={styles.achieveTitle}>{item.title}</h4>
-                <p className={styles.achieveDesc}>{item.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* ── 6. Students Achievements Section (Hall of Fame) ─────────────────── */}
+      {/* 
+        TODO: [Backend Integration] Achievement Image & Certificate Upload
+        Model `Achievement` telah tersedia di backend. Ke depannya dapat ditambahkan:
+        - sertifikat URL atau link media berita resmi kompetisi.
+        - filter berdasarkan tahun pencapaian dan kategori kompetisi.
+      */}
+      {isSectionVisible(sections, "achievements") && (
+        <section id="achievements" className={`${styles.section} ${styles.altBg}`}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>Prestasi Mahasiswa</span>
+              <h2 className={styles.sectionTitle}>Students Achievements</h2>
+              <p className={styles.sectionSubtitle}>
+                Apresiasi torehan prestasi, medali, dan penghargaan yang berhasil
+                diraub delegasi mahasiswa STEM SISO di tingkat nasional maupun
+                internasional.
+              </p>
+            </div>
+
+            <div className={styles.achieveGrid}>
+              {displayAchievements.map((item) => (
+                <div key={item.id} className={styles.achieveCard}>
+                  <div className={styles.achieveHeader}>
+                    <div className={styles.achieveIconWrapper}>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <circle cx="12" cy="8" r="7" />
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                      </svg>
+                    </div>
+                    <div className={styles.achieveMeta}>
+                      <h3 className={styles.achieveName}>{item.student_name}</h3>
+                      <span className={styles.achieveDate}>
+                        {formatDisplayDate(item.date)}
+                      </span>
+                    </div>
+                  </div>
+                  <h4 className={styles.achieveTitle}>{item.title}</h4>
+                  <p className={styles.achieveDesc}>{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── 7. Scholarship Information Section ──────────────────────────────── */}
       {/* 
@@ -727,63 +753,65 @@ export default async function ArticlesPage({ searchParams }: Props) {
         - eligibility = models.TextField(...)
         - application_url = models.URLField(...)
       */}
-      <section id="scholarships" className={styles.section}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Bantuan &amp; Pendanaan</span>
-            <h2 className={styles.sectionTitle}>Scholarship Information</h2>
-            <p className={styles.sectionSubtitle}>
-              Peluang beasiswa akademik, bantuan riset inovasi, dan kemitraan
-              industri yang dapat diakses oleh seluruh mahasiswa STEM.
-            </p>
-          </div>
+      {isSectionVisible(sections, "scholarships") && (
+        <section id="scholarships" className={styles.section}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>Bantuan &amp; Pendanaan</span>
+              <h2 className={styles.sectionTitle}>Scholarship Information</h2>
+              <p className={styles.sectionSubtitle}>
+                Peluang beasiswa akademik, bantuan riset inovasi, dan kemitraan
+                industri yang dapat diakses oleh seluruh mahasiswa STEM.
+              </p>
+            </div>
 
-          <div className={styles.infoGrid}>
-            {SCHOLARSHIPS_DATA.map((schol, idx) => (
-              <div key={schol.title + idx} className={styles.infoCard}>
-                <div className={styles.infoCardTop}>
-                  <span
-                    className={`${styles.infoCardBadge} ${styles.badgeScholarship}`}
+            <div className={styles.infoGrid}>
+              {SCHOLARSHIPS_DATA.map((schol, idx) => (
+                <div key={schol.title + idx} className={styles.infoCard}>
+                  <div className={styles.infoCardTop}>
+                    <span
+                      className={`${styles.infoCardBadge} ${styles.badgeScholarship}`}
+                    >
+                      {schol.tag}
+                    </span>
+                    <h3 className={styles.infoTitle}>{schol.title}</h3>
+                  </div>
+
+                  <div className={styles.infoHighlightBox}>
+                    <span className={styles.infoHighlightLabel}>Nilai Bantuan</span>
+                    <div className={styles.infoHighlightValue}>
+                      {schol.amount}
+                    </div>
+                  </div>
+
+                  <div className={styles.infoList}>
+                    <div className={styles.infoRow}>
+                      <span className={styles.infoLabel}>Batas Pendaftaran</span>
+                      <span className={styles.infoValue}>{schol.deadline}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                      <span className={styles.infoLabel}>Kriteria</span>
+                      <span className={styles.infoValue}>{schol.eligibility}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                      <span className={styles.infoLabel}>Kuota</span>
+                      <span className={styles.infoValue}>{schol.quota}</span>
+                    </div>
+                  </div>
+
+                  <a
+                    href="#apply-scholarship"
+                    className={styles.infoBtn}
+                    aria-label={`Daftar ${schol.title}`}
                   >
-                    {schol.tag}
-                  </span>
-                  <h3 className={styles.infoTitle}>{schol.title}</h3>
+                    Informasi Pendaftaran &rarr;
+                  </a>
                 </div>
-
-                <div className={styles.infoHighlightBox}>
-                  <span className={styles.infoHighlightLabel}>Nilai Bantuan</span>
-                  <div className={styles.infoHighlightValue}>
-                    {schol.amount}
-                  </div>
-                </div>
-
-                <div className={styles.infoList}>
-                  <div className={styles.infoRow}>
-                    <span className={styles.infoLabel}>Batas Pendaftaran</span>
-                    <span className={styles.infoValue}>{schol.deadline}</span>
-                  </div>
-                  <div className={styles.infoRow}>
-                    <span className={styles.infoLabel}>Kriteria</span>
-                    <span className={styles.infoValue}>{schol.eligibility}</span>
-                  </div>
-                  <div className={styles.infoRow}>
-                    <span className={styles.infoLabel}>Kuota</span>
-                    <span className={styles.infoValue}>{schol.quota}</span>
-                  </div>
-                </div>
-
-                <a
-                  href="#apply-scholarship"
-                  className={styles.infoBtn}
-                  aria-label={`Daftar ${schol.title}`}
-                >
-                  Informasi Pendaftaran &rarr;
-                </a>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ── 8. Competition Information Section ──────────────────────────────── */}
       {/* 
@@ -791,62 +819,65 @@ export default async function ArticlesPage({ searchParams }: Props) {
         Tambahkan model `Competition` atau perluas integrasi agenda di backend
         agar BPH dapat menambahkan link panduan lomba dan registrasi eksternal.
       */}
-      <section id="competitions" className={`${styles.section} ${styles.altBg}`}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Agenda Perlombaan</span>
-            <h2 className={styles.sectionTitle}>Competition Information</h2>
-            <p className={styles.sectionSubtitle}>
-              Jadwal kompetisi nasional dan internasional yang direkomendasikan
-              oleh SISO untuk mengasah keahlian teknis mahasiswa.
-            </p>
-          </div>
+      {isSectionVisible(sections, "competitions") && (
+        <section id="competitions" className={`${styles.section} ${styles.altBg}`}>
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <span className={styles.sectionBadge}>Agenda Perlombaan</span>
+              <h2 className={styles.sectionTitle}>Competition Information</h2>
+              <p className={styles.sectionSubtitle}>
+                Jadwal kompetisi nasional dan internasional yang direkomendasikan
+                oleh SISO untuk mengasah keahlian teknis mahasiswa.
+              </p>
+            </div>
 
-          <div className={styles.infoGrid}>
-            {COMPETITIONS_DATA.map((comp, idx) => (
-              <div key={comp.title + idx} className={styles.infoCard}>
-                <div className={styles.infoCardTop}>
-                  <span
-                    className={`${styles.infoCardBadge} ${styles.badgeCompetition}`}
-                  >
-                    {comp.level}
-                  </span>
-                  <h3 className={styles.infoTitle}>{comp.title}</h3>
-                </div>
-
-                <div className={styles.infoList}>
-                  <div className={styles.infoRow}>
-                    <span className={styles.infoLabel}>Bidang</span>
-                    <span className={styles.infoValue}>{comp.type}</span>
-                  </div>
-                  <div className={styles.infoRow}>
-                    <span className={styles.infoLabel}>Pelaksanaan</span>
-                    <span className={styles.infoValue}>{comp.date}</span>
-                  </div>
-                  <div className={styles.infoRow}>
-                    <span className={styles.infoLabel}>Status Registrasi</span>
+            <div className={styles.infoGrid}>
+              {COMPETITIONS_DATA.map((comp, idx) => (
+                <div key={comp.title + idx} className={styles.infoCard}>
+                  <div className={styles.infoCardTop}>
                     <span
-                      className={`${styles.statusPill} ${comp.isOpen ? styles.statusOpen : styles.statusUpcoming
-                        }`}
+                      className={`${styles.infoCardBadge} ${styles.badgeCompetition}`}
                     >
-                      <span className={styles.statusDot} />
-                      {comp.status}
+                      {comp.level}
                     </span>
+                    <h3 className={styles.infoTitle}>{comp.title}</h3>
                   </div>
-                </div>
 
-                <a
-                  href="#competition-guide"
-                  className={styles.infoBtn}
-                  aria-label={`Lihat panduan ${comp.title}`}
-                >
-                  Lihat Buku Panduan &rarr;
-                </a>
-              </div>
-            ))}
+                  <div className={styles.infoList}>
+                    <div className={styles.infoRow}>
+                      <span className={styles.infoLabel}>Bidang</span>
+                      <span className={styles.infoValue}>{comp.type}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                      <span className={styles.infoLabel}>Pelaksanaan</span>
+                      <span className={styles.infoValue}>{comp.date}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                      <span className={styles.infoLabel}>Status Registrasi</span>
+                      <span
+                        className={`${styles.statusPill} ${comp.isOpen ? styles.statusOpen : styles.statusUpcoming
+                          }`}
+                      >
+                        <span className={styles.statusDot} />
+                        {comp.status}
+                      </span>
+                    </div>
+                  </div>
+
+                  <a
+                    href="#competition-guide"
+                    className={styles.infoBtn}
+                    aria-label={`Lihat panduan ${comp.title}`}
+                  >
+                    Lihat Buku Panduan &rarr;
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }
+

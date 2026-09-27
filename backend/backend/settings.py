@@ -192,14 +192,14 @@ UNFOLD = {
                         "link": reverse_lazy("admin:content_programsection_changelist"),
                     },
                     {
-                        "title": "4. Halaman Artikel & Prestasi",
-                        "icon": "article",
-                        "link": reverse_lazy("admin:content_articlesection_changelist"),
-                    },
-                    {
-                        "title": "5. Halaman Gallery",
+                        "title": "4. Halaman Gallery",
                         "icon": "photo_library",
                         "link": reverse_lazy("admin:content_gallerysection_changelist"),
+                    },
+                    {
+                        "title": "5. Halaman Artikel & Prestasi",
+                        "icon": "article",
+                        "link": reverse_lazy("admin:content_articlesection_changelist"),
                     },
                 ],
             },

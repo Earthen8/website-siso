@@ -119,10 +119,6 @@ class Command(BaseCommand):
             {"page": "program", "type": "filter", "order": 2, "config": {}},
             {"page": "program", "type": "catalog", "order": 3, "config": {}},
             {"page": "program", "type": "timeline", "order": 4, "config": {}},
-            # Articles page
-            {"page": "articles", "type": "hero", "order": 1, "config": {}},
-            {"page": "articles", "type": "catalog", "order": 2, "config": {}},
-            {"page": "articles", "type": "achievements", "order": 3, "config": {}},
             # Gallery page
             {"page": "gallery", "type": "hero", "order": 1, "config": {}},
             {"page": "gallery", "type": "filter", "order": 2, "config": {}},
@@ -130,6 +126,15 @@ class Command(BaseCommand):
             {"page": "gallery", "type": "videos", "order": 4, "config": {}},
             {"page": "gallery", "type": "events", "order": 5, "config": {}},
             {"page": "gallery", "type": "docs", "order": 6, "config": {}},
+            # Articles & Achievements page
+            {"page": "articles", "type": "hero", "order": 1, "config": {}},
+            {"page": "articles", "type": "quick_nav", "order": 2, "config": {}},
+            {"page": "articles", "type": "news", "order": 3, "config": {}},
+            {"page": "articles", "type": "publications", "order": 4, "config": {}},
+            {"page": "articles", "type": "research", "order": 5, "config": {}},
+            {"page": "articles", "type": "achievements", "order": 6, "config": {}},
+            {"page": "articles", "type": "scholarships", "order": 7, "config": {}},
+            {"page": "articles", "type": "competitions", "order": 8, "config": {}},
         ]
         for s in other_sections:
             Section.objects.update_or_create(

@@ -284,20 +284,20 @@ class ProgramSectionAdmin(SectionBaseAdmin):
         return super().get_queryset(request).filter(page="program")
 
 
-@admin.register(ArticleSection)
-class ArticleSectionAdmin(SectionBaseAdmin):
-    list_display = ("display_name_col", "is_visible", "order")
-
-    def get_queryset(self, request: HttpRequest):
-        return super().get_queryset(request).filter(page="articles")
-
-
 @admin.register(GallerySection)
 class GallerySectionAdmin(SectionBaseAdmin):
     list_display = ("display_name_col", "is_visible", "order")
 
     def get_queryset(self, request: HttpRequest):
         return super().get_queryset(request).filter(page="gallery")
+
+
+@admin.register(ArticleSection)
+class ArticleSectionAdmin(SectionBaseAdmin):
+    list_display = ("display_name_col", "is_visible", "order")
+
+    def get_queryset(self, request: HttpRequest):
+        return super().get_queryset(request).filter(page="articles")
 
 
 @admin.register(Section)

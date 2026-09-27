@@ -68,14 +68,15 @@ Setiap section di website SISO harus ada togglenya. Satu model generik menggerak
 class Section(models.Model):
     PAGE_CHOICES = [
         ("home", "Home"), ("about", "About SISO"),
-        ("program", "Program Kerja & Events"), ("articles", "Articles"),
+        ("program", "Program Kerja & Events"),
         ("gallery", "Gallery & Dokumentasi"),
+        ("articles", "Articles & Prestasi"),
     ]
     page = models.CharField(max_length=30, choices=PAGE_CHOICES)
-    section_type = models.CharField(max_length=50)   # contoh: "hero", "photos", "videos", "timeline"
+    section_type = models.CharField(max_length=50)
     is_visible = models.BooleanField(default=True)
     order = models.PositiveIntegerField(default=0)
-    config = models.JSONField(default=dict, blank=True)  # konten per-section yang fleksibel
+    config = models.JSONField(default=dict, blank=True)
 
     class Meta:
         ordering = ["page", "order"]
@@ -92,7 +93,20 @@ class AboutSection(Section):
         proxy = True
         verbose_name_plural = "2. Halaman About"
 
-# (Dan proxy untuk Halaman Program Kerja, Artikel, serta Gallery)
+class ProgramSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "3. Halaman Program Kerja"
+
+class GallerySection(Section):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "4. Halaman Gallery"
+
+class ArticleSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "5. Halaman Artikel & Prestasi"
 ```
 
 ```python

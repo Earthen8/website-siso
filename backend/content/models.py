@@ -182,8 +182,8 @@ class Section(models.Model):
         ("home", "Home"),
         ("about", "About SISO"),
         ("program", "Program Kerja & Events"),
-        ("articles", "Articles"),
         ("gallery", "Gallery & Dokumentasi"),
+        ("articles", "Articles & Prestasi"),
     ]
 
     page = models.CharField(max_length=30, choices=PAGE_CHOICES)
@@ -218,15 +218,20 @@ class Section(models.Model):
         ("program", "filter"): "Filter Kategori Program",
         ("program", "catalog"): "Katalog Program Kerja",
         ("program", "timeline"): "Linimasa / Roadmap Agenda",
-        ("articles", "hero"): "Hero Artikel & Prestasi",
-        ("articles", "catalog"): "Katalog Artikel",
-        ("articles", "achievements"): "Daftar Prestasi Mahasiswa",
         ("gallery", "hero"): "Hero Galeri & Arsip",
         ("gallery", "filter"): "Filter Kategori Galeri",
         ("gallery", "photos"): "Galeri Foto Kegiatan",
         ("gallery", "videos"): "Video Dokumentasi & Aftermovie",
         ("gallery", "events"): "Arsip Program Kerja",
         ("gallery", "docs"): "Publikasi & Laporan Tahunan (PDF)",
+        ("articles", "hero"): "Hero Artikel & Prestasi",
+        ("articles", "quick_nav"): "Navigasi Rubrik Cepat (Quick Jump Nav)",
+        ("articles", "news"): "Berita & Artikel Terkini (News & Updates)",
+        ("articles", "publications"): "Karya Tulis Ilmiah (Student Publications)",
+        ("articles", "research"): "Kajian & Riset (Research and Studies)",
+        ("articles", "achievements"): "Prestasi Mahasiswa (Students Achievements)",
+        ("articles", "scholarships"): "Informasi Beasiswa (Scholarship Information)",
+        ("articles", "competitions"): "Agenda Perlombaan (Competition Information)",
     }
 
     @property
@@ -263,15 +268,16 @@ class ProgramSection(Section):
         verbose_name_plural = "3. Halaman Program Kerja"
 
 
-class ArticleSection(Section):
-    class Meta:
-        proxy = True
-        verbose_name = "Section Artikel"
-        verbose_name_plural = "4. Halaman Artikel & Prestasi"
-
-
 class GallerySection(Section):
     class Meta:
         proxy = True
         verbose_name = "Section Gallery"
-        verbose_name_plural = "5. Halaman Gallery"
+        verbose_name_plural = "4. Halaman Gallery"
+
+
+class ArticleSection(Section):
+    class Meta:
+        proxy = True
+        verbose_name = "Section Artikel & Prestasi"
+        verbose_name_plural = "5. Halaman Artikel & Prestasi"
+
