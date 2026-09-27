@@ -41,8 +41,8 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export function fetchSections(page: string): Promise<Section[]> {
-  return apiFetch<Section[]>(`/sections/?page=${page}&visible=true`, {
-    next: { revalidate: 60 },
+  return apiFetch<Section[]>(`/sections/?page=${page}`, {
+    cache: "no-store",
   });
 }
 

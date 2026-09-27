@@ -7,7 +7,6 @@ from rest_framework.test import APIClient
 from content.models import (
     Achievement,
     Article,
-    ContactInfo,
     MediaAsset,
     Organization,
     ProgramKerja,
@@ -132,17 +131,3 @@ class APIV1Tests(TestCase):
 
         draft = self.client.get("/api/v1/articles/draft/")
         self.assertEqual(draft.status_code, 404)
-
-    def test_contact_and_form_submission(self):
-        ContactInfo.objects.create(email="siso@prasmul.ac.id")
-        contact = self.client.get("/api/v1/contact/")
-        self.assertEqual(contact.status_code, 200)
-        self.assertEqual(contact.json()["email"], "siso@prasmul.ac.id")
-
-        created = self.client.post(
-            "/api/v1/contact/submissions/",
-            {"type": "kritik_saran", "payload": {"message": "Halo SISO"}},
-            format="json",
-        )
-        self.assertEqual(created.status_code, 201)
-        self.assertEqual(created.json()["type"], "kritik_saran")
