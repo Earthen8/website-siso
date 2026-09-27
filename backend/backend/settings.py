@@ -106,6 +106,7 @@ if _postgres_host:
             "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
             "HOST": _postgres_host,
             "PORT": os.getenv("POSTGRES_PORT", "5432"),
+            "CONN_MAX_AGE": int(os.getenv("CONN_MAX_AGE", "60")),
         }
     }
 else:

@@ -72,7 +72,7 @@ class MemberListView(generics.ListAPIView):
     serializer_class = BPHMemberSerializer
 
     def get_queryset(self):
-        queryset = BPHMember.objects.all()
+        queryset = BPHMember.objects.select_related("division").all()
         generation = self.request.query_params.get("generation")
         if generation:
             queryset = queryset.filter(generation_year=generation)
@@ -129,7 +129,7 @@ class MediaAssetListView(generics.ListAPIView):
     serializer_class = MediaAssetSerializer
 
     def get_queryset(self):
-        queryset = MediaAsset.objects.all()
+        queryset = MediaAsset.objects.select_related("program").all()
         asset_type = self.request.query_params.get("type")
         if asset_type:
             queryset = queryset.filter(type=asset_type)

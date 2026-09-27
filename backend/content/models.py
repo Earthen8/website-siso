@@ -66,6 +66,9 @@ class BPHMember(models.Model):
 
     class Meta:
         ordering = ["generation_year", "order"]
+        indexes = [
+            models.Index(fields=["generation_year"]),
+        ]
 
     def __str__(self):
         return f"{self.name} ({self.generation_year})"

@@ -226,6 +226,12 @@ flowchart TB
 - `next/image` untuk semua gambar — tidak ada `<img>` mentah
 - Schema JSON-LD `Organization` di homepage
 - Target: Lighthouse SEO ≥ 90, Performance ≥ 85
+- **Optimasi Backend & Database:**
+  - `CONN_MAX_AGE` dikonfigurasi untuk PostgreSQL *connection pooling* guna menghemat CPU dan RAM di VPS.
+  - Gunicorn berjalan dengan `gthread` worker-class, `--workers 2`, dan `--threads 4` (sesuai best practice VPS resource rendah).
+  - Gunakan `select_related` / `prefetch_related` di `views.py` DRF untuk Foreign Key / Many-to-Many field (misal: BPHMember -> Division, ProgramKerja -> MediaAsset) untuk mengatasi N+1 query problem.
+  - Menambahkan `models.Index` komposit/tunggal untuk field yang digunakan untuk sorting atau filtering di API (`generation_year`, `is_visible`, dsb).
+
 
 ---
 
