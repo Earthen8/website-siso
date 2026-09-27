@@ -195,8 +195,8 @@ class SectionAdminForm(forms.ModelForm):
 
 class SectionBaseAdmin(ModelAdmin):
     form = SectionAdminForm
-    list_display = ("display_name_col", "section_type", "is_visible", "order")
-    list_editable = ("is_visible", "order")
+    list_display = ("display_name_col", "section_type", "is_visible")
+    list_editable = ("is_visible",)
     search_fields = ("section_type",)
 
     @admin.display(description="Nama Bagian (Section)")
@@ -212,7 +212,7 @@ class SectionBaseAdmin(ModelAdmin):
         if not obj:
             return (
                 ("Identitas Section", {
-                    "fields": ("page", "section_type", "is_visible", "order"),
+                    "fields": ("page", "section_type", "is_visible"),
                 }),
                 ("Konfigurasi (JSON)", {
                     "fields": ("config",),
@@ -221,9 +221,9 @@ class SectionBaseAdmin(ModelAdmin):
 
         if obj.section_type == "vision_mission":
             return (
-                ("Status & Urutan Tampilan", {
-                    "fields": ("page", "section_type", "is_visible", "order"),
-                    "description": "Atur apakah section ini muncul di website dan urutan posisinya.",
+                ("Status Tampilan", {
+                    "fields": ("page", "section_type", "is_visible"),
+                    "description": "Atur apakah section ini muncul di website.",
                 }),
                 ("Pengaturan Teks Visi & Misi", {
                     "description": "Ubah teks Visi dan butir-butir Misi secara langsung di bawah ini tanpa perlu mengubah format data mentah (JSON).",
@@ -237,8 +237,8 @@ class SectionBaseAdmin(ModelAdmin):
 
         if obj.section_type == "value_proposition":
             return (
-                ("Status & Urutan Tampilan", {
-                    "fields": ("page", "section_type", "is_visible", "order"),
+                ("Status Tampilan", {
+                    "fields": ("page", "section_type", "is_visible"),
                 }),
                 ("Pengaturan Value Proposition", {
                     "description": "Atur badge, judul, dan sub-judul section Value Proposition.",
@@ -251,8 +251,8 @@ class SectionBaseAdmin(ModelAdmin):
             )
 
         return (
-            ("Status & Urutan Tampilan", {
-                "fields": ("page", "section_type", "is_visible", "order"),
+            ("Status Tampilan", {
+                "fields": ("page", "section_type", "is_visible"),
             }),
             ("Konfigurasi Section (JSON)", {
                 "fields": ("config",),
@@ -262,7 +262,7 @@ class SectionBaseAdmin(ModelAdmin):
 
 @admin.register(HomeSection)
 class HomeSectionAdmin(SectionBaseAdmin):
-    list_display = ("display_name_col", "is_visible", "order")
+    list_display = ("display_name_col", "is_visible")
 
     def get_queryset(self, request: HttpRequest):
         return super().get_queryset(request).filter(page="home")
@@ -270,7 +270,7 @@ class HomeSectionAdmin(SectionBaseAdmin):
 
 @admin.register(AboutSection)
 class AboutSectionAdmin(SectionBaseAdmin):
-    list_display = ("display_name_col", "is_visible", "order")
+    list_display = ("display_name_col", "is_visible")
 
     def get_queryset(self, request: HttpRequest):
         return super().get_queryset(request).filter(page="about")
@@ -278,7 +278,7 @@ class AboutSectionAdmin(SectionBaseAdmin):
 
 @admin.register(ProgramSection)
 class ProgramSectionAdmin(SectionBaseAdmin):
-    list_display = ("display_name_col", "is_visible", "order")
+    list_display = ("display_name_col", "is_visible")
 
     def get_queryset(self, request: HttpRequest):
         return super().get_queryset(request).filter(page="program")
@@ -286,7 +286,7 @@ class ProgramSectionAdmin(SectionBaseAdmin):
 
 @admin.register(GallerySection)
 class GallerySectionAdmin(SectionBaseAdmin):
-    list_display = ("display_name_col", "is_visible", "order")
+    list_display = ("display_name_col", "is_visible")
 
     def get_queryset(self, request: HttpRequest):
         return super().get_queryset(request).filter(page="gallery")
@@ -294,7 +294,7 @@ class GallerySectionAdmin(SectionBaseAdmin):
 
 @admin.register(ArticleSection)
 class ArticleSectionAdmin(SectionBaseAdmin):
-    list_display = ("display_name_col", "is_visible", "order")
+    list_display = ("display_name_col", "is_visible")
 
     def get_queryset(self, request: HttpRequest):
         return super().get_queryset(request).filter(page="articles")
@@ -302,7 +302,7 @@ class ArticleSectionAdmin(SectionBaseAdmin):
 
 @admin.register(Section)
 class SectionAdmin(SectionBaseAdmin):
-    list_display = ("display_name_col", "page", "section_type", "is_visible", "order")
+    list_display = ("display_name_col", "page", "section_type", "is_visible")
     list_filter = ("page", "is_visible")
 
 
