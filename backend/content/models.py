@@ -272,6 +272,7 @@ class Section(models.Model):
         ("about", "values"): "Nilai Organisasi (Core Values)",
         ("about", "philosophy"): "Filosofi Logo SISO",
         ("about", "structure"): "Struktur Organisasi (BPH & Divisi)",
+        ("about", "recruitment"): "Ajakan Bergabung / Open Recruitment (Join SISO)",
         ("program", "hero"): "Hero Program Kerja",
         ("program", "filter"): "Filter Kategori Program",
         ("program", "catalog"): "Katalog Program Kerja",

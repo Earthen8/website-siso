@@ -113,6 +113,7 @@ class Command(BaseCommand):
             {"page": "about", "type": "values", "order": 3, "config": {}},
             {"page": "about", "type": "philosophy", "order": 4, "config": {}},
             {"page": "about", "type": "structure", "order": 5, "config": {}},
+            {"page": "about", "type": "recruitment", "order": 6, "config": {}},
             # Program page
             {"page": "program", "type": "hero", "order": 1, "config": {}},
             {"page": "program", "type": "filter", "order": 2, "config": {}},

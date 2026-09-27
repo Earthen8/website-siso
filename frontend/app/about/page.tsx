@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchOrganization, fetchDivisions, fetchMembers, type BPHMember } from "@/lib/api";
+import {
+  fetchOrganization,
+  fetchDivisions,
+  fetchMembers,
+  fetchSections,
+  type BPHMember,
+  type Section,
+} from "@/lib/api";
 import styles from "./page.module.css";
 import OrgStructure from "./OrgStructure";
 
@@ -111,12 +118,22 @@ function getInitials(name: string): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
+function isSectionVisible(
+  sections: Section[],
+  type: string,
+  defaultValue = true
+): boolean {
+  const section = sections.find((s) => s.section_type === type);
+  return section ? section.is_visible : defaultValue;
+}
+
 export default async function AboutPage() {
   // TODO: [Backend Integration] Dynamic Generation Filtering
   // Endpoint /api/v1/members/?generation=2026 memungkinkan filter tahun kepengurusan.
   // Ke depannya dapat ditambahkan dropdown selector tahun untuk melihat arsip kepengurusan sebelumnya.
 
-  const [org, divisions, members] = await Promise.all([
+  const [sections, org, divisions, members] = await Promise.all([
+    fetchSections("about").catch(() => []),
     fetchOrganization().catch(() => null),
     fetchDivisions().catch(() => []),
     fetchMembers().catch(() => []),
@@ -428,45 +445,47 @@ export default async function AboutPage() {
       </section>
 
       {/* ── 6. Open Recruitment / Join SISO ─────────────────────────────────── */}
-      <section className={styles.recruitmentSection}>
-        <div className="container">
-          <div className={styles.recruitmentCard}>
-            <div className={styles.recruitmentBadge}>
-              <span className={styles.recruitmentBadgePulse} />
-              Open Recruitment
-            </div>
-            <h2 className={styles.recruitmentTitle}>
-              Ready to Create Impact with SISO?
-            </h2>
-            <p className={styles.recruitmentDesc}>
-              Bergabunglah dengan keluarga besar STEM Prasetiya Mulya Innovation Student Organization.
-              Kembangkan potensi kepemimpinanmu, perluas jejaring profesional, dan berkolaborasi
-              dalam proyek teknologi yang berdampak nyata.
-            </p>
-            <div className={styles.recruitmentActions}>
-              <Link href="/join-siso" className={styles.recruitmentBtnPrimary}>
-                <span>Daftar Sekarang</span>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </Link>
-              <Link href="/program-kerja" className={styles.recruitmentBtnSecondary}>
-                Lihat Program Kerja
-              </Link>
+      {isSectionVisible(sections, "recruitment") && (
+        <section className={styles.recruitmentSection}>
+          <div className="container">
+            <div className={styles.recruitmentCard}>
+              <div className={styles.recruitmentBadge}>
+                <span className={styles.recruitmentBadgePulse} />
+                Open Recruitment
+              </div>
+              <h2 className={styles.recruitmentTitle}>
+                Ready to Create Impact with SISO?
+              </h2>
+              <p className={styles.recruitmentDesc}>
+                Bergabunglah dengan keluarga besar STEM Prasetiya Mulya Innovation Student Organization.
+                Kembangkan potensi kepemimpinanmu, perluas jejaring profesional, dan berkolaborasi
+                dalam proyek teknologi yang berdampak nyata.
+              </p>
+              <div className={styles.recruitmentActions}>
+                <Link href="/join-siso" className={styles.recruitmentBtnPrimary}>
+                  <span>Daftar Sekarang</span>
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </Link>
+                <Link href="/program-kerja" className={styles.recruitmentBtnSecondary}>
+                  Lihat Program Kerja
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }
