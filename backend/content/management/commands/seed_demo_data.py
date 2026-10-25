@@ -462,13 +462,56 @@ class Command(BaseCommand):
                 "generation_year": 2026,
                 "division": div_map["documentation"],
             },
+            # 2025 Archive BPH Members
+            {
+                "name": "Demisioner Chairman (Ketua SISO 2025)",
+                "role": "Chairman (Ketua SISO)",
+                "order": 1,
+                "generation_year": 2025,
+                "division": None,
+            },
+            {
+                "name": "Demisioner Vice Chairman (Wakil Ketua 2025)",
+                "role": "Vice / Co-Chairman (Wakil Ketua)",
+                "order": 2,
+                "generation_year": 2025,
+                "division": None,
+            },
+            {
+                "name": "Demisioner Secretary (Sekretaris 2025)",
+                "role": "Secretary (Sekretaris)",
+                "order": 3,
+                "generation_year": 2025,
+                "division": None,
+            },
+            {
+                "name": "Demisioner Treasurer (Bendahara 2025)",
+                "role": "Treasurer (Bendahara)",
+                "order": 4,
+                "generation_year": 2025,
+                "division": None,
+            },
+            {
+                "name": "Demisioner Coordinator Event Planner 2025",
+                "role": "Division Coordinator",
+                "order": 5,
+                "generation_year": 2025,
+                "division": div_map["event-planner"],
+            },
+            {
+                "name": "Demisioner Coordinator R&D 2025",
+                "role": "Division Coordinator",
+                "order": 6,
+                "generation_year": 2025,
+                "division": div_map["research-and-development"],
+            },
         ]
 
         # Clean old named members and update with evergreen roles
         BPHMember.objects.all().delete()
         for m in members_data:
             BPHMember.objects.create(**m)
-        self.stdout.write(self.style.SUCCESS("✓ BPH & Division Coordinators seeded"))
+        self.stdout.write(self.style.SUCCESS("✓ BPH & Division Coordinators seeded (2026 Active & 2025 Archive)"))
 
         # 7. Articles (2 Official Evergreen Articles based on AD/ART)
         articles_data = [

@@ -7,6 +7,7 @@ from rest_framework.test import APIClient
 from content.models import (
     Achievement,
     Article,
+    BPHMember,
     MediaAsset,
     Organization,
     ProgramKerja,
@@ -131,3 +132,21 @@ class APIV1Tests(TestCase):
 
         draft = self.client.get("/api/v1/articles/draft/")
         self.assertEqual(draft.status_code, 404)
+
+    def test_members_filter_by_generation(self):
+        BPHMember.objects.create(name="Leader 2026", role="Chairman", generation_year=2026, order=1)
+        BPHMember.objects.create(name="Leader 2025", role="Demisioner Chairman", generation_year=2025, order=1)
+
+        all_resp = self.client.get("/api/v1/members/")
+        self.assertEqual(all_resp.status_code, 200)
+        self.assertEqual(len(all_resp.json()), 2)
+
+        gen_2026 = self.client.get("/api/v1/members/?generation=2026")
+        self.assertEqual(gen_2026.status_code, 200)
+        self.assertEqual(len(gen_2026.json()), 1)
+        self.assertEqual(gen_2026.json()[0]["name"], "Leader 2026")
+
+        gen_2025 = self.client.get("/api/v1/members/?generation=2025")
+        self.assertEqual(gen_2025.status_code, 200)
+        self.assertEqual(len(gen_2025.json()), 1)
+        self.assertEqual(gen_2025.json()[0]["name"], "Leader 2025")

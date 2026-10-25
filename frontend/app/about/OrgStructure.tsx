@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import type { BPHMember, Division } from "@/lib/types";
 import styles from "./OrgStructure.module.css";
 
@@ -226,48 +227,202 @@ function Modal({ data, onClose }: { data: ModalData; onClose: () => void }) {
 // ── Main Export ────────────────────────────────────────────────────────────────
 
 interface Props {
-  members: BPHMember[];
+  members?: BPHMember[];
+  allMembers?: BPHMember[];
   divisions: Division[];
+  availableGenerations?: number[];
+  initialGeneration?: number;
 }
 
-export default function OrgStructure({ members, divisions }: Props) {
+export default function OrgStructure({
+  members,
+  allMembers,
+  divisions,
+  availableGenerations,
+  initialGeneration,
+}: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [modal, setModal] = useState<ModalData | null>(null);
 
-  const bphMembers = members.filter((m) => m.division === null);
+  const memberList = useMemo(() => {
+    return allMembers ?? members ?? [];
+  }, [allMembers, members]);
 
-  const divisionMembersMap = new Map<number, BPHMember[]>();
-  for (const m of members) {
-    if (m.division !== null) {
-      const bucket = divisionMembersMap.get(m.division) ?? [];
-      divisionMembersMap.set(m.division, [...bucket, m]);
+  // Extract or use passed generations (sorted descending)
+  const computedGenerations = useMemo(() => {
+    if (availableGenerations && availableGenerations.length > 0) {
+      return [...availableGenerations].sort((a, b) => b - a);
     }
-  }
+    const gens = Array.from(new Set(memberList.map((m) => m.generation_year))).filter(Boolean);
+    return gens.length > 0 ? gens.sort((a, b) => b - a) : [2026];
+  }, [availableGenerations, memberList]);
+
+  // Default selected generation: initialGeneration if valid, otherwise latest generation
+  const [selectedGen, setSelectedGen] = useState<number>(() => {
+    if (initialGeneration && computedGenerations.includes(initialGeneration)) {
+      return initialGeneration;
+    }
+    return computedGenerations[0] ?? 2026;
+  });
+
+  // Sync state if initialGeneration prop changes
+  useEffect(() => {
+    if (initialGeneration && computedGenerations.includes(initialGeneration)) {
+      setSelectedGen(initialGeneration);
+    }
+  }, [initialGeneration, computedGenerations]);
+
+  const handleSelectGen = useCallback(
+    (gen: number) => {
+      setSelectedGen(gen);
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        url.searchParams.set("generation", String(gen));
+        router.replace(url.pathname + url.search, { scroll: false });
+      }
+    },
+    [router]
+  );
+
+  // Filter members by selected generation
+  const filteredMembers = useMemo(() => {
+    return memberList.filter((m) => m.generation_year === selectedGen);
+  }, [memberList, selectedGen]);
+
+  const bphMembers = useMemo(() => {
+    return filteredMembers.filter((m) => m.division === null);
+  }, [filteredMembers]);
+
+  const divisionMembersMap = useMemo(() => {
+    const map = new Map<number, BPHMember[]>();
+    for (const m of filteredMembers) {
+      if (m.division !== null) {
+        const bucket = map.get(m.division) ?? [];
+        map.set(m.division, [...bucket, m]);
+      }
+    }
+    return map;
+  }, [filteredMembers]);
 
   return (
     <div className={styles.wrapper}>
-      {/* Single combined BPH card — groups all division-null members */}
-      {bphMembers.length > 0 && (
-        <BphGroupCard
-          members={bphMembers}
-          onClick={() => setModal({ kind: "bph", members: bphMembers })}
-        />
+      {/* Dynamic Generation Selector Toolbar */}
+      {computedGenerations.length > 0 && (
+        <div className={styles.generationToolbar}>
+          <div className={styles.toolbarLabelGroup}>
+            <div className={styles.toolbarIconWrapper}>
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div>
+              <span className={styles.toolbarTitle}>Periode Kepengurusan</span>
+              <p className={styles.toolbarSubtitle}>
+                Pilih tahun kepengurusan untuk melihat struktur fungsionaris
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.genTabsContainer}>
+            <div className={styles.genTabs} role="tablist" aria-label="Filter Periode Kepengurusan">
+              {computedGenerations.map((gen) => {
+                const isLatest = gen === computedGenerations[0];
+                const isSelected = gen === selectedGen;
+                return (
+                  <button
+                    key={gen}
+                    role="tab"
+                    aria-selected={isSelected}
+                    onClick={() => handleSelectGen(gen)}
+                    className={`${styles.genTab} ${isSelected ? styles.genTabActive : ""}`}
+                  >
+                    <span className={styles.genTabYear}>Periode {gen}</span>
+                    <span
+                      className={`${styles.genStatusBadge} ${
+                        isLatest ? styles.badgeActive : styles.badgeArchive
+                      }`}
+                    >
+                      {isLatest ? "Aktif" : "Arsip"}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className={styles.genMemberCountBadge}>
+              <span className={styles.genCountDot} />
+              <span>{filteredMembers.length} Fungsionaris</span>
+            </div>
+          </div>
+        </div>
       )}
 
-      {/* One square card per division — scales with however many divisions are in API */}
-      {divisions.length > 0 && (
-        <div className={styles.divisionsGrid}>
-          {divisions.map((div) => {
-            const divMembers = divisionMembersMap.get(div.id) ?? [];
-            return (
-              <DivisionCard
-                key={div.id}
-                division={div}
-                members={divMembers}
-                onClick={() => setModal({ kind: "division", division: div, members: divMembers })}
-              />
-            );
-          })}
+      {/* When no members exist for this generation */}
+      {filteredMembers.length === 0 ? (
+        <div className={styles.emptyGenState}>
+          <div className={styles.emptyGenIcon}>
+            <svg
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+          </div>
+          <h4 className={styles.emptyGenTitle}>Arsip Periode {selectedGen} Belum Tersedia</h4>
+          <p className={styles.emptyGenDesc}>
+            Data fungsionaris untuk periode kepengurusan ini belum diunggah atau masih dalam proses digitalisasi arsip kelembagaan.
+          </p>
         </div>
+      ) : (
+        <>
+          {/* Single combined BPH card — groups all division-null members */}
+          {bphMembers.length > 0 && (
+            <BphGroupCard
+              members={bphMembers}
+              onClick={() => setModal({ kind: "bph", members: bphMembers })}
+            />
+          )}
+
+          {/* One square card per division — scales with however many divisions are in API */}
+          {divisions.length > 0 && (
+            <div className={styles.divisionsGrid}>
+              {divisions.map((div) => {
+                const divMembers = divisionMembersMap.get(div.id) ?? [];
+                return (
+                  <DivisionCard
+                    key={div.id}
+                    division={div}
+                    members={divMembers}
+                    onClick={() =>
+                      setModal({ kind: "division", division: div, members: divMembers })
+                    }
+                  />
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
 
       {modal && <Modal data={modal} onClose={() => setModal(null)} />}

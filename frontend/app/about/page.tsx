@@ -163,6 +163,42 @@ const FALLBACK_LEADERS: BPHMember[] = [
     generation_year: 2026,
     division: null,
   },
+  {
+    id: 101,
+    name: "Demisioner Chairman (Ketua SISO 2025)",
+    photo: null,
+    role: "Chairman (Ketua SISO)",
+    order: 1,
+    generation_year: 2025,
+    division: null,
+  },
+  {
+    id: 102,
+    name: "Demisioner Vice Chairman (Wakil Ketua 2025)",
+    photo: null,
+    role: "Vice / Co-Chairman (Wakil Ketua)",
+    order: 2,
+    generation_year: 2025,
+    division: null,
+  },
+  {
+    id: 103,
+    name: "Demisioner Secretary (Sekretaris 2025)",
+    photo: null,
+    role: "Secretary (Sekretaris)",
+    order: 3,
+    generation_year: 2025,
+    division: null,
+  },
+  {
+    id: 104,
+    name: "Demisioner Treasurer (Bendahara 2025)",
+    photo: null,
+    role: "Treasurer (Bendahara)",
+    order: 4,
+    generation_year: 2025,
+    division: null,
+  },
 ];
 
 function getInitials(name: string): string {
@@ -180,10 +216,17 @@ function isSectionVisible(
   return section ? section.is_visible : defaultValue;
 }
 
-export default async function AboutPage() {
-  // TODO: [Backend Integration] Dynamic Generation Filtering
-  // Endpoint /api/v1/members/?generation=2026 memungkinkan filter tahun kepengurusan.
-  // Ke depannya dapat ditambahkan dropdown selector tahun untuk melihat arsip kepengurusan sebelumnya.
+interface AboutPageProps {
+  searchParams?: {
+    generation?: string;
+  };
+}
+
+export default async function AboutPage({ searchParams }: AboutPageProps) {
+  // Dynamic Generation Filtering:
+  // Mendukung filter tahun kepengurusan fungsionaris BPH melalui query parameter `?generation=YYYY`
+  // serta interaksi dinamis via tab/selector periode di komponen OrgStructure.
+  const queryGen = searchParams?.generation ? parseInt(searchParams.generation, 10) : undefined;
 
   const [sections, org, divisions, members] = await Promise.all([
     fetchSections("about").catch(() => []),
@@ -224,8 +267,13 @@ export default async function AboutPage() {
       })
       : DEFAULT_PHILOSOPHY_POINTS;
 
-  // Leadership & Members Grouping
+  // Leadership & Members Grouping (Supports Dynamic Generation Filtering)
   const activeMembers = members.length > 0 ? members : FALLBACK_LEADERS;
+  const availableGenerations = Array.from(
+    new Set(activeMembers.map((m) => m.generation_year))
+  )
+    .filter(Boolean)
+    .sort((a, b) => b - a);
 
   return (
     <div className={styles.pageWrapper}>
@@ -574,7 +622,12 @@ export default async function AboutPage() {
               </p>
             </div>
 
-            <OrgStructure members={activeMembers} divisions={divisions} />
+            <OrgStructure
+              allMembers={activeMembers}
+              divisions={divisions}
+              availableGenerations={availableGenerations}
+              initialGeneration={queryGen}
+            />
           </div>
         </section>
       )}
