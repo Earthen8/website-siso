@@ -37,7 +37,7 @@ class Organization(models.Model):
 
 class Division(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
     group_photo = models.ImageField(upload_to="divisions/", blank=True, null=True)
     jobdesc = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=0)
@@ -85,7 +85,7 @@ class ProgramKerja(models.Model):
     ]
 
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=150, unique=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     description = models.TextField(blank=True)
     date = models.DateField(null=True, blank=True)
@@ -95,6 +95,8 @@ class ProgramKerja(models.Model):
         default=False,
         help_text="Tampilkan di Highlighted Programs di halaman Home.",
     )
+    location = models.CharField(max_length=150, blank=True, default="")
+    registration_url = models.URLField(max_length=500, blank=True, default="")
 
     class Meta:
         ordering = ["-date"]
@@ -161,7 +163,7 @@ class Article(models.Model):
     ]
 
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=150, unique=True)
     body = models.TextField()
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     published_at = models.DateTimeField(null=True, blank=True)

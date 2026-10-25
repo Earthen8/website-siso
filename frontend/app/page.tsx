@@ -17,13 +17,13 @@ import styles from "./page.module.css";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Home | SISO Prasmul",
+  title: "SISO Prasmul | With STEM We Can — Inovasi Mahasiswa STEM",
   description:
-    "STEM Prasetiya Mulya Innovation Student Organization (SISO) — Menginspirasi, Mengembangkan, dan Menghubungkan Mahasiswa STEM.",
+    "STEM Prasetiya Mulya Innovation Student Organization (SISO) — Wadah kolaborasi, inovasi prototipe, dan pengembangan mahasiswa School of STEM Prasmul.",
   openGraph: {
-    title: "SISO Prasmul — Empowering Future STEM Innovators",
+    title: "SISO Prasmul | With STEM We Can",
     description:
-      "STEM Prasetiya Mulya Innovation Student Organization (SISO) — Himpunan Mahasiswa STEM Universitas Prasetiya Mulya.",
+      "STEM Prasetiya Mulya Innovation Student Organization (SISO) — Himpunan Mahasiswa School of STEM Universitas Prasetiya Mulya.",
     locale: "id_ID",
     type: "website",
   },
@@ -37,7 +37,7 @@ const buildOrganizationSchema = (siteUrl: string) => ({
   logo: `${siteUrl}/logo-siso.png`,
   sameAs: [
     "https://instagram.com/siso.prasmul",
-    "https://tiktok.com/@sisoprasmul",
+    "https://tiktok.com/@siso.prasmul",
   ],
 });
 
@@ -72,44 +72,44 @@ const DEFAULT_DOC_IMAGES = [
   {
     id: 1,
     file: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=700&auto=format&fit=crop",
-    caption: "Hands-on robotics prototyping session",
+    caption: "Pameran Prototipe Mahasiswa di InnoFair 2026",
   },
   {
     id: 2,
     file: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=700&auto=format&fit=crop",
-    caption: "AI & Data Science peer workshop",
+    caption: "Workshop Coding Game Scratch di Prog{r}amming",
   },
   {
     id: 3,
     file: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=700&auto=format&fit=crop",
-    caption: "Team brainstorm at Innovation Hub",
+    caption: "Eksperimen Sains Anak di Science Fun Day",
   },
   {
     id: 4,
     file: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=700&auto=format&fit=crop",
-    caption: "Annual STEM Student Exhibition",
+    caption: "Welcoming Night & SISO Day Mahasiswa STEM",
   },
 ];
 
 const FALLBACK_MISSION_POINTS = [
-  "Mengembangkan potensi dan keahlian aplikatif mahasiswa STEM",
-  "Menyelenggarakan program riset, workshop, dan kompetisi inovatif",
-  "Menjalin kolaborasi strategis dengan industri dan ekosistem kampus",
-  "Membangun komunitas mahasiswa yang solid, adaptif, dan inklusif",
+  "Mewadahi pengembangan soft skills kepemimpinan, komunikasi, dan kerja sama tim lintas jurusan STEM.",
+  "Menyelenggarakan pameran prototipe, kompetisi sains-teknologi, dan pelatihan teknis yang aplikatif.",
+  "Memperkenalkan keunggulan inovasi mahasiswa STEM Prasetiya Mulya kepada industri dan masyarakat umum.",
+  "Mempererat rasa kekeluargaan internal serta memperluas jejaring profesional bersama alumni dan mitra.",
 ];
 
 const FALLBACK_VALUE_PROPS = [
   {
-    title: "Kolaborasi Multidisipliner STEM",
-    text: "Menyatukan talenta sains, komputasi, dan rekayasa lintas program studi untuk mengeksplorasi solusi komprehensif atas permasalahan riil.",
+    title: "Sinergi Lintas 6 Program Studi STEM",
+    text: "Mempertemukan mahasiswa AI & Robotics, Matematika Bisnis, Software, Pangan, Desain Produk, dan Energi Terbarukan dalam satu ekosistem kolaboratif.",
   },
   {
-    title: "Riset Terapan & Inovasi Teknologi",
-    text: "Mengembangkan kapabilitas deep-tech (AI, IoT, Robotics, Data Science) melalui workshop intensif, hands-on prototyping, dan mentorship industri.",
+    title: "DNA Technopreneurship & Prototipe Riil",
+    text: "Tidak sekadar merancang teknologi di laboratorium, kami mendorong hilirisasi prototipe inovatif yang siap divalidasi oleh industri dan pasar nyata.",
   },
   {
-    title: "Akselerasi Prestasi & Dampak Industri",
-    text: "Menginkubasi tim kompetisi sains-teknologi di kancah nasional maupun global, serta membuka akses karir ke ekosistem industri masa depan.",
+    title: "Koneksi Industri & Dampak Sosial Luas",
+    text: "Menghubungkan mahasiswa dengan praktisi korporasi global sekaligus mengedukasi generasi muda Indonesia melalui pengabdian sains dan pemrograman.",
   },
 ];
 
@@ -203,26 +203,26 @@ export default async function HomePage() {
         <div className={`container ${styles.heroContent}`}>
           <div className={styles.heroBadge}>
             <span className={styles.heroBadgeDot} />
-            Himpunan Mahasiswa STEM Prasetiya Mulya
+            Himpunan Mahasiswa School of STEM Prasmul
           </div>
           <h1 className={styles.heroTitle}>
             {org?.slogan ? (
               org.slogan
             ) : (
               <>
-                Empowering Future{" "}
-                <span className={styles.heroTitleHighlight}>STEM Innovators</span>
+                With STEM We Can:{" "}
+                <span className={styles.heroTitleHighlight}>Innovate to Elevate</span>
               </>
             )}
           </h1>
           <p className={styles.heroSubtitle}>
-            Wadah kolaborasi, riset aplikatif, dan pengembangan talenta sains & teknologi
-            menuju masa depan digital Indonesia.
+            Wadah kolaborasi lintas enam program studi School of STEM Universitas Prasetiya Mulya
+            untuk mengasah kepemimpinan, menciptakan prototipe solutif, dan membangun jejaring industri.
           </p>
 
           <div className={styles.heroActions}>
             <Link href="/program-kerja" className={styles.heroBtnPrimary}>
-              Jelajahi Program
+              Jelajahi Program SISO
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M5 12h14M12 5l7 7-7 7"
@@ -234,7 +234,7 @@ export default async function HomePage() {
               </svg>
             </Link>
             <Link href="/about" className={styles.heroBtnSecondary}>
-              Tentang SISO
+              Kenali SISO Prasmul
             </Link>
           </div>
 
@@ -250,7 +250,7 @@ export default async function HomePage() {
                 />
               </svg>
             </span>
-            <span>Scroll untuk menjelajahi</span>
+            <span>Gulir untuk eksplorasi SISO</span>
           </a>
         </div>
         </section>
@@ -283,22 +283,22 @@ export default async function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <div className={styles.aboutBadgeTitle}>Est. STEM Prasmul</div>
-                  <div className={styles.aboutBadgeValue}>Innovation Hub</div>
+                  <div className={styles.aboutBadgeTitle}>With STEM We Can</div>
+                  <div className={styles.aboutBadgeValue}>6 Program Studi S1 STEM</div>
                 </div>
               </div>
             </div>
 
             <div className={styles.aboutContent}>
-              <span className={styles.sectionBadge}>Tentang Kami</span>
-              <h2 className={styles.aboutTitle}>Mengenal SISO Prasmul</h2>
+              <span className={styles.sectionBadge}>Tentang SISO</span>
+              <h2 className={styles.aboutTitle}>Rumah Kolaborasi Prasmulyan STEM</h2>
               <p className={styles.aboutText}>
                 {org?.visi
                   ? org.visi
-                  : "STEM Prasetiya Mulya Innovation Student Organization (SISO) merupakan organisasi kemahasiswaan resmi di bawah Sekolah STEM Universitas Prasetiya Mulya yang berfokus pada kolaborasi multidisiplin, inovasi teknologi, dan kepemimpinan."}
+                  : "STEM Prasetiya Mulya Innovation Student Organization (SISO) adalah himpunan mahasiswa resmi School of STEM Universitas Prasetiya Mulya yang menyatukan enam program studi: AI & Robotics, Business Mathematics, Digital Business Technology, Food Business Technology, Product Design Innovation, serta Renewable Energy Engineering."}
               </p>
               <Link href="/about" className={styles.aboutBtn}>
-                Pelajari Selengkapnya
+                Pelajari Profil Lengkap
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M5 12h14M12 5l7 7-7 7"
@@ -319,11 +319,11 @@ export default async function HomePage() {
         <section className={`section-block ${styles.altBg}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Arah & Tujuan</span>
-              <h2 className={styles.sectionHeading}>Vision &amp; Mission</h2>
+              <span className={styles.sectionBadge}>Arah Pergerakan Kami</span>
+              <h2 className={styles.sectionHeading}>Vision &amp; Mission SISO</h2>
               <p className={styles.sectionSubtitle}>
-                Komitmen kami dalam menggerakkan inovasi teknologi dan membentuk karakter
-                pemimpin masa depan di lingkungan kampus maupun masyarakat.
+                Komitmen SISO sebagai jembatan pengembangan diri mahasiswa STEM Prasetiya Mulya
+                yang aktif, dinamis, kolaboratif, dan berdampak bagi masyarakat luas.
               </p>
             </div>
 
@@ -359,7 +359,7 @@ export default async function HomePage() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  Empat Pilar Misi SISO
+                  Empat Pilar Misi SISO Prasmul
                 </div>
                 <div className={styles.missionGrid}>
                   {missionPoints.map((point: string, idx: number) => (
@@ -377,18 +377,15 @@ export default async function HomePage() {
 
       {/* ── 4. Highlighted Programs ─────────────────────────────────────────── */}
       {/* 
-        NOTE: Section ini aktif jika di-toggle di Django Admin (Section.is_visible = True).
-        TODO: [Backend Integration] Pastikan ada program dengan flag `is_featured = True` di Django Admin.
-      */}
+      {/* ── 4. Highlighted Programs ─────────────────────────────────────────── */}
       {isSectionVisible(sections, "highlighted_programs") && (
         <section className="section-block">
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Program Pilihan</span>
+              <span className={styles.sectionBadge}>Signature Events SISO</span>
               <h2 className={styles.sectionHeading}>Highlighted Programs</h2>
               <p className={styles.sectionSubtitle}>
-                Inisiatif unggulan SISO yang dirancang untuk mengasah kapabilitas teknis
-                dan membuka pintu peluang industri bagi mahasiswa.
+                Rangkaian program unggulan SISO mulai dari InnoFair, STEM INC, Prog&#123;r&#125;amming, Science Fun Day, hingga Perspective untuk memacu kreativitas tanpa batas.
               </p>
             </div>
 
@@ -481,18 +478,14 @@ export default async function HomePage() {
       )}
 
       {/* ── 5. Upcoming Events ──────────────────────────────────────────────── */}
-      {/* 
-        TODO: [Backend Integration] Sambungkan tombol registrasi langsung ke endpoint
-        pendaftaran atau link form eksternal yang diatur via Django Admin.
-      */}
       {isSectionVisible(sections, "upcoming_events") && (
         <section className={`section-block ${styles.altBg}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Agenda Terdekat</span>
-              <h2 className={styles.sectionHeading}>Upcoming Events</h2>
+              <span className={styles.sectionBadge}>Agenda Mendatang</span>
+              <h2 className={styles.sectionHeading}>Upcoming SISO Events</h2>
               <p className={styles.sectionSubtitle}>
-                Jangan lewatkan agenda workshop, seminar, dan kompetisi mendatang. Daftarkan diri Anda sekarang!
+                Ikuti rangkaian pameran inovasi, lomba nasional, workshop coding, dan seminar industri terdekat yang diselenggarakan oleh SISO Prasmul!
               </p>
             </div>
 
@@ -558,10 +551,10 @@ export default async function HomePage() {
         <section className="section-block">
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Prestasi Mahasiswa</span>
+              <span className={styles.sectionBadge}>Kebanggaan Prasmulyan</span>
               <h2 className={styles.sectionHeading}>Student Achievements</h2>
               <p className={styles.sectionSubtitle}>
-                Apresiasi atas pencapaian membanggakan mahasiswa STEM Prasetiya Mulya di kancah nasional dan internasional.
+                Rekam jejak prestasi gemilang mahasiswa School of STEM Universitas Prasetiya Mulya di berbagai kompetisi inovasi, bisnis teknologi, dan riset global.
               </p>
             </div>
 
@@ -584,10 +577,10 @@ export default async function HomePage() {
         <section className={`section-block ${styles.altBg}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Galeri Kegiatan</span>
-              <h2 className={styles.sectionHeading}>Documentations</h2>
+              <span className={styles.sectionBadge}>Lensa Kegiatan SISO</span>
+              <h2 className={styles.sectionHeading}>Event Documentations</h2>
               <p className={styles.sectionSubtitle}>
-                Momen-momen inspiratif dan dokumentasi keseruan kegiatan mahasiswa bersama SISO.
+                Potret antusiasme pameran prototipe InnoFair, keseruan eksperimen Science Fun Day, hingga hangatnya kebersamaan keluarga besar SISO Prasmul.
               </p>
             </div>
 
@@ -612,7 +605,7 @@ export default async function HomePage() {
 
             <div className={styles.centered}>
               <Link href="/gallery" className={styles.pillBtn}>
-                Lihat Galeri Lengkap
+                Buka Galeri Lengkap
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M5 12h14M12 5l7 7-7 7"
@@ -629,18 +622,14 @@ export default async function HomePage() {
       )}
 
       {/* ── 8. Our Social Media ─────────────────────────────────────────────── */}
-      {/* 
-        TODO: [Backend Integration] Integrasi otomatis dengan Instagram Basic Display API 
-        atau cron scraper untuk meng-update postingan foto secara realtime.
-      */}
       {isSectionVisible(sections, "social_media") && (
         <section className="section-block" style={{ paddingInline: 0 }}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Terhubung Bersama Kami</span>
-              <h2 className={styles.sectionHeading}>Our Social Media</h2>
+              <span className={styles.sectionBadge}>Kanal Resmi SISO</span>
+              <h2 className={styles.sectionHeading}>Connect on Social Media</h2>
               <p className={styles.sectionSubtitle}>
-                Ikuti update terkini, info lomba, dan keseruan kegiatan kami di Instagram{" "}
+                Ikuti keseruan kegiatan harian, konten edukasi STEM, podcast, dan info open recruitment di Instagram resmi{" "}
                 <a
                   href="https://www.instagram.com/siso.prasmul/"
                   target="_blank"
@@ -649,6 +638,7 @@ export default async function HomePage() {
                 >
                   @siso.prasmul
                 </a>
+                !
               </p>
             </div>
           </div>

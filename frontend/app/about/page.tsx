@@ -17,11 +17,11 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "About SISO | SISO Prasmul",
   description:
-    "Kenali visi, misi, nilai organisasi, filosofi logo, dan struktur kepengurusan STEM Prasetiya Mulya Innovation Student Organization (SISO).",
+    "Kenali visi, misi, nilai CHAIN & AMICA, filosofi logo, susunan BPH 8 divisi, serta perjalanan STEM Prasetiya Mulya Innovation Student Organization (SISO).",
   openGraph: {
     title: "About SISO — STEM Prasetiya Mulya Innovation Student Organization",
     description:
-      "Visi, misi, nilai organisasi, filosofi logo, dan struktur kepengurusan SISO Prasmul.",
+      "Visi, misi, nilai budaya CHAIN, filosofi logo, dan struktur kepengurusan SISO Prasmul.",
     locale: "id_ID",
     type: "website",
   },
@@ -29,83 +29,83 @@ export const metadata: Metadata = {
 
 // ── Default Fallbacks ────────────────────────────────────────────────────────
 const FALLBACK_MISSION_POINTS = [
-  "Membangun ekosistem belajar dan riset aplikatif bagi seluruh mahasiswa STEM.",
-  "Menyelenggarakan program pengembangan skill terkini yang relevan dengan kebutuhan industri.",
-  "Membuka jejaring kemitraan strategis dengan korporasi, alumni, dan komunitas teknologi.",
-  "Mewadahi pengembangan kepemimpinan dan soft skills mahasiswa yang adaptif dan inklusif.",
+  "Mewadahi pengembangan soft skills kepemimpinan, komunikasi, dan kerja sama tim lintas jurusan STEM.",
+  "Menyelenggarakan pameran prototipe, kompetisi sains-teknologi, dan pelatihan teknis yang aplikatif.",
+  "Memperkenalkan keunggulan inovasi mahasiswa STEM Prasetiya Mulya kepada industri dan masyarakat umum.",
+  "Mempererat rasa kekeluargaan internal serta memperluas jejaring profesional bersama alumni dan mitra.",
 ];
 
 const DEFAULT_ORGANIZATIONAL_VALUES = [
   {
-    title: "Innovation",
-    text: "Mendorong pemikiran kritis dan keberanian menciptakan solusi baru berbasis sains & teknologi.",
+    title: "Caring",
+    text: "Memiliki kepekaan sosial tinggi untuk menghadirkan inovasi sains dan edukasi teknologi yang menjawab permasalahan nyata di masyarakat sekitar.",
   },
   {
-    title: "Collaboration",
-    text: "Menyatukan beragam disiplin ilmu STEM dalam semangat sinergi dan kerja sama yang inklusif.",
+    title: "Humility",
+    text: "Menjaga kerendahan hati untuk terus belajar, terbuka terhadap masukan konstruktif, dan menghargai kolaborasi lintas disiplin keilmuan STEM.",
+  },
+  {
+    title: "Achievement",
+    text: "Berorientasi pada pencapaian karya terbaik, ketangguhan eksekusi program kerja, serta semangat berkompetisi di tingkat nasional maupun global.",
   },
   {
     title: "Integrity",
-    text: "Menjunjung etika akademik, profesionalitas, dan tanggung jawab dalam setiap karya dan aksi.",
-  },
-  {
-    title: "Excellence",
-    text: "Berkomitmen memberikan standar kualitas tertinggi dalam setiap program dan pencapaian.",
+    text: "Menjunjung tinggi kejujuran akademik, transparansi pengelolaan organisasi, dan tanggung jawab profesional dalam setiap amanah kepengurusan.",
   },
 ];
 
 const DEFAULT_PHILOSOPHY_POINTS = [
   {
     title: "Burung Phoenix (Transformasi & Resiliensi)",
-    text: "Melambangkan tekad pantang menyerah, kebangkitan berkelanjutan, dan aspirasi mahasiswa STEM untuk membumbung tinggi menjadi pelopor inovasi.",
+    text: "Melambangkan daya juang pantang menyerah, pembaruan berkelanjutan, dan semangat mahasiswa STEM Prasmul untuk terbang tinggi memimpin perubahan teknologi.",
   },
   {
-    title: "Struktur Molekular & Jejaring Saintifik",
-    text: "Ikatan atom melingkar di atas kepala melambangkan fondasi sains, teknologi presisi, dan sinergi riset kolaboratif antardisiplin ilmu STEM.",
+    title: "Struktur Atom & Jejaring Saintifik",
+    text: "Simbol ikatan molekular di bagian atas mencerminkan fondasi riset sains terapan dan keterhubungan erat antara enam program studi di School of STEM.",
   },
   {
-    title: "Dinamika Sayap & Pertumbuhan Organik",
-    text: "Lekukan sayap dinamis yang menyerupai sulur alami mencerminkan inovasi teknologi yang hidup, adaptif terhadap zaman, dan berdampak berkelanjutan.",
+    title: "Kepakan Sayap Dinamis (With STEM We Can)",
+    text: "Garis lengkung sayap yang dinamis dan adaptif melambangkan kelincahan berpikir, kreativitas tanpa batas, serta kesiapan menghadapi disrupsi industri.",
   },
   {
-    title: "Warna Deep Navy & Putih Bersih",
-    text: "Navy merefleksikan kedalaman intelektual, integritas, dan profesionalisme, sementara putih melambangkan transparansi, keterbukaan ide, dan kemurnian tujuan.",
+    title: "Harmoni Warna Biru Navy & Putih",
+    text: "Biru tua merepresentasikan kedalaman intelektual, profesionalisme, dan ketenangan analitis, sedangkan putih melambangkan integritas dan ketulusan mengabdi.",
   },
 ];
 
 const FALLBACK_LEADERS: BPHMember[] = [
   {
     id: 1,
-    name: "Nicholas Nathaniel",
+    name: "I Putu Ary Raditya",
     photo: null,
-    role: "Ketua Himpunan",
+    role: "Chairman (Ketua Himpunan)",
     order: 1,
     generation_year: 2026,
     division: null,
   },
   {
     id: 2,
-    name: "Clarissa Stephanie",
+    name: "Co-Chairman SISO",
     photo: null,
-    role: "Wakil Ketua Himpunan",
+    role: "Co-Chairman (Wakil Ketua)",
     order: 2,
     generation_year: 2026,
     division: null,
   },
   {
     id: 3,
-    name: "Bryan Adrian",
+    name: "Secretary General",
     photo: null,
-    role: "Sekretaris Umum",
+    role: "Secretary (Sekretaris Umum)",
     order: 3,
     generation_year: 2026,
     division: null,
   },
   {
     id: 4,
-    name: "Jessica Aurelia",
+    name: "Rona Salsabila",
     photo: null,
-    role: "Bendahara Umum",
+    role: "Treasurer (Bendahara Umum)",
     order: 4,
     generation_year: 2026,
     division: null,
@@ -199,27 +199,26 @@ export default async function AboutPage() {
               <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
               <path d="M12 7v5l3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
-            Tentang SISO Prasmul • Est. 2017
+            Profil Resmi SISO • Est. 2017
           </div>
           <h1 className={styles.heroTitle}>
-            Membentuk Inovator STEM{" "}
-            <span className={styles.heroTitleHighlight}>Masa Depan</span>
+            Wadah Prasmulyan STEM{" "}
+            <span className={styles.heroTitleHighlight}>Berorganisasi dan Berkoneksi</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            STEM Prasetiya Mulya Innovation Student Organization (SISO) merupakan
-            organisasi kemahasiswaan resmi di bawah naungan Sekolah STEM Universitas Prasetiya
-            Mulya yang menjadi motor penggerak riset aplikatif, jejaring industri, dan
-            pengembangan talenta sains & teknologi.
+            STEM Prasetiya Mulya Innovation Student Organization (SISO) merupakan organisasi
+            perhimpunan mahasiswa naungan S1 School of STEM Universitas Prasetiya Mulya yang
+            mewadahi seluruh kegiatan kemahasiswaan, pameran inovasi, kompetisi nasional,
+            hingga pengembangan kepemimpinan dengan semboyan “With STEM We Can”.
           </p>
         </div>
 
         <div className="container">
-          {/* TODO: [Backend Integration] Live counters from /api/v1/organization/stats/ */}
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
               <div>
-                <p className={styles.statNumber}>25+</p>
-                <p className={styles.statLabel}>Program Kerja</p>
+                <p className={styles.statNumber}>6</p>
+                <p className={styles.statLabel}>Program Studi STEM</p>
               </div>
               <div className={styles.statIconWrapper}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -231,8 +230,8 @@ export default async function AboutPage() {
 
             <div className={styles.statCard}>
               <div>
-                <p className={styles.statNumber}>{divisions.length > 0 ? divisions.length : "4"}</p>
-                <p className={styles.statLabel}>Divisi Inti</p>
+                <p className={styles.statNumber}>{divisions.length > 0 ? divisions.length : "8+"}</p>
+                <p className={styles.statLabel}>Divisi Kepengurusan</p>
               </div>
               <div className={styles.statIconWrapper}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -246,8 +245,8 @@ export default async function AboutPage() {
 
             <div className={styles.statCard}>
               <div>
-                <p className={styles.statNumber}>50+</p>
-                <p className={styles.statLabel}>Pengurus & Anggota</p>
+                <p className={styles.statNumber}>5+</p>
+                <p className={styles.statLabel}>Signature Events</p>
               </div>
               <div className={styles.statIconWrapper}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -262,7 +261,7 @@ export default async function AboutPage() {
             <div className={styles.statCard}>
               <div>
                 <p className={styles.statNumber}>15+</p>
-                <p className={styles.statLabel}>Mitra Industri</p>
+                <p className={styles.statLabel}>Mitra &amp; Kolaborator</p>
               </div>
               <div className={styles.statIconWrapper}>
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
@@ -287,9 +286,9 @@ export default async function AboutPage() {
         <div className="container">
           <div className={styles.sectionHeader}>
             <span className={styles.sectionBadge}>Landasan Pergerakan</span>
-            <h2 className={styles.sectionTitle}>Vision &amp; Mission</h2>
+            <h2 className={styles.sectionTitle}>Vision &amp; Mission SISO</h2>
             <p className={styles.sectionSubtitle}>
-              Prinsip dan arah tujuan yang membimbing setiap langkah, program, dan kolaborasi SISO.
+              Berlandaskan konsep dari, oleh, dan untuk mahasiswa dalam mewujudkan ekosistem STEM Prasetiya Mulya yang aktif dan dinamis.
             </p>
           </div>
 
@@ -305,7 +304,7 @@ export default async function AboutPage() {
                 <h3 className={styles.visionTitle}>Our Vision</h3>
                 <p className={styles.visionText}>
                   {org?.visi ||
-                    "Menjadi episentrum pergerakan mahasiswa STEM yang unggul, inovatif, dan berintegritas dalam menciptakan solusi teknologi yang aplikatif bagi kemajuan bangsa."}
+                    "Mewujudkan SISO sebagai wadah terbuka yang menjembatani pengembangan diri, kepemimpinan, dan kreativitas mahasiswa School of STEM Universitas Prasetiya Mulya secara aktif, dinamis, serta berdampak positif bagi khalayak luas."}
                 </p>
               </div>
             </div>
@@ -328,7 +327,7 @@ export default async function AboutPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                Empat Pilar Misi SISO
+                Empat Pilar Misi SISO Prasmul
               </div>
               <div className={styles.missionGrid}>
                 {missionPoints.slice(0, 4).map((point, i) => (
@@ -349,10 +348,10 @@ export default async function AboutPage() {
         <section className={`${styles.valuesSection} ${styles.altBg}`}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Budaya & Karakter</span>
+            <span className={styles.sectionBadge}>Nilai Inti CHAIN</span>
             <h2 className={styles.sectionTitle}>Organizational Values</h2>
             <p className={styles.sectionSubtitle}>
-              Nilai-nilai esensial yang kami tanamkan dalam setiap interaksi, riset, dan inisiatif kemahasiswaan.
+              Empat nilai fondasi CHAIN Prasetiya Mulya yang diinternalisasi dalam setiap langkah kepemimpinan dan inovasi pengurus SISO.
             </p>
           </div>
 
@@ -398,10 +397,10 @@ export default async function AboutPage() {
         <section className={styles.philosophySection}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Identitas Visual</span>
-            <h2 className={styles.sectionTitle}>Logo Philosophy</h2>
+            <span className={styles.sectionBadge}>Identitas Visual SISO</span>
+            <h2 className={styles.sectionTitle}>SISO Logo Philosophy</h2>
             <p className={styles.sectionSubtitle}>
-              Setiap elemen garis, bentuk, dan warna melambangkan identitas dan visi besar pergerakan SISO.
+              Setiap elemen visual pada lambang SISO merepresentasikan sinergi sains, rekayasa teknologi, dan semangat bertumbuh Prasmulyan.
             </p>
           </div>
 
@@ -434,18 +433,14 @@ export default async function AboutPage() {
       )}
 
       {/* ── 5. Organizational Structure ─────────────────────────────────────── */}
-      {/*
-        TODO: [Backend Integration] Year Filter / Generation Switcher
-        Gunakan query param ?generation=XXXX untuk menampilkan susunan kepengurusan tahun lain.
-      */}
       {isSectionVisible(sections, "structure") && (
         <section className={`${styles.structureSection} ${styles.altBg}`}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Badan Pengurus Harian</span>
+            <span className={styles.sectionBadge}>Kepengurusan SISO</span>
             <h2 className={styles.sectionTitle}>Organizational Structure</h2>
             <p className={styles.sectionSubtitle}>
-              Susunan kepengurusan Badan Pengurus Harian SISO Periode 2026 yang mengemban amanah kepemimpinan.
+              Sinergi Badan Pengurus Harian (BPH), Board of Advisor, dan delapan divisi fungsional yang menggerakkan roda organisasi SISO Prasmul.
             </p>
           </div>
 
@@ -461,15 +456,15 @@ export default async function AboutPage() {
             <div className={styles.recruitmentCard}>
               <div className={styles.recruitmentBadge}>
                 <span className={styles.recruitmentBadgePulse} />
-                Open Recruitment
+                Open Recruitment SISO
               </div>
               <h2 className={styles.recruitmentTitle}>
-                Ready to Create Impact with SISO?
+                Ready to Grow with SISO Prasmul?
               </h2>
               <p className={styles.recruitmentDesc}>
-                Bergabunglah dengan keluarga besar STEM Prasetiya Mulya Innovation Student Organization.
-                Kembangkan potensi kepemimpinanmu, perluas jejaring profesional, dan berkolaborasi
-                dalam proyek teknologi yang berdampak nyata.
+                Jadilah bagian dari penggerak inovasi di School of STEM Universitas Prasetiya Mulya!
+                Asah kepemimpinanmu, bangun relasi lintas angkatan, dan wujudkan dampak nyata bersama
+                keluarga besar SISO. With STEM We Can!
               </p>
               <div className={styles.recruitmentActions}>
                 <Link href="/join-siso" className={styles.recruitmentBtnPrimary}>
@@ -489,7 +484,7 @@ export default async function AboutPage() {
                   </svg>
                 </Link>
                 <Link href="/program-kerja" className={styles.recruitmentBtnSecondary}>
-                  Lihat Program Kerja
+                  Lihat Program SISO
                 </Link>
               </div>
             </div>

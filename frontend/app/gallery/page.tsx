@@ -14,12 +14,12 @@ import styles from "./page.module.css";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-    title: "Gallery & Dokumentasi | SISO Prasmul",
+    title: "Galeri & Dokumentasi | SISO Prasmul",
     description:
-        "Eksplorasi dokumentasi foto, video recap, arsip program kerja, dan publikasi tahunan STEM Prasetiya Mulya Innovation Student Organization.",
+        "Arsip dokumentasi foto, video recap aftermovie, dan publikasi program kerja STEM Prasetiya Mulya Innovation Student Organization.",
     openGraph: {
-        title: "Gallery & Dokumentasi | SISO Prasmul",
-        description: "Galeri dokumentasi kegiatan inovasi dan kemahasiswaan SISO Prasmul.",
+        title: "Galeri & Dokumentasi | SISO Prasmul",
+        description: "Rekam jejak visual inovasi mahasiswa School of STEM Universitas Prasetiya Mulya.",
         locale: "id_ID",
         type: "website",
     },
@@ -28,95 +28,79 @@ export const metadata: Metadata = {
 // ── Curated Fallback Visual Assets ───────────────────────────────────────────
 const FALLBACK_PHOTOS = [
     {
-        title: "Robotics Prototyping Workshop",
-        category: "Workshop",
-        year: "2026",
-        image:
-            "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop",
-        caption: "Mahasiswa STEM merakit modul sensor dan mikroprosesor di lab robotika.",
-    },
-    {
-        title: "STEM Innovation Summit Exhibition",
-        category: "Event",
+        title: "InnoFair 2026: Exhibition & Pitching",
+        category: "Exhibition",
         year: "2026",
         image:
             "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
-        caption: "Pameran hasil karya rekayasa teknologi mahasiswa kepada mitra industri.",
+        caption: "Mahasiswa mempresentasikan purwarupa teknologi cerdas dan rekayasa pangan di hadapan investor.",
     },
     {
-        title: "AI & Machine Learning Sprint",
+        title: "Science Fun Day: Community Impact",
+        category: "Pengmas",
+        year: "2026",
+        image:
+            "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&auto=format&fit=crop",
+        caption: "Antusiasme anak-anak mempraktikkan eksperimen sains sederhana bersama mahasiswa relawan SISO.",
+    },
+    {
+        title: "Prog{r}amming: Scratch & Python Lab",
         category: "Workshop",
         year: "2026",
         image:
             "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
-        caption: "Sesi hands-on coding model computer vision dan neural network.",
+        caption: "Sesi interaktif membimbing computational thinking dan coding dasar bagi siswa sekolah.",
     },
     {
-        title: "Prasmul Hackathon 48-Hour Sprint",
+        title: "Perspective: 3D Modeling with Fusion360",
+        category: "Workshop",
+        year: "2026",
+        image:
+            "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop",
+        caption: "Workshop rancang bangun CAD 3D dan pemodelan komponen manufaktur purwarupa.",
+    },
+    {
+        title: "STEM INC: National Competition Stage",
         category: "Competition",
         year: "2026",
         image:
             "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
-        caption: "Kolaborasi intensif tim mahasiswa memecahkan tantangan smart city.",
+        caption: "Kompetisi ideasi dan pemecahan tantangan teknologi antar-tim siswa SMA dan mahasiswa se-Indonesia.",
     },
     {
-        title: "IoT Hardware Hands-on Session",
-        category: "Workshop",
-        year: "2025",
-        image:
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
-        caption: "Implementasi sensor nirkabel berbasis LoRaWAN dan gateway terintegrasi.",
-    },
-    {
-        title: "National Tech Competition Gala",
-        category: "Achievement",
-        year: "2025",
+        title: "Welcoming Night & SISO Day",
+        category: "Internal",
+        year: "2026",
         image:
             "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop",
-        caption: "Penganugerahan medali emas bagi delegasi mahasiswa SISO di kompetisi nasional.",
-    },
-    {
-        title: "SISO Goes to School Mentorship",
-        category: "Pengmas",
-        year: "2025",
-        image:
-            "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop",
-        caption: "Pengenalan dasar logika komputasi dan sains bagi generasi muda sekolah mitra.",
-    },
-    {
-        title: "BPH Annual Strategic Welcoming",
-        category: "Internal",
-        year: "2025",
-        image:
-            "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
-        caption: "Sinergi rapat kerja dan perumusan target kepengurusan tahunan SISO.",
+        caption: "Malam keakraban menyambut keluarga baru mahasiswa STEM Universitas Prasetiya Mulya.",
     },
 ];
 
 const FALLBACK_VIDEOS = [
     {
-        title: "Annual Tech Showcase 2026 Recap",
+        title: "Official Aftermovie InnoFair 2026",
         duration: "04:35",
         views: "1.4K views",
-        event: "Tech Showcase",
+        event: "InnoFair 2026",
         thumbnail:
             "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop",
         url: "https://www.instagram.com/siso.prasmul/",
     },
     {
-        title: "SISO Hackathon 48-Hours Behind The Scenes",
-        duration: "06:12",
+        title: "STEM INC 2026 National Competition Recap",
+        duration: "05:12",
         views: "2.1K views",
-        event: "Hackathon 2026",
+        event: "STEM INC 2026",
         thumbnail:
             "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
         url: "https://www.instagram.com/siso.prasmul/",
     },
     {
-        title: "Student Innovator Story: Michelle & Jonathan",
-        duration: "08:50",
+        title: "Science Fun Day: Inspiring Young Minds",
+        duration: "03:40",
         views: "980 views",
-        event: "Innovation Spotlight",
+        event: "Science Fun Day",
         thumbnail:
             "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
         url: "https://www.instagram.com/siso.prasmul/",
@@ -125,36 +109,31 @@ const FALLBACK_VIDEOS = [
 
 const ANNUAL_DOCS = [
     {
-        title: "Laporan Pertanggungjawaban (LPJ) 2026",
-        format: "PDF • 85 Halaman",
+        title: "Laporan Pertanggungjawaban (LPJ) Kepengurusan SISO 2025/2026",
+        format: "PDF • 95 Halaman",
         year: "2026",
     },
     {
-        title: "SISO Annual Accountability Report 2025",
-        format: "PDF • 140 Halaman",
+        title: "Laporan Pertanggungjawaban (LPJ) SISO 2024/2025",
+        format: "PDF • 120 Halaman",
         year: "2025",
     },
     {
-        title: "STEM Innovation Yearbook 2024",
-        format: "PDF • 120 Halaman",
+        title: "STEM Innovation Yearbook & LPJ 2023/2024",
+        format: "PDF • 85 Halaman",
         year: "2024",
-    },
-    {
-        title: "SISO Inaugural Annual Report 2023",
-        format: "PDF • 95 Halaman",
-        year: "2023",
     },
 ];
 
 const FALLBACK_PROGRAMS: ProgramKerja[] = [
     {
         id: 1,
-        title: "STEM Innovation Summit 2026",
-        slug: "stem-innovation-summit-2026",
+        title: "InnoFair 2026",
+        slug: "innofair-2026",
         category: "event",
         description:
-            "Konferensi tahunan terbesar mahasiswa STEM menghadirkan keynote speaker industri, pameran inovasi, dan networking session.",
-        date: "2026-10-02",
+            "Pameran prototipe dan karya inovasi tahunan mahasiswa School of STEM Prasetiya Mulya bersama mitra industri dan investor.",
+        date: "2026-06-18",
         cover_image:
             "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
         is_visible: true,
@@ -162,27 +141,27 @@ const FALLBACK_PROGRAMS: ProgramKerja[] = [
     },
     {
         id: 2,
-        title: "AI & Deep Learning Hands-on Bootcamp",
-        slug: "ai-deep-learning-bootcamp",
-        category: "workshop",
+        title: "STEM INC 2026",
+        slug: "stem-inc-2026",
+        category: "competition",
         description:
-            "Workshop intensif 2 pekan membangun pipeline machine learning dan generative AI model dari nol hingga deployment.",
-        date: "2026-10-17",
+            "Kompetisi problem-solving sains dan teknologi bergengsi tingkat nasional untuk siswa SMA/sederajat dan mahasiswa.",
+        date: "2026-08-14",
         cover_image:
-            "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
         is_visible: true,
         media_assets: [],
     },
     {
         id: 3,
-        title: "Prasmul Hackathon & Techfest",
-        slug: "prasmul-hackathon-techfest",
-        category: "competition",
+        title: "Prog{r}amming 9.0: Coding for Future",
+        slug: "programming-90-coding-for-future",
+        category: "workshop",
         description:
-            "Kompetisi problem-solving 48 jam untuk merancang solusi cerdas kota masa depan dengan total hadiah puluhan juta rupiah.",
-        date: "2026-11-11",
+            "Pelatihan coding intensif logika Scratch dan dasar Python interaktif untuk mengasah computational thinking pemula.",
+        date: "2026-09-05",
         cover_image:
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
         is_visible: true,
         media_assets: [],
     },
@@ -234,29 +213,28 @@ export default async function GalleryPage() {
                                 <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
                                 <polyline points="21 15 16 10 5 21" stroke="currentColor" strokeWidth="2" />
                             </svg>
-                            Dokumentasi &amp; Arsip Kegiatan
+                            Arsip Visual SISO
                         </div>
                         <h1 className={styles.heroTitle}>
-                            Capturing Moments,{" "}
-                            <span className={styles.heroTitleHighlight}>Inspiring Impact</span>
+                            Capturing STEM{" "}
+                            <span className={styles.heroTitleHighlight}>Innovation in Action</span>
                         </h1>
                         <p className={styles.heroSubtitle}>
-                            Jelajahi rekaman visual perjalanan mahasiswa STEM Prasetiya Mulya — dari dinamika riset laboratorium,
-                            keseruan workshop teknologi, ajang kompetisi nasional, hingga dedikasi pengabdian masyarakat.
+                            Telusuri rekam jejak visual perjalanan mahasiswa School of STEM Universitas Prasetiya Mulya dalam berkarya di InnoFair, mengajar di Science Fun Day, dan bertumbuh bersama SISO.
                         </p>
 
                         <div className={styles.heroStatsRow}>
                             <div className={styles.heroStatItem}>
                                 <span className={styles.heroStatDot} />
-                                <span>120+ Dokumentasi Foto</span>
+                                <span>60+ Dokumentasi Foto</span>
                             </div>
                             <div className={styles.heroStatItem}>
                                 <span className={styles.heroStatDot} />
-                                <span>15+ Video Highlights</span>
+                                <span>10+ Video Highlights</span>
                             </div>
                             <div className={styles.heroStatItem}>
                                 <span className={styles.heroStatDot} />
-                                <span>4 Edisi Arsip Tahunan</span>
+                                <span>Arsip Resmi LPJ</span>
                             </div>
                         </div>
                     </div>

@@ -130,7 +130,7 @@ Next.js fetch `GET /api/v1/sections?page=home&visible=true`, sudah terurut, dan 
 | `Organization` (singleton) | slogan, visi, misi, nilai, filosofi_logo, logo | About SISO |
 | `BPHMember` | name, photo, role, division (FK), order, generation_year | Struktur Kepengurusan |
 | `Division` | name, group_photo, jobdesc, order | Struktur Kepengurusan |
-| `ProgramKerja` | title, category (event/workshop/seminar/competition/pengmas), description, date, cover_image, is_visible | Program Kerja & Events |
+| `ProgramKerja` | title, category (event/workshop/seminar/competition/pengmas), description, date, cover_image, is_visible, location, registration_url | Program Kerja & Events |
 | `MediaAsset` | file, type (photo/video), program (FK) | Dokumentasi kegiatan |
 | `Achievement` | student_name, title, description, date, image | Prestasi mahasiswa |
 | `Article` | title, slug, body, category (jurnal/kajian/achievement/beasiswa), published_at, is_visible | Articles/News |

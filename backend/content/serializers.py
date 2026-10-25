@@ -43,7 +43,8 @@ class ProgramKerjaSerializer(serializers.ModelSerializer):
         model = ProgramKerja
         fields = [
             "id", "title", "slug", "category", "description",
-            "date", "cover_image", "is_visible", "is_featured", "media_assets",
+            "date", "cover_image", "is_visible", "is_featured",
+            "location", "registration_url", "media_assets",
         ]
 
 

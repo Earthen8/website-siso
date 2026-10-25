@@ -47,56 +47,56 @@ const ARTICLE_DEFAULT_COVERS: Record<ArticleCategory, string> = {
 const FALLBACK_ARTICLES: Article[] = [
   {
     id: 1,
-    title: "Penerapan Generative AI dalam Akselerasi Riset Akademik STEM",
-    slug: "penerapan-generative-ai-riset-stem",
-    body: "Eksplorasi penggunaan Large Language Models dan automated pipeline data synthesis untuk mempercepat proses literatur review serta formulasi hipotesis eksperimental pada laboratorium sains rekayasa.",
-    category: "jurnal",
-    published_at: "2026-09-08T09:00:00Z",
+    title: "6 Inovasi Game Changer Mahasiswa STEM Prasetiya Mulya",
+    slug: "enam-inovasi-game-changer-mahasiswa-stem-prasetiya-mulya",
+    body: "Ulasan mendalam 6 proyek aplikatif mahasiswa School of STEM Prasetiya Mulya: mulai dari Trash Sea untuk pembersihan sampah laut, aplikasi edukasi iMoonApp, alat deteksi diabetes non-invasif, hingga formulasi pangan fungsional berkelanjutan.",
+    category: "kajian",
+    published_at: "2026-03-15T09:00:00Z",
     is_visible: true,
   },
   {
     id: 2,
-    title: "Kajian Komprehensif: Optimalisasi Smart Grid pada Infrastruktur Kampus Hijau",
-    slug: "kajian-optimalisasi-smart-grid-kampus-hijau",
-    body: "Studi kelayakan teknis penerapan jaringan microgrid terdistribusi dengan integrasi panel surya cerdas dan baterai penyimpanan energi pada lingkungan universitas masa depan.",
-    category: "kajian",
-    published_at: "2026-08-25T14:30:00Z",
+    title: "Mengintegrasikan Life Cycle Analysis dalam Inovasi Desain Produk",
+    slug: "mengintegrasikan-life-cycle-analysis-inovasi-desain-produk",
+    body: "Kajian komprehensif mengenai penerapan metodologi Life Cycle Analysis (LCA) bagi mahasiswa Product Design Innovation dan Renewable Energy Engineering guna memvalidasi jejak karbon dan sirkularitas material.",
+    category: "jurnal",
+    published_at: "2026-04-10T14:30:00Z",
     is_visible: true,
   },
   {
     id: 3,
-    title: "Delegasi Mahasiswa SISO Raih Juara 1 di National Hackathon & IoT Summit 2026",
-    slug: "siso-juara-1-national-hackathon-2026",
-    body: "Inovasi prototipe peringatan dini banjir berbasis sensor LoRaWAN dan computer vision karya tim kolaborasi mahasiswa Informatika & Rekayasa Sistem berhasil meraih penghargaan utama nasional.",
+    title: "Mahasiswa STEM Sabet Juara 1 StudentsxCEOs 13th Grand Summit",
+    slug: "prestasi-juara-1-studentsxceos-grand-summit",
+    body: "Merrilyn Pauliusman dari program studi Product Design Innovation mengharumkan almamater dengan memenangkan kompetisi business case tingkat nasional.",
     category: "achievement",
-    published_at: "2026-08-10T10:00:00Z",
+    published_at: "2024-05-20T10:00:00Z",
     is_visible: true,
   },
   {
     id: 4,
-    title: "Panduan Lengkap Pendaftaran Beasiswa Riset & Inovasi Teknologi 2026",
-    slug: "panduan-beasiswa-riset-inovasi-teknologi-2026",
-    body: "Informasi alur seleksi, kelengkapan berkas esai gagasan, serta kriteria evaluasi program beasiswa riset terapan kemitraan industri untuk mahasiswa semester ganjil.",
-    category: "beasiswa",
-    published_at: "2026-07-28T08:00:00Z",
+    title: "Tim ABC Food Business Technology Raih Juara 2 PepsiCo PEP Pitch",
+    slug: "tim-abc-fbt-juara-2-pepsico-pep-pitch",
+    body: "Inovasi produk pangan fungsional berkelanjutan karya Aaron, Bill, dan Cherie berhasil memikat dewan juri industri internasional.",
+    category: "achievement",
+    published_at: "2024-11-25T11:00:00Z",
     is_visible: true,
   },
   {
     id: 5,
-    title: "Analisis Kebutuhan Talenta Software Engineering & AI di Industri Indonesia",
-    slug: "analisis-kebutuhan-talenta-ai-indonesia",
-    body: "Laporan survei divisi riset SISO terhadap tren kompetensi digital yang paling dicari perusahaan teknologi terkemuka sepanjang tahun 2025–2026.",
-    category: "kajian",
-    published_at: "2026-07-15T11:20:00Z",
+    title: "Panduan Seleksi Beasiswa Technopreneur STEM Prasmul 2026",
+    slug: "panduan-beasiswa-technopreneur-stem-prasmul",
+    body: "Informasi lengkap persyaratan, berkas proposal portofolio inovasi, dan timeline wawancara beasiswa penuh/parsial School of STEM Universitas Prasetiya Mulya.",
+    category: "beasiswa",
+    published_at: "2026-05-01T08:00:00Z",
     is_visible: true,
   },
   {
     id: 6,
-    title: "Eksplorasi Algoritma Quantum Annealing untuk Optimasi Rantai Pasok",
-    slug: "eksplorasi-quantum-annealing-rantai-pasok",
-    body: "Makalah pemodelan komputasi kuantum dalam menyelesaikan permasalahan traveling salesperson dan efisiensi logistik terdistribusi skala metropolitan.",
-    category: "jurnal",
-    published_at: "2026-06-30T16:00:00Z",
+    title: "Sosialisasi Program Beasiswa Bakti Prestasi Unggulan & Tech-Law Grant",
+    slug: "beasiswa-bakti-prestasi-tech-law-grant",
+    body: "Peluang bantuan dana studi dan hibah riset lintas disiplin teknologi, hukum, dan etika kecerdasan buatan bagi mahasiswa aktif STEM.",
+    category: "beasiswa",
+    published_at: "2026-05-10T13:00:00Z",
     is_visible: true,
   },
 ];
@@ -104,50 +104,42 @@ const FALLBACK_ARTICLES: Article[] = [
 const FALLBACK_ACHIEVEMENTS: Achievement[] = [
   {
     id: 1,
-    student_name: "Aditya Pratama & Tim",
-    title: "Juara 1 - National AI Hackathon Indonesia 2026",
-    description: "Merancang sistem deteksi anomali transmisi listrik berbasis edge intelligence dengan akurasi 98.4%.",
-    date: "2026-08-12",
+    student_name: "Merrilyn Pauliusman (Product Design Innovation)",
+    title: "Juara 1 StudentsxCEOs 13th Grand Summit (National Business Case Competition)",
+    description: "Meraih Juara 1 tingkat nasional dalam kompetisi business case bergengsi dengan solusi inovasi desain produk berkelanjutan.",
+    date: "2024-05-18",
     image: null,
   },
   {
     id: 2,
-    student_name: "Maria Clarissa",
-    title: "Best Paper Award - IEEE Student Conference 2026",
-    description: "Publikasi penelitian optimasi routing protokol nirkabel berdaya rendah untuk smart agriculture.",
-    date: "2026-07-24",
+    student_name: "Tim ABC (Aaron, Bill, Cherie - Food Business Technology)",
+    title: "Juara 2 PepsiCo PEP Pitch Competition",
+    description: "Menciptakan inovasi produk pangan berkelanjutan bernilai gizi tinggi dan ramah lingkungan.",
+    date: "2024-11-20",
     image: null,
   },
   {
     id: 3,
-    student_name: "Hassan Wirayuda",
-    title: "Champion UI/UX - ASEAN Tech DesignFest 2026",
-    description: "Desain sistem aplikasi kesehatan inklusif bagi penyandang disabilitas berbasis voice command.",
-    date: "2026-06-18",
+    student_name: "Tim Mahasiswa STEM Prasmul",
+    title: "Juara 1 CODIG 2.0 (Developing Sustainable Smart Society)",
+    description: "Mengembangkan inovasi Trash Sea untuk mengentaskan persoalan sampah laut berbasis teknologi cerdas.",
+    date: "2023-10-15",
     image: null,
   },
   {
     id: 4,
-    student_name: "Jonathan Kevin & Nathan",
-    title: "Top 3 Finalist - International Cyber Security CTF",
-    description: "Berhasil menyelesaikan tantangan reverse engineering dan kriptografi dalam kompetisi internasional 24 jam.",
-    date: "2026-05-30",
+    student_name: "Tim iMoonApp (S1 STEM Prasetiya Mulya)",
+    title: "Pemenang FNWMU Universitas Udayana (Kategori Poster)",
+    description: "Menggagas poster inovasi aplikasi iMoonApp untuk monitoring dan edukasi interaktif kesehatan reproduksi.",
+    date: "2023-09-22",
     image: null,
   },
   {
     id: 5,
-    student_name: "Sarah Michelle",
-    title: "Gold Medal - National STEM Innovation Award",
-    description: "Inovasi filter air mikroplastik berbasis nanomaterial biodegradable untuk ekosistem pesisir.",
-    date: "2026-04-15",
-    image: null,
-  },
-  {
-    id: 6,
-    student_name: "David Tandean",
-    title: "Outstanding Student Innovator 2026",
-    description: "Penghargaan atas kontribusi aktif memimpin pengembangan software open source kemahasiswaan.",
-    date: "2026-03-20",
+    student_name: "Avril & Ferdinand (School of STEM Prasetiya Mulya)",
+    title: "Awardee IISMA (Indonesian International Student Mobility Awards)",
+    description: "Terpilih sebagai penerima beasiswa mobilitas internasional ke universitas mitra terkemuka di luar negeri.",
+    date: "2023-08-01",
     image: null,
   },
 ];
@@ -204,54 +196,54 @@ const RESEARCH_STUDIES = [
 
 const SCHOLARSHIPS_DATA = [
   {
-    title: "SISO STEM Excellence Scholarship",
-    amount: "Rp 15.000.000 / semester",
-    deadline: "15 Oktober 2026",
-    eligibility: "Mahasiswa STEM Aktif, IPK ≥ 3.50",
-    quota: "20 Penerima",
-    tag: "Beasiswa Internal",
+    title: "Beasiswa Technopreneur STEM Prasmul",
+    amount: "Bantuan Biaya Kuliah Penuh & Parsial",
+    deadline: "30 Juli 2026",
+    eligibility: "Mahasiswa berjiwa inovator teknologi & bisnis di 6 Prodi STEM",
+    quota: "20 Kuota",
+    tag: "Beasiswa Unggulan",
   },
   {
-    title: "Corporate Tech Partner Innovation Grant",
-    amount: "Rp 25.000.000 + Mentorship",
-    deadline: "30 November 2026",
-    eligibility: "Tim Proyek Akhir / Capstone AI & Robotika",
+    title: "Beasiswa Bakti Prestasi Unggulan",
+    amount: "Dana Studi & Pengembangan Prestasi",
+    deadline: "15 Agustus 2026",
+    eligibility: "Peraih medali olimpiade sains, kompetisi riset & teknologi, IPK ≥ 3.50",
+    quota: "15 Kuota",
+    tag: "Apresiasi Prestasi",
+  },
+  {
+    title: "Tech & Law Dual-Competency Grant",
+    amount: "Hibah Riset Rp 20.000.000 / Tim",
+    deadline: "30 September 2026",
+    eligibility: "Proyek kolaboratif etika AI, regulasi siber, & perlindungan data",
     quota: "5 Tim Riset",
-    tag: "Hibah Industri",
-  },
-  {
-    title: "Government National Merit Award",
-    amount: "Rp 12.000.000 / semester",
-    deadline: "20 Desember 2026",
-    eligibility: "Mahasiswa Berprestasi Nasional, IPK ≥ 3.30",
-    quota: "15 Penerima",
-    tag: "Beasiswa Prestasi",
+    tag: "Hibah Riset",
   },
 ];
 
 const COMPETITIONS_DATA = [
   {
-    title: "National Student Hackathon & Techfest 2026",
-    type: "Rekayasa Perangkat Lunak & AI",
-    date: "14 – 16 November 2026",
+    title: "STEM INC (STEM Innovation & National Competition) 2026",
+    type: "Business Case & STEM Ideation Challenge",
+    date: "14 – 16 Agustus 2026",
     level: "Nasional",
     status: "Registrasi Dibuka",
     isOpen: true,
   },
   {
-    title: "ASEAN Business Case & Tech Ideation Challenge",
-    type: "Teknologi & Manajemen Bisnis",
-    date: "5 – 7 Desember 2026",
-    level: "Regional ASEAN",
+    title: "InnoFair Prototype Exhibition & Pitching Day 2026",
+    type: "Pameran Prototipe & Seleksi Pendanaan Industri",
+    date: "18 Juni 2026",
+    level: "Universitas & Industri Mitra",
     status: "Registrasi Dibuka",
     isOpen: true,
   },
   {
-    title: "IEEE Indonesian Scientific Paper Contest",
-    type: "Riset Sains & Makalah Ilmiah",
-    date: "Januari 2027",
+    title: "The Genius Math League & Data Competition",
+    type: "Penalaran Matematika Bisnis & Analisis Data Komputasi",
+    date: "Oktober 2026",
     level: "Nasional",
-    status: "Akan Datang",
+    status: "Segera Hadir",
     isOpen: false,
   },
 ];
@@ -334,38 +326,36 @@ export default async function ArticlesPage({ searchParams }: Props) {
                   strokeWidth="2"
                 />
               </svg>
-              Wawasan &amp; Prestasi • SISO Prasmul
+              Karya &amp; Prestasi • SISO
             </div>
 
             <h1 className={styles.heroTitle}>
               Empowering Minds,{" "}
               <span className={styles.heroTitleHighlight}>
-                Celebrating Milestones
+                Celebrating Achievements
               </span>
             </h1>
 
             <p className={styles.heroSubtitle}>
-              Pusat publikasi ilmiah, artikel kajian teknologi, informasi beasiswa,
-              serta rekam jejak prestasi mahasiswa STEM Universitas Prasetiya
-              Mulya dalam berkarya dan berinovasi untuk bangsa.
+              Pusat publikasi inovasi teknologi, kajian keberlanjutan industri, informasi beasiswa School of STEM, serta deretan prestasi nasional dan internasional mahasiswa STEM Universitas Prasetiya Mulya.
             </p>
 
             <div className={styles.heroStatsRow}>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>25+ Artikel &amp; Publikasi</span>
+                <span>6 Prodi Inovatif S1 STEM</span>
               </div>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>18+ Prestasi Mahasiswa</span>
+                <span>Prestasi Nasional &amp; Global</span>
               </div>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>Peluang Beasiswa &amp; Hibah</span>
+                <span>Beasiswa Technopreneur &amp; Bakti Prestasi</span>
               </div>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>Terbuka untuk Civitas STEM</span>
+                <span>Sinergi Riset &amp; STEMpreneur</span>
               </div>
             </div>
           </div>

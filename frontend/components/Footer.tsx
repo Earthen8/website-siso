@@ -1,14 +1,16 @@
 import Link from "next/link";
 
 const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://instagram.com/sisoprasmul" },
-  { label: "TikTok", href: "https://tiktok.com/@sisoprasmul" },
-  { label: "YouTube", href: "https://youtube.com/@sisoprasmul" },
+  { label: "Instagram", href: "https://instagram.com/siso.prasmul" },
+  { label: "TikTok", href: "https://tiktok.com/@siso.prasmul" },
+  { label: "LinkedIn", href: "https://linkedin.com/company/siso-prasetiya-mulya" },
 ];
 
 const FOOTER_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About SISO" },
-  { href: "/program-kerja", label: "Program Kerja" },
+  { href: "/program-kerja", label: "Programs & Events" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/articles-and-achieve", label: "Articles & Achievements" },
 ];
 
@@ -21,7 +23,10 @@ export default function Footer() {
         <div className="footer-brand">
           <p className="footer-logo">SISO Prasmul</p>
           <p className="footer-tagline">
-            Himpunan Mahasiswa Ilmu Sosial — Prasmul
+            STEM Prasetiya Mulya Innovation Student Organization — With STEM We Can
+          </p>
+          <p className="footer-tagline" style={{ marginTop: "0.5rem", opacity: 0.8, fontSize: "0.8rem" }}>
+            Kampus BSD Kavling Edutown I.1, Jl. BSD Raya Utama, BSD City, Tangerang 15339
           </p>
         </div>
 
@@ -59,3 +64,4 @@ export default function Footer() {
     </footer>
   );
 }
+
