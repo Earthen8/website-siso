@@ -245,10 +245,6 @@ export default async function GalleryPage() {
                                 <span className={styles.heroStatDot} />
                                 <span>Video Recap &amp; Aftermovie Resmi</span>
                             </div>
-                            <div className={styles.heroStatItem}>
-                                <span className={styles.heroStatDot} />
-                                <span>Arsip AD/ART &amp; LPJ Organisasi</span>
-                            </div>
                         </div>
                     </div>
                 </section>
