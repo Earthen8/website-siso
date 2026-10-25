@@ -28,76 +28,67 @@ export const metadata: Metadata = {
 // ── Curated Fallback Visual Assets ───────────────────────────────────────────
 const FALLBACK_PHOTOS = [
     {
-        title: "InnoFair 2026: Exhibition & Pitching",
+        title: "InnoFair: Innovation & Prototyping Showcase",
         category: "Exhibition",
-        year: "2026",
+        year: "Annual",
         image:
             "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
-        caption: "Mahasiswa mempresentasikan purwarupa teknologi cerdas dan rekayasa pangan di hadapan investor.",
+        caption: "Mahasiswa memamerkan purwarupa inovasi terapan di hadapan civitas akademika dan mitra.",
     },
     {
-        title: "Science Fun Day: Community Impact",
+        title: "Science Fun Day: Community Science Outreach",
         category: "Pengmas",
-        year: "2026",
+        year: "Annual",
         image:
             "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&auto=format&fit=crop",
-        caption: "Antusiasme anak-anak mempraktikkan eksperimen sains sederhana bersama mahasiswa relawan SISO.",
+        caption: "Demonstrasi eksperimen sains interaktif bagi siswa binaan dalam memupuk minat belajar sains.",
     },
     {
-        title: "Prog{r}amming: Scratch & Python Lab",
+        title: "Prog{r}amming: Computational Thinking Lab",
         category: "Workshop",
-        year: "2026",
+        year: "Annual",
         image:
             "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
-        caption: "Sesi interaktif membimbing computational thinking dan coding dasar bagi siswa sekolah.",
+        caption: "Suasana pelatihan komputasi dasar dan logika pemrograman interaktif untuk pemula.",
     },
     {
-        title: "Perspective: 3D Modeling with Fusion360",
+        title: "Perspective: Computer-Aided Design Workshop",
         category: "Workshop",
-        year: "2026",
+        year: "Annual",
         image:
             "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop",
-        caption: "Workshop rancang bangun CAD 3D dan pemodelan komponen manufaktur purwarupa.",
+        caption: "Mahasiswa mempraktikkan perancangan model 3D purwarupa menggunakan software CAD industri.",
     },
     {
-        title: "STEM INC: National Competition Stage",
-        category: "Competition",
-        year: "2026",
-        image:
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
-        caption: "Kompetisi ideasi dan pemecahan tantangan teknologi antar-tim siswa SMA dan mahasiswa se-Indonesia.",
-    },
-    {
-        title: "Welcoming Night & SISO Day",
-        category: "Internal",
-        year: "2026",
+        title: "Welcoming Night & SISO Day Celebration",
+        category: "Kelembagaan",
+        year: "Annual",
         image:
             "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop",
-        caption: "Malam keakraban menyambut keluarga baru mahasiswa STEM Universitas Prasetiya Mulya.",
+        caption: "Kebersamaan menyambut mahasiswa baru Sekolah STEM serta mengukuhkan rasa persaudaraan.",
+    },
+    {
+        title: "SISO Grand Assembly & Musyawarah Anggota",
+        category: "Sidang Organisasi",
+        year: "Annual",
+        image:
+            "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop",
+        caption: "Forum permusyawaratan tertinggi mahasiswa Sekolah STEM untuk evaluasi dan regenerasi.",
     },
 ];
 
 const FALLBACK_VIDEOS = [
     {
-        title: "Official Aftermovie InnoFair 2026",
+        title: "Official Aftermovie InnoFair — STEM Innovation Exhibition",
         duration: "04:35",
         views: "1.4K views",
-        event: "InnoFair 2026",
+        event: "InnoFair",
         thumbnail:
             "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800&auto=format&fit=crop",
         url: "https://www.instagram.com/siso.prasmul/",
     },
     {
-        title: "STEM INC 2026 National Competition Recap",
-        duration: "05:12",
-        views: "2.1K views",
-        event: "STEM INC 2026",
-        thumbnail:
-            "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
-        url: "https://www.instagram.com/siso.prasmul/",
-    },
-    {
-        title: "Science Fun Day: Inspiring Young Minds",
+        title: "Science Fun Day: Inspiring Future Innovators",
         duration: "03:40",
         views: "980 views",
         event: "Science Fun Day",
@@ -105,34 +96,43 @@ const FALLBACK_VIDEOS = [
             "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
         url: "https://www.instagram.com/siso.prasmul/",
     },
+    {
+        title: "Prog{r}amming Workshop: Code, Create, Connect",
+        duration: "02:50",
+        views: "1.1K views",
+        event: "Prog{r}amming",
+        thumbnail:
+            "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
+        url: "https://www.instagram.com/siso.prasmul/",
+    },
 ];
 
 const ANNUAL_DOCS = [
     {
-        title: "Laporan Pertanggungjawaban (LPJ) Kepengurusan SISO 2025/2026",
-        format: "PDF • 95 Halaman",
-        year: "2026",
+        title: "Anggaran Dasar & Anggaran Rumah Tangga (AD/ART) SISO",
+        format: "PDF • Dokumen Konstitusi",
+        year: "Resmi",
     },
     {
-        title: "Laporan Pertanggungjawaban (LPJ) SISO 2024/2025",
-        format: "PDF • 120 Halaman",
-        year: "2025",
+        title: "Laporan Pertanggungjawaban (LPJ) Akhir Periode Kepengurusan",
+        format: "PDF • Akuntabilitas Fungsionaris",
+        year: "Tahunan",
     },
     {
-        title: "STEM Innovation Yearbook & LPJ 2023/2024",
-        format: "PDF • 85 Halaman",
-        year: "2024",
+        title: "Pedoman & Standar Operasional Prosedur (SOP) Organisasi",
+        format: "PDF • Panduan Operasional",
+        year: "Panduan",
     },
 ];
 
 const FALLBACK_PROGRAMS: ProgramKerja[] = [
     {
         id: 1,
-        title: "InnoFair 2026",
-        slug: "innofair-2026",
+        title: "InnoFair",
+        slug: "innofair",
         category: "event",
         description:
-            "Pameran prototipe dan karya inovasi tahunan mahasiswa School of STEM Prasetiya Mulya bersama mitra industri dan investor.",
+            "Pameran prototipe dan karya inovasi terapan mahasiswa Sekolah STEM yang mempertemukan talenta muda dengan akademisi, industri, dan ekosistem inovasi.",
         date: "2026-06-18",
         cover_image:
             "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
@@ -141,27 +141,40 @@ const FALLBACK_PROGRAMS: ProgramKerja[] = [
     },
     {
         id: 2,
-        title: "STEM INC 2026",
-        slug: "stem-inc-2026",
-        category: "competition",
+        title: "Prog{r}amming",
+        slug: "programming",
+        category: "workshop",
         description:
-            "Kompetisi problem-solving sains dan teknologi bergengsi tingkat nasional untuk siswa SMA/sederajat dan mahasiswa.",
-        date: "2026-08-14",
+            "Lokakarya komputasi interaktif yang mengenalkan logika pemrograman dasar, computational thinking, dan algoritma praktis bagi mahasiswa dan pelajar.",
+        date: "2026-09-05",
         cover_image:
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
         is_visible: true,
         media_assets: [],
     },
     {
         id: 3,
-        title: "Prog{r}amming 9.0: Coding for Future",
-        slug: "programming-90-coding-for-future",
+        title: "Science Fun Day",
+        slug: "science-fun-day",
+        category: "pengmas",
+        description:
+            "Aksi pengabdian masyarakat SISO melalui demonstrasi eksperimen sains yang interaktif dan aplikatif guna menumbuhkan rasa ingin tahu generasi muda.",
+        date: "2026-10-10",
+        cover_image:
+            "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&auto=format&fit=crop",
+        is_visible: true,
+        media_assets: [],
+    },
+    {
+        id: 4,
+        title: "Perspective",
+        slug: "perspective",
         category: "workshop",
         description:
-            "Pelatihan coding intensif logika Scratch dan dasar Python interaktif untuk mengasah computational thinking pemula.",
-        date: "2026-09-05",
+            "Workshop intensif desain purwarupa fisik, Computer-Aided Design (CAD), dan 3D modeling untuk mendukung kesiapan riset manufaktur mahasiswa.",
+        date: "2026-11-07",
         cover_image:
-            "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop",
         is_visible: true,
         media_assets: [],
     },
@@ -213,28 +226,28 @@ export default async function GalleryPage() {
                                 <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
                                 <polyline points="21 15 16 10 5 21" stroke="currentColor" strokeWidth="2" />
                             </svg>
-                            Arsip Visual SISO
+                            Dokumentasi &amp; Arsip
                         </div>
                         <h1 className={styles.heroTitle}>
-                            Capturing STEM{" "}
-                            <span className={styles.heroTitleHighlight}>Innovation in Action</span>
+                            Recording Our{" "}
+                            <span className={styles.heroTitleHighlight}>Organizational Journey</span>
                         </h1>
                         <p className={styles.heroSubtitle}>
-                            Telusuri rekam jejak visual perjalanan mahasiswa School of STEM Universitas Prasetiya Mulya dalam berkarya di InnoFair, mengajar di Science Fun Day, dan bertumbuh bersama SISO.
+                            Arsip visual dan rekaman jejak perjalanan pergerakan SISO dalam menyelenggarakan forum kemahasiswaan, pameran inovasi, lokakarya, pengabdian masyarakat, serta laporan pertanggungjawaban kelembagaan.
                         </p>
 
                         <div className={styles.heroStatsRow}>
                             <div className={styles.heroStatItem}>
                                 <span className={styles.heroStatDot} />
-                                <span>60+ Dokumentasi Foto</span>
+                                <span>Dokumentasi Foto Program Kerja</span>
                             </div>
                             <div className={styles.heroStatItem}>
                                 <span className={styles.heroStatDot} />
-                                <span>10+ Video Highlights</span>
+                                <span>Video Recap &amp; Aftermovie Resmi</span>
                             </div>
                             <div className={styles.heroStatItem}>
                                 <span className={styles.heroStatDot} />
-                                <span>Arsip Resmi LPJ</span>
+                                <span>Arsip AD/ART &amp; LPJ Organisasi</span>
                             </div>
                         </div>
                     </div>
@@ -268,10 +281,10 @@ export default async function GalleryPage() {
                 <section id="photos" className={styles.photosSection}>
                     <div className="container">
                         <div className={styles.sectionHeader}>
-                            <span className={styles.sectionBadge}>Galeri Foto</span>
-                            <h2 className={styles.sectionTitle}>Moments of Collaboration</h2>
+                            <span className={styles.sectionBadge}>Galeri Foto Kegiatan</span>
+                            <h2 className={styles.sectionTitle}>Moments of Movement</h2>
                             <p className={styles.sectionSubtitle}>
-                                Kumpulan dokumentasi foto kegiatan mahasiswa STEM SISO dalam berinovasi dan berkarya.
+                                Kumpulan dokumentasi visual pelaksanaan program kerja, sidang organisasi, serta kebersamaan fungsionaris SISO.
                             </p>
                         </div>
 
@@ -293,7 +306,7 @@ export default async function GalleryPage() {
                                     </div>
                                     <div className={styles.photoCardInfo}>
                                         <h3 className={styles.photoTitle}>{photo.title}</h3>
-                                        <p className={styles.photoCategoryTag}>Tahun {photo.year}</p>
+                                        <p className={styles.photoCategoryTag}>{photo.year}</p>
                                     </div>
                                 </div>
                             ))}
@@ -311,10 +324,10 @@ export default async function GalleryPage() {
                 <section id="videos" className={`${styles.videosSection} ${styles.altBg}`}>
                     <div className="container">
                         <div className={styles.sectionHeader}>
-                            <span className={styles.sectionBadge}>Video Dokumentasi</span>
+                            <span className={styles.sectionBadge}>Arsip Multimedia</span>
                             <h2 className={styles.sectionTitle}>Recap &amp; Aftermovie</h2>
                             <p className={styles.sectionSubtitle}>
-                                Saksikan kembali kemeriahan dan antusiasme setiap acara melalui video rekaman aftermovie.
+                                Dokumentasi audiovisual rangkaian agenda unggulan dan dinamika kepengurusan SISO.
                             </p>
                         </div>
 
@@ -366,9 +379,9 @@ export default async function GalleryPage() {
                     <div className="container">
                         <div className={styles.sectionHeader}>
                             <span className={styles.sectionBadge}>Arsip Kegiatan</span>
-                            <h2 className={styles.sectionTitle}>Event Archives</h2>
+                            <h2 className={styles.sectionTitle}>Program Archives</h2>
                             <p className={styles.sectionSubtitle}>
-                                Kilas balik program-program kerja unggulan yang telah berhasil diselenggarakan oleh SISO.
+                                Katalog rekam jejak program kerja yang telah dilaksanakan oleh SISO.
                             </p>
                         </div>
 
@@ -389,7 +402,7 @@ export default async function GalleryPage() {
                                     </div>
                                     <div className={styles.eventContent}>
                                         <span className={styles.eventMetaBadge}>
-                                            {item.category} • {item.date || "Arsip 2026"}
+                                            {item.category} • {item.date || "Arsip SISO"}
                                         </span>
                                         <h3 className={styles.eventCardTitle}>{item.title}</h3>
                                         <p className={styles.eventCardDesc}>{item.description}</p>
@@ -415,10 +428,10 @@ export default async function GalleryPage() {
                 <section id="docs" className={`${styles.docsSection} ${styles.altBg}`}>
                     <div className="container">
                         <div className={styles.sectionHeader}>
-                            <span className={styles.sectionBadge}>Publikasi &amp; Laporan</span>
-                            <h2 className={styles.sectionTitle}>Annual Documentation</h2>
+                            <span className={styles.sectionBadge}>Transparansi &amp; Akuntabilitas</span>
+                            <h2 className={styles.sectionTitle}>Institutional Documents</h2>
                             <p className={styles.sectionSubtitle}>
-                                Laporan akuntabilitas tahunan dan rekam jejak kepengurusan SISO yang dapat diakses secara transparan.
+                                Akses dokumen hukum keorganisasian, pedoman konstitusi, serta laporan pertanggungjawaban kepengurusan secara terbuka.
                             </p>
                         </div>
 

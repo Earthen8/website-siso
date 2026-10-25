@@ -11,33 +11,33 @@ const CATEGORY_META: Record<
   { title: string; subtitle: string; desc: string; icon: string }
 > = {
   workshop: {
-    title: "Workshop & Training",
+    title: "Workshop & Pelatihan Teknis",
     subtitle: "Hands-on Technical Mastery",
-    desc: "Pelatihan interaktif pemrograman Scratch & Python lewat Prog{r}amming serta desain 3D modeling di ajang Perspective.",
+    desc: "Pelatihan praktis dan komputasi sains seperti Prog{r}amming dan Perspective untuk mengasah keterampilan teknis mahasiswa.",
     icon: "workshop",
   },
   seminar: {
-    title: "Seminar & Clinic",
-    subtitle: "Industry & Technopreneurship",
-    desc: "Sesi berbagi wawasan praktisi industri dan coaching proyek mahasiswa melalui webinar BRAND serta Smart Innovation Clinic.",
+    title: "Seminar & Forum Industri",
+    subtitle: "Knowledge Sharing & Industry Insights",
+    desc: "Forum diskusi, guest lecture, dan bedah tren teknologi bersama praktisi industri terkemuka.",
     icon: "seminar",
   },
   competition: {
-    title: "STEM Competition",
-    subtitle: "National Ideation Challenge",
-    desc: "Ajang perlombaan inovasi dan problem-solving tingkat SMA/sederajat maupun mahasiswa melalui kompetisi tahunan STEM INC.",
+    title: "Kelembagaan & Musyawarah",
+    subtitle: "Governance & Internal Elections",
+    desc: "Forum permusyawaratan tertinggi SISO Grand Assembly (SGA) dan Pemilu Raya SISO.",
     icon: "competition",
   },
   pengmas: {
-    title: "Edukasi & Sosial",
-    subtitle: "Inspiring Young Minds",
-    desc: "Kegiatan pengenalan eksperimen sains menyenangkan bagi anak-anak melalui Science Fun Day untuk menumbuhkan minat STEM.",
+    title: "Pengabdian Masyarakat",
+    subtitle: "Community Engagement & Science Outreach",
+    desc: "Aksi nyata kontribusi sosial dan edukasi sains aplikatif bagi masyarakat luas melalui program Science Fun Day.",
     icon: "pengmas",
   },
   event: {
-    title: "Exhibition & Internal",
-    subtitle: "Showcase & Community Bonding",
-    desc: "Pameran prototipe tahunan InnoFair bersama mitra industri, serta Welcoming Night dan SISO Day untuk mempererat civitas STEM.",
+    title: "Pameran & Showcase Inovasi",
+    subtitle: "Innovation & Prototyping Showcase",
+    desc: "Ajang pameran purwarupa dan karya riset terapan mahasiswa seperti InnoFair yang menghubungkan inovator muda dengan ekosistem luar.",
     icon: "event",
   },
 };
@@ -60,11 +60,11 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Program Kerja & Agenda | SISO Prasmul",
   description:
-    "Temukan rangkaian program kerja unggulan SISO Prasmul: InnoFair, STEM INC, Prog{r}amming, Science Fun Day, hingga Perspective.",
+    "Rangkaian program kerja terstruktur SISO: InnoFair, Prog{r}amming, Science Fun Day, Perspective, Welcoming Night & SISO Day, hingga SISO Grand Assembly & Pemilu.",
   openGraph: {
     title: "Program Kerja & Agenda | SISO Prasmul",
     description:
-      "Katalog program kerja inovatif dan agenda kegiatan kemahasiswaan School of STEM Universitas Prasetiya Mulya.",
+      "Katalog program kerja inovatif dan agenda kegiatan kemahasiswaan Sekolah STEM Universitas Prasetiya Mulya.",
     locale: "id_ID",
     type: "website",
   },
@@ -132,68 +132,68 @@ interface TimelineProgramData {
 const DEMO_TIMELINE_PROGRAMS: TimelineProgramData[] = [
   {
     id: 991,
-    title: "InnoFair 2026",
-    slug: "innofair-2026",
+    title: "InnoFair",
+    slug: "innofair",
     category: "event",
     description:
-      "Pameran prototipe dan karya inovasi tahunan mahasiswa School of STEM Prasetiya Mulya bersama mitra industri dan investor.",
+      "Pameran prototipe dan karya inovasi terapan mahasiswa Sekolah STEM yang mempertemukan talenta muda dengan akademisi, industri, dan ekosistem inovasi.",
     date: "2026-06-18",
     location: "Auditorium Kampus BSD & Exhibition Hall",
-    registration_url: "https://forms.gle/innofair2026",
+    registration_url: "https://forms.gle/innofair",
   },
   {
     id: 992,
-    title: "STEM INC (STEM Innovation & National Competition) 2026",
-    slug: "stem-inc-2026",
-    category: "competition",
+    title: "Prog{r}amming",
+    slug: "programming",
+    category: "workshop",
     description:
-      "Kompetisi problem-solving sains dan teknologi bergengsi tingkat nasional untuk siswa SMA/sederajat dan mahasiswa.",
-    date: "2026-08-14",
-    location: "Kampus BSD Prasetiya Mulya",
-    registration_url: "https://forms.gle/steminc2026",
+      "Lokakarya komputasi interaktif yang mengenalkan logika pemrograman dasar, computational thinking, dan algoritma praktis bagi mahasiswa dan pelajar.",
+    date: "2026-09-05",
+    location: "Lab Komputasi STEM Prasmul & Hybrid Zoom",
+    registration_url: "https://forms.gle/programming",
   },
   {
     id: 993,
-    title: "Prog{r}amming 9.0: Coding for Future",
-    slug: "programming-90-coding-for-future",
-    category: "workshop",
+    title: "Science Fun Day",
+    slug: "science-fun-day",
+    category: "pengmas",
     description:
-      "Pelatihan coding intensif logika Scratch dan dasar Python interaktif untuk mengasah computational thinking pemula.",
-    date: "2026-09-05",
-    location: "Lab Komputasi STEM Prasmul & Hybrid Zoom",
-    registration_url: "https://forms.gle/programming90",
+      "Aksi pengabdian masyarakat SISO melalui demonstrasi eksperimen sains yang interaktif dan aplikatif guna menumbuhkan rasa ingin tahu generasi muda.",
+    date: "2026-10-10",
+    location: "Kampus BSD & Sekolah Mitra Terpilih",
+    registration_url: null,
   },
   {
     id: 994,
-    title: "Science Fun Day 2026",
-    slug: "science-fun-day-2026",
-    category: "pengmas",
+    title: "Perspective",
+    slug: "perspective",
+    category: "workshop",
     description:
-      "Aksi pengabdian masyarakat SISO mengenalkan eksperimen sains sederhana yang aplikatif dan mengasyikkan bagi anak-anak.",
-    date: "2026-10-10",
-    location: "Sekolah Mitra & Kampus BSD",
+      "Workshop intensif desain purwarupa fisik, Computer-Aided Design (CAD), dan 3D modeling untuk mendukung kesiapan riset manufaktur mahasiswa.",
+    date: "2026-11-07",
+    location: "Lab Desain & Inovasi STEM",
     registration_url: null,
   },
   {
     id: 995,
-    title: "Perspective: 3D Modeling with Fusion360",
-    slug: "perspective-3d-modeling-fusion360",
-    category: "workshop",
+    title: "Welcoming Night & SISO Day",
+    slug: "welcoming-night-siso-day",
+    category: "event",
     description:
-      "Workshop desain manufaktur dan 3D CAD modeling menggunakan Autodesk Fusion 360 untuk rancang bangun purwarupa.",
-    date: "2026-11-07",
-    location: "Lab Desain Produk & Inovasi STEM",
+      "Malam keakraban penyambutan mahasiswa baru Sekolah STEM serta perayaan persatuan seluruh civitas akademika dan fungsionaris SISO.",
+    date: "2026-11-28",
+    location: "Student Center & Plaza Kampus BSD",
     registration_url: null,
   },
   {
     id: 996,
-    title: "Welcoming Night & SISO Day 2026",
-    slug: "welcoming-night-siso-day-2026",
+    title: "SISO Grand Assembly & Pemilu",
+    slug: "sga-pemilu",
     category: "event",
     description:
-      "Malam keakraban penyambutan mahasiswa baru School of STEM 2026 dan bonding seluruh anggota aktif SISO lintas prodi.",
-    date: "2026-11-28",
-    location: "Student Center & Plaza Kampus BSD",
+      "Forum permusyawaratan tertinggi dan proses demokrasi kampus untuk regenerasi kepemimpinan Ketua SISO serta pelaporan pertanggungjawaban kepengurusan.",
+    date: "2026-12-15",
+    location: "Auditorium Kampus BSD",
     registration_url: null,
   },
 ];
@@ -318,14 +318,14 @@ export default async function ProgramKerjaPage({ searchParams }: Props) {
                 <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2" />
                 <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2" />
               </svg>
-              Program & Agenda SISO
+              Program Kerja SISO
             </div>
             <h1 className={styles.heroTitle}>
-              Programs That Empower{" "}
-              <span className={styles.heroTitleHighlight}>STEM Innovators</span>
+              Programs for{" "}
+              <span className={styles.heroTitleHighlight}>Internal &amp; External Impact</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              Temukan rangkaian pameran inovasi InnoFair, kompetisi nasional STEM INC, workshop coding Prog{"{r}"}amming, eksperimen Science Fun Day, hingga pelatihan 3D modeling Perspective.
+              Inisiatif program kerja SISO yang terstruktur untuk mewadahi representasi mahasiswa, pengembangan kompetensi sains dan teknologi, kolaborasi interdisipliner, serta pengabdian masyarakat Sekolah STEM Universitas Prasetiya Mulya.
             </p>
           </div>
         </section>

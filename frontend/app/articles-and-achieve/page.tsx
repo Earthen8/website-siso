@@ -14,12 +14,12 @@ function isSectionVisible(sections: Section[], sectionType: string): boolean {
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Articles & Achievements | SISO Prasmul",
+  title: "Articles & Insights | SISO Prasmul",
   description:
-    "Pusat publikasi ilmiah, artikel kajian teknologi, informasi beasiswa, serta rekam jejak prestasi mahasiswa STEM Universitas Prasetiya Mulya.",
+    "Pusat publikasi resmi, rilis berita kelembagaan, hasil kajian riset R&D, serta informasi advokasi dan kanal aspirasi mahasiswa Sekolah STEM Universitas Prasetiya Mulya.",
   openGraph: {
-    title: "Articles & Achievements | SISO Prasmul",
-    description: "Kumpulan artikel riset, kabar capaian prestasi, dan peluang beasiswa mahasiswa STEM SISO Prasmul.",
+    title: "Articles & Insights | SISO Prasmul",
+    description: "Pusat wawasan, kajian riset, dan informasi kemahasiswaan Sekolah STEM Universitas Prasetiya Mulya.",
     locale: "id_ID",
     type: "website",
   },
@@ -47,203 +47,126 @@ const ARTICLE_DEFAULT_COVERS: Record<ArticleCategory, string> = {
 const FALLBACK_ARTICLES: Article[] = [
   {
     id: 1,
-    title: "6 Inovasi Game Changer Mahasiswa STEM Prasetiya Mulya",
-    slug: "enam-inovasi-game-changer-mahasiswa-stem-prasetiya-mulya",
-    body: "Ulasan mendalam 6 proyek aplikatif mahasiswa School of STEM Prasetiya Mulya: mulai dari Trash Sea untuk pembersihan sampah laut, aplikasi edukasi iMoonApp, alat deteksi diabetes non-invasif, hingga formulasi pangan fungsional berkelanjutan.",
+    title: "Peran Representatif SISO dalam Membangun Ekosistem Kolaboratif Sekolah STEM",
+    slug: "peran-representatif-siso-sekolah-stem",
+    body: "Sebagai organisasi kemahasiswaan tingkat fakultas, SISO mengemban amanah representasi, koordinasi, dan advokasi mahasiswa lintas program studi di Sekolah STEM Universitas Prasetiya Mulya. Melalui sinergi antar-lembaga dan komunikasi dua arah dengan dekanat, SISO terus mendorong ekosistem belajar yang suportif, dinamis, dan inklusif.",
     category: "kajian",
     published_at: "2026-03-15T09:00:00Z",
     is_visible: true,
   },
   {
     id: 2,
-    title: "Mengintegrasikan Life Cycle Analysis dalam Inovasi Desain Produk",
-    slug: "mengintegrasikan-life-cycle-analysis-inovasi-desain-produk",
-    body: "Kajian komprehensif mengenai penerapan metodologi Life Cycle Analysis (LCA) bagi mahasiswa Product Design Innovation dan Renewable Energy Engineering guna memvalidasi jejak karbon dan sirkularitas material.",
+    title: "Inovasi Purwarupa Mahasiswa Menjawab Kebutuhan Keberlanjutan Industri",
+    slug: "inovasi-purwarupa-mahasiswa-keberlanjutan-industri",
+    body: "Melalui inisiatif tahunan InnoFair, mahasiswa Sekolah STEM Prasetiya Mulya membuktikan bahwa riset terapan dan purwarupa rekayasa teknologi mampu menjawab tantangan industri nyata. Kolaborasi lintas disiplin ilmu sains dan rekayasa mempercepat hilirisasi ide mahasiswa menjadi solusi praktis.",
     category: "jurnal",
     published_at: "2026-04-10T14:30:00Z",
     is_visible: true,
   },
-  {
-    id: 3,
-    title: "Mahasiswa STEM Sabet Juara 1 StudentsxCEOs 13th Grand Summit",
-    slug: "prestasi-juara-1-studentsxceos-grand-summit",
-    body: "Merrilyn Pauliusman dari program studi Product Design Innovation mengharumkan almamater dengan memenangkan kompetisi business case tingkat nasional.",
-    category: "achievement",
-    published_at: "2024-05-20T10:00:00Z",
-    is_visible: true,
-  },
-  {
-    id: 4,
-    title: "Tim ABC Food Business Technology Raih Juara 2 PepsiCo PEP Pitch",
-    slug: "tim-abc-fbt-juara-2-pepsico-pep-pitch",
-    body: "Inovasi produk pangan fungsional berkelanjutan karya Aaron, Bill, dan Cherie berhasil memikat dewan juri industri internasional.",
-    category: "achievement",
-    published_at: "2024-11-25T11:00:00Z",
-    is_visible: true,
-  },
-  {
-    id: 5,
-    title: "Panduan Seleksi Beasiswa Technopreneur STEM Prasmul 2026",
-    slug: "panduan-beasiswa-technopreneur-stem-prasmul",
-    body: "Informasi lengkap persyaratan, berkas proposal portofolio inovasi, dan timeline wawancara beasiswa penuh/parsial School of STEM Universitas Prasetiya Mulya.",
-    category: "beasiswa",
-    published_at: "2026-05-01T08:00:00Z",
-    is_visible: true,
-  },
-  {
-    id: 6,
-    title: "Sosialisasi Program Beasiswa Bakti Prestasi Unggulan & Tech-Law Grant",
-    slug: "beasiswa-bakti-prestasi-tech-law-grant",
-    body: "Peluang bantuan dana studi dan hibah riset lintas disiplin teknologi, hukum, dan etika kecerdasan buatan bagi mahasiswa aktif STEM.",
-    category: "beasiswa",
-    published_at: "2026-05-10T13:00:00Z",
-    is_visible: true,
-  },
 ];
 
-const FALLBACK_ACHIEVEMENTS: Achievement[] = [
-  {
-    id: 1,
-    student_name: "Merrilyn Pauliusman (Product Design Innovation)",
-    title: "Juara 1 StudentsxCEOs 13th Grand Summit (National Business Case Competition)",
-    description: "Meraih Juara 1 tingkat nasional dalam kompetisi business case bergengsi dengan solusi inovasi desain produk berkelanjutan.",
-    date: "2024-05-18",
-    image: null,
-  },
-  {
-    id: 2,
-    student_name: "Tim ABC (Aaron, Bill, Cherie - Food Business Technology)",
-    title: "Juara 2 PepsiCo PEP Pitch Competition",
-    description: "Menciptakan inovasi produk pangan berkelanjutan bernilai gizi tinggi dan ramah lingkungan.",
-    date: "2024-11-20",
-    image: null,
-  },
-  {
-    id: 3,
-    student_name: "Tim Mahasiswa STEM Prasmul",
-    title: "Juara 1 CODIG 2.0 (Developing Sustainable Smart Society)",
-    description: "Mengembangkan inovasi Trash Sea untuk mengentaskan persoalan sampah laut berbasis teknologi cerdas.",
-    date: "2023-10-15",
-    image: null,
-  },
-  {
-    id: 4,
-    student_name: "Tim iMoonApp (S1 STEM Prasetiya Mulya)",
-    title: "Pemenang FNWMU Universitas Udayana (Kategori Poster)",
-    description: "Menggagas poster inovasi aplikasi iMoonApp untuk monitoring dan edukasi interaktif kesehatan reproduksi.",
-    date: "2023-09-22",
-    image: null,
-  },
-  {
-    id: 5,
-    student_name: "Avril & Ferdinand (School of STEM Prasetiya Mulya)",
-    title: "Awardee IISMA (Indonesian International Student Mobility Awards)",
-    description: "Terpilih sebagai penerima beasiswa mobilitas internasional ke universitas mitra terkemuka di luar negeri.",
-    date: "2023-08-01",
-    image: null,
-  },
-];
+const FALLBACK_ACHIEVEMENTS: Achievement[] = [];
 
 const STUDENT_PUBLICATIONS = [
   {
-    title: "Optimizing Campus Network Infrastructure Through Edge-Caching",
-    author: "Ricky A., Farhan M. (Divisi Jaringan & Infrastruktur SISO)",
-    desc: "Analisis performa node lalu lintas jaringan kampus berkecepatan tinggi menggunakan algoritma predictive caching terdistribusi untuk mengurangi latensi transmisi hingga 42%.",
-    badge: "Whitepaper",
-    format: "PDF • 24 Halaman",
-    year: "2026",
+    title: "Kompilasi Hasil Sidang & Ketetapan SISO Grand Assembly",
+    author: "Presidium SISO Grand Assembly (SGA)",
+    desc: "Kumpulan ketetapan persidangan, hasil amandemen AD/ART, dan rekomendasi kerja kelembagaan untuk periode kepengurusan.",
+    badge: "Ketetapan SGA",
+    format: "PDF • Dokumen Sidang",
+    year: "Resmi",
   },
   {
-    title: "Machine Learning in Academic Advising: Predictive Pathways",
-    author: "SISO AI & Data Science Research Group",
-    desc: "Pemodelan prediktif berbasis deep neural network untuk mendeteksi dini hambatan studi mahasiswa dan memberikan rekomendasi kurikulum yang dipersonalisasi.",
-    badge: "Student Research Paper",
-    format: "PDF • 18 Halaman",
-    year: "2026",
+    title: "Laporan Penjaringan Aspirasi Mahasiswa Sekolah STEM",
+    author: "Departemen Advokasi & Kesejahteraan Mahasiswa",
+    desc: "Hasil survei berkala fasilitas perkuliahan, beban akademik, dan aspirasi kegiatan mahasiswa aktif lintas program studi STEM.",
+    badge: "Laporan Advokasi",
+    format: "PDF • Laporan Survei",
+    year: "Berkala",
   },
   {
-    title: "Decentralized Credential Verification Protocol for Academic Records",
-    author: "Inovator Blockchain STEM Prasetiya Mulya",
-    desc: "Rancangan smart contract dan arsitektur ledger privat untuk verifikasi ijazah serta transkrip digital yang anti pemalsuan dan dapat diaudit secara instan.",
-    badge: "Technical Report",
-    format: "PDF • 16 Halaman",
-    year: "2025",
+    title: "Buku Panduan Tata Kelola & SOP Organisasi SISO",
+    author: "Badan Pengurus Harian (BPH) SISO",
+    desc: "Pedoman administrasi surat-menyurat, pengelolaan keuangan, manajemen kepanitiaan, dan etika komunikasi fungsionaris.",
+    badge: "SOP Organisasi",
+    format: "PDF • Buku Panduan",
+    year: "Panduan",
   },
 ];
 
 const RESEARCH_STUDIES = [
   {
-    title: "The Role of Student Innovation Labs in Technology Commercialization",
-    desc: "Kajian komparatif efektivitas inkubasi proyek laboratorium mahasiswa menuju hilirisasi produk startup teknologi bernilai tambah tinggi.",
-    field: "Technopreneurship",
+    title: "Pemetaan Kebutuhan Keterampilan Teknis Mahasiswa STEM Masa Depan",
+    desc: "Analisis tren industri teknologi dan keterampilan komputasi yang paling dibutuhkan mahasiswa untuk program pelatihan internal.",
+    field: "Riset Kompetensi",
   },
   {
-    title: "Urban Sustainability & Smart Sensor Grid in Southeast Asian Metropolises",
-    desc: "Eksplorasi sensor jaringan cuaca mikro dan integrasi data pemantauan emisi karbon lingkungan perkotaan secara real-time.",
-    field: "Smart City & IoT",
+    title: "Evaluasi Dampak Program Kerja SISO terhadap Pengembangan Karakter Mahasiswa",
+    desc: "Kajian efektivitas ketercapaian nilai CHAIN dan kompetensi kepemimpinan melalui partisipasi aktif di organisasi.",
+    field: "Evaluasi Program",
   },
   {
-    title: "Mental Health Support Patterns & Stress Resilience in STEM Students",
-    desc: "Analisis kualitatif dan kuantitatif mengenai efektivitas sistem peer-mentoring dan beban kurikulum komputasi modern.",
-    field: "Academic Well-being",
+    title: "Studi Komparasi Tata Kelola BEM Fakultas Sains & Teknologi di Indonesia",
+    desc: "Benchmarking struktur kelembagaan, sistem regenerasi, dan mekanisme advokasi pada organisasi mahasiswa fakultas terkemuka.",
+    field: "Tata Kelola BEM",
   },
   {
-    title: "Zero-Knowledge Proofs for Privacy-Preserving Student Data Governance",
-    desc: "Penerapan skema kriptografi modern untuk validasi identitas dan otentikasi data mahasiswa tanpa membocorkan informasi privat.",
-    field: "Cyber Security",
+    title: "Model Penjaringan Aspirasi Digital Berbasis Privasi untuk Mahasiswa Kampus",
+    desc: "Rancangan platform aspirasi digital yang aman, transparan, dan menjamin perlindungan privasi mahasiswa dalam menyampaikan masukan.",
+    field: "Sistem Aspirasi",
   },
 ];
 
 const SCHOLARSHIPS_DATA = [
   {
-    title: "Beasiswa Technopreneur STEM Prasmul",
-    amount: "Bantuan Biaya Kuliah Penuh & Parsial",
-    deadline: "30 Juli 2026",
-    eligibility: "Mahasiswa berjiwa inovator teknologi & bisnis di 6 Prodi STEM",
-    quota: "20 Kuota",
-    tag: "Beasiswa Unggulan",
+    title: "Kanal Aspirasi & Advokasi Mahasiswa SISO",
+    amount: "Pendampingan Terbuka",
+    deadline: "Aktif Sepanjang Semester",
+    eligibility: "Seluruh Mahasiswa Aktif Sekolah STEM",
+    quota: "Tidak Terbatas",
+    tag: "Layanan Advokasi",
   },
   {
-    title: "Beasiswa Bakti Prestasi Unggulan",
-    amount: "Dana Studi & Pengembangan Prestasi",
-    deadline: "15 Agustus 2026",
-    eligibility: "Peraih medali olimpiade sains, kompetisi riset & teknologi, IPK ≥ 3.50",
-    quota: "15 Kuota",
-    tag: "Apresiasi Prestasi",
+    title: "Bantuan Pendanaan Delegasi Lomba & Konferensi",
+    amount: "Bantuan Finansial Delegasi",
+    deadline: "Pengajuan H-14 Kegiatan",
+    eligibility: "Delegasi mewakili almamater Sekolah STEM",
+    quota: "Sesuai Kuota Anggaran",
+    tag: "Dukungan Prestasi",
   },
   {
-    title: "Tech & Law Dual-Competency Grant",
-    amount: "Hibah Riset Rp 20.000.000 / Tim",
-    deadline: "30 September 2026",
-    eligibility: "Proyek kolaboratif etika AI, regulasi siber, & perlindungan data",
-    quota: "5 Tim Riset",
-    tag: "Hibah Riset",
+    title: "Pusat Informasi Beasiswa Akademik & Industri",
+    amount: "Bantuan Biaya Kuliah & Riset",
+    deadline: "Sesuai Jadwal Mitra Beasiswa",
+    eligibility: "Mahasiswa aktif memenuhi IPK & syarat mitra",
+    quota: "Mengikuti Kuota Penyedia",
+    tag: "Informasi Beasiswa",
   },
 ];
 
 const COMPETITIONS_DATA = [
   {
-    title: "STEM INC (STEM Innovation & National Competition) 2026",
-    type: "Business Case & STEM Ideation Challenge",
-    date: "14 – 16 Agustus 2026",
-    level: "Nasional",
-    status: "Registrasi Dibuka",
+    title: "InnoFair: Pameran Karya Inovasi & Purwarupa Mahasiswa",
+    type: "Pameran Inovasi & Showcase Teknologi",
+    date: "Semester Genap (Annual)",
+    level: "Tingkat Universitas",
+    status: "Tahap Persiapan",
     isOpen: true,
   },
   {
-    title: "InnoFair Prototype Exhibition & Pitching Day 2026",
-    type: "Pameran Prototipe & Seleksi Pendanaan Industri",
-    date: "18 Juni 2026",
-    level: "Universitas & Industri Mitra",
-    status: "Registrasi Dibuka",
+    title: "Prog{r}amming: Lokakarya Komputasi & Coding Dasar",
+    type: "Workshop Pemrograman & Algoritma",
+    date: "Semester Ganjil (Annual)",
+    level: "Internal STEM",
+    status: "Pendaftaran Dibuka",
     isOpen: true,
   },
   {
-    title: "The Genius Math League & Data Competition",
-    type: "Penalaran Matematika Bisnis & Analisis Data Komputasi",
-    date: "Oktober 2026",
-    level: "Nasional",
-    status: "Segera Hadir",
+    title: "SISO Grand Assembly: Sidang Umum & Musyawarah Mahasiswa",
+    type: "Forum Permusyawaratan & Laporan Pengurus",
+    date: "Akhir Periode Kepengurusan",
+    level: "Lembaga Mahasiswa",
+    status: "Agenda Resmi",
     isOpen: false,
   },
 ];
@@ -326,36 +249,36 @@ export default async function ArticlesPage({ searchParams }: Props) {
                   strokeWidth="2"
                 />
               </svg>
-              Karya &amp; Prestasi • SISO
+              Publikasi &amp; Wawasan • SISO
             </div>
 
             <h1 className={styles.heroTitle}>
-              Empowering Minds,{" "}
+              Insights, Research, and{" "}
               <span className={styles.heroTitleHighlight}>
-                Celebrating Achievements
+                Student Advocacy
               </span>
             </h1>
 
             <p className={styles.heroSubtitle}>
-              Pusat publikasi inovasi teknologi, kajian keberlanjutan industri, informasi beasiswa School of STEM, serta deretan prestasi nasional dan internasional mahasiswa STEM Universitas Prasetiya Mulya.
+              Pusat publikasi resmi, rilis berita kelembagaan, hasil kajian riset R&amp;D, serta informasi advokasi dan kanal aspirasi mahasiswa Sekolah STEM Universitas Prasetiya Mulya.
             </p>
 
             <div className={styles.heroStatsRow}>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>6 Prodi Inovatif S1 STEM</span>
+                <span>Rilis &amp; Publikasi Resmi Organisasi</span>
               </div>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>Prestasi Nasional &amp; Global</span>
+                <span>Kajian &amp; Riset Terapan RnD</span>
               </div>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>Beasiswa Technopreneur &amp; Bakti Prestasi</span>
+                <span>Advokasi &amp; Aspirasi Mahasiswa STEM</span>
               </div>
               <div className={styles.heroStatItem}>
                 <span className={styles.heroStatDot} />
-                <span>Sinergi Riset &amp; STEMpreneur</span>
+                <span>Pemberdayaan Mahasiswa Berkelanjutan</span>
               </div>
             </div>
           </div>
@@ -364,37 +287,32 @@ export default async function ArticlesPage({ searchParams }: Props) {
 
       {/* ── 2. Quick Jump Navigation Bar ────────────────────────────────────── */}
       {isSectionVisible(sections, "quick_nav") && (
-        <nav className={styles.navSection} aria-label="Navigasi rubrik artikel dan prestasi">
+        <nav className={styles.navSection} aria-label="Navigasi rubrik artikel dan wawasan">
           <div className="container">
             <div className={styles.navBar}>
               {isSectionVisible(sections, "news") && (
                 <a href="#news" className={styles.navChip}>
-                  Berita &amp; Artikel
+                  Rilis &amp; Berita SISO
                 </a>
               )}
               {isSectionVisible(sections, "publications") && (
                 <a href="#publications" className={styles.navChip}>
-                  Publikasi Mahasiswa
+                  Publikasi Organisasi
                 </a>
               )}
               {isSectionVisible(sections, "research") && (
                 <a href="#research" className={styles.navChip}>
-                  Kajian &amp; Riset
-                </a>
-              )}
-              {isSectionVisible(sections, "achievements") && (
-                <a href="#achievements" className={styles.navChip}>
-                  Prestasi Mahasiswa
+                  Kajian &amp; Riset R&amp;D
                 </a>
               )}
               {isSectionVisible(sections, "scholarships") && (
                 <a href="#scholarships" className={styles.navChip}>
-                  Info Beasiswa
+                  Info Kemahasiswaan
                 </a>
               )}
               {isSectionVisible(sections, "competitions") && (
                 <a href="#competitions" className={styles.navChip}>
-                  Agenda Kompetisi
+                  Agenda Kegiatan
                 </a>
               )}
             </div>
@@ -407,11 +325,10 @@ export default async function ArticlesPage({ searchParams }: Props) {
         <section id="news" className={styles.section}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Publikasi &amp; Berita</span>
-            <h2 className={styles.sectionTitle}>News &amp; Updates</h2>
+            <span className={styles.sectionBadge}>Rilis &amp; Berita SISO</span>
+            <h2 className={styles.sectionTitle}>Official Releases &amp; Insights</h2>
             <p className={styles.sectionSubtitle}>
-              Kumpulan artikel editorial, kabar riset, catatan prestasi, dan
-              pengumuman penting dari civitas akademika SISO.
+              Kumpulan artikel berita kelembagaan, peliputan program kerja, dan artikel wawasan ilmiah dari fungsionaris SISO.
             </p>
           </div>
 
@@ -549,15 +466,25 @@ export default async function ArticlesPage({ searchParams }: Props) {
         - badge = models.CharField(...)
         - published_year = models.IntegerField(...)
       */}
+      {/* ── 4. Student Publications Section ─────────────────────────────────── */}
+      {/* 
+        TODO: [Backend Integration] Student Publications Model
+        Tambahkan model `Publication` di backend/content/models.py:
+        - title = models.CharField(...)
+        - authors = models.CharField(...)
+        - abstract = models.TextField(...)
+        - file = models.FileField(upload_to="publications/pdf/")
+        - badge = models.CharField(...)
+        - published_year = models.IntegerField(...)
+      */}
       {isSectionVisible(sections, "publications") && (
         <section id="publications" className={`${styles.section} ${styles.altBg}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Karya Tulis Ilmiah</span>
-              <h2 className={styles.sectionTitle}>Student Publications</h2>
+              <span className={styles.sectionBadge}>Publikasi &amp; Dokumen</span>
+              <h2 className={styles.sectionTitle}>Institutional Publications</h2>
               <p className={styles.sectionSubtitle}>
-                Makalah teknis, whitepaper, dan laporan riset independen karya
-                civitas akademika mahasiswa STEM SISO yang siap diunduh.
+                Kompilasi dokumen resmi kelembagaan, naskah kajian, dan panduan organisasi SISO yang dapat diakses secara publik.
               </p>
             </div>
 
@@ -636,11 +563,10 @@ export default async function ArticlesPage({ searchParams }: Props) {
         <section id="research" className={styles.section}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Eksplorasi &amp; Analisis</span>
-              <h2 className={styles.sectionTitle}>Research and Studies</h2>
+              <span className={styles.sectionBadge}>Kajian &amp; Riset R&amp;D</span>
+              <h2 className={styles.sectionTitle}>Research &amp; Organizational Development</h2>
               <p className={styles.sectionSubtitle}>
-                Kajian mendalam mengenai arah kemajuan sains terapan, kecerdasan
-                buatan, ketahanan siber, dan dinamika kemahasiswaan STEM.
+                Kajian strategis dan riset internal divisi Research &amp; Development untuk mendukung perumusan kebijakan dan inovasi program SISO.
               </p>
             </div>
 
@@ -747,11 +673,10 @@ export default async function ArticlesPage({ searchParams }: Props) {
         <section id="scholarships" className={styles.section}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Bantuan &amp; Pendanaan</span>
-              <h2 className={styles.sectionTitle}>Scholarship Information</h2>
+              <span className={styles.sectionBadge}>Layanan Kemahasiswaan</span>
+              <h2 className={styles.sectionTitle}>Student Advocacy &amp; Support</h2>
               <p className={styles.sectionSubtitle}>
-                Peluang beasiswa akademik, bantuan riset inovasi, dan kemitraan
-                industri yang dapat diakses oleh seluruh mahasiswa STEM.
+                Informasi beasiswa kampus, bantuan pendanaan kegiatan mahasiswa, serta pendampingan advokasi kesejahteraan STEMians.
               </p>
             </div>
 
@@ -813,11 +738,10 @@ export default async function ArticlesPage({ searchParams }: Props) {
         <section id="competitions" className={`${styles.section} ${styles.altBg}`}>
           <div className="container">
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionBadge}>Agenda Perlombaan</span>
-              <h2 className={styles.sectionTitle}>Competition Information</h2>
+              <span className={styles.sectionBadge}>Agenda Kegiatan</span>
+              <h2 className={styles.sectionTitle}>Flagship Student Agendas</h2>
               <p className={styles.sectionSubtitle}>
-                Jadwal kompetisi nasional dan internasional yang direkomendasikan
-                oleh SISO untuk mengasah keahlian teknis mahasiswa.
+                Agenda kegiatan unggulan dan forum kemahasiswaan Sekolah STEM yang dapat diikuti oleh seluruh STEMians.
               </p>
             </div>
 

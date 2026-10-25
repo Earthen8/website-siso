@@ -11,7 +11,7 @@ const FOOTER_LINKS = [
   { href: "/about", label: "About SISO" },
   { href: "/program-kerja", label: "Programs & Events" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/articles-and-achieve", label: "Articles & Achievements" },
+  { href: "/articles-and-achieve", label: "Articles & Insights" },
 ];
 
 export default function Footer() {
@@ -23,10 +23,10 @@ export default function Footer() {
         <div className="footer-brand">
           <p className="footer-logo">SISO Prasmul</p>
           <p className="footer-tagline">
-            STEM Prasetiya Mulya Innovation Student Organization — With STEM We Can
+            Organisasi Kemahasiswaan Tingkat Fakultas Sekolah STEM Universitas Prasetiya Mulya
           </p>
           <p className="footer-tagline" style={{ marginTop: "0.5rem", opacity: 0.8, fontSize: "0.8rem" }}>
-            Kampus BSD Kavling Edutown I.1, Jl. BSD Raya Utama, BSD City, Tangerang 15339
+            Kampus BSD Universitas Prasetiya Mulya, Kavling Edutown I.1, BSD City, Tangerang 15339
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function Footer() {
       </div>
 
       <p className="footer-copy">
-        © {currentYear} SISO Prasmul. All rights reserved.
+        © {currentYear} SISO Universitas Prasetiya Mulya. All rights reserved.
       </p>
     </footer>
   );

@@ -15,7 +15,7 @@ const NAV_LINKS: NavLinkItem[] = [
   { href: "/about", label: "About SISO" },
   { href: "/program-kerja", label: "Programs & Events" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/articles-and-achieve", label: "Articles and Achievements" },
+  { href: "/articles-and-achieve", label: "Articles & Insights" },
 ];
 
 export default function Header() {
