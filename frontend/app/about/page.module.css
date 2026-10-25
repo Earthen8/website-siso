@@ -329,6 +329,61 @@
   padding-block: clamp(56px, 8vw, 96px);
 }
 
+.valuesBlock {
+  margin-bottom: 56px;
+}
+
+.valuesBlock:last-child {
+  margin-bottom: 0;
+}
+
+.valuesBlockHeader {
+  margin-bottom: 24px;
+}
+
+.valuesBlockBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(20, 69, 128, 0.08);
+  border: 1px solid rgba(20, 69, 128, 0.15);
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--siso-navy, #144580);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.valuesBlockTitle {
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  color: var(--siso-text-main, #0f172a);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.valuesBlockDesc {
+  font-size: 0.975rem;
+  color: var(--siso-text-muted, #475569);
+  line-height: 1.6;
+  max-width: 780px;
+}
+
+.chainGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.leamicaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+
 .valuesGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -338,13 +393,14 @@
 .valueCard {
   background: #ffffff;
   border-radius: 20px;
-  padding: 32px 24px;
+  padding: 28px 22px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(226, 232, 240, 0.9);
   transition: all 0.3s ease;
+  height: 100%;
 }
 
 .valueCard:hover {
@@ -353,20 +409,41 @@
   border-color: rgba(20, 69, 128, 0.25);
 }
 
+.valueCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
 .valueIconWrapper {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   background: linear-gradient(135deg, rgba(20, 69, 128, 0.08) 0%, rgba(37, 117, 252, 0.12) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--siso-navy, #144580);
-  margin-bottom: 20px;
+}
+
+.valueLetterBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(20, 69, 128, 0.08);
+  color: var(--siso-navy, #144580);
+  font-weight: 800;
+  font-size: 0.95rem;
+  border: 1px solid rgba(20, 69, 128, 0.15);
 }
 
 .valueTitle {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--siso-text-main, #0f172a);
   margin-bottom: 10px;
@@ -374,18 +451,31 @@
 }
 
 .valueText {
-  font-size: 0.95rem;
+  font-size: 0.925rem;
   line-height: 1.6;
   color: var(--siso-text-muted, #475569);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+  .chainGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .leamicaGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .chainGrid,
+  .leamicaGrid,
   .valuesGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
+  .chainGrid,
+  .leamicaGrid,
   .valuesGrid {
     grid-template-columns: 1fr;
   }

@@ -35,22 +35,75 @@ const FALLBACK_MISSION_POINTS = [
   "Menjamin kesinambungan organisasi melalui sistem kaderisasi, dokumentasi, dan transfer pengetahuan.",
 ];
 
-const DEFAULT_ORGANIZATIONAL_VALUES = [
+interface ValueItem {
+  letter: string;
+  title: string;
+  text: string;
+}
+
+const CHAIN_VALUES: ValueItem[] = [
   {
-    title: "Caring & Humility",
-    text: "Memiliki kepekaan tinggi terhadap aspirasi sesama mahasiswa dan lingkungan, disertai kerendahan hati untuk menghargai masukan serta perubahan.",
+    letter: "C",
+    title: "Caring",
+    text: "Memiliki kepekaan rasa dan kepedulian tulus terhadap sesama civitas akademika, kebutuhan mahasiswa, serta lingkungan sekitar.",
   },
   {
+    letter: "H",
+    title: "Humility",
+    text: "Bersikap rendah hati, terbuka menerima masukan konstruktif, serta senantiasa memiliki kemauan dan rasa haus untuk terus belajar.",
+  },
+  {
+    letter: "A",
     title: "Achieving",
-    text: "Mendayagunakan seluruh potensi secara optimal untuk mencapai standar kualitas kerja terbaik dan berorientasi pada penciptaan kontribusi nyata.",
+    text: "Mendayagunakan segenap potensi secara optimal demi mencapai standar kualitas kerja unggul dan karya berdaya dampak nyata.",
   },
   {
-    title: "Integrity & Inclusive",
-    text: "Menjaga keselarasan perkataan dan tindakan secara jujur dan bertanggung jawab, serta menjamin perlakuan setara tanpa diskriminasi (non-discrimination).",
+    letter: "I",
+    title: "Integrity",
+    text: "Menjaga kejujuran moral, transparansi, serta keselarasan teguh antara perkataan, prinsip, dan tindakan kepengurusan.",
   },
   {
-    title: "Innovation",
-    text: "Berani menciptakan, mengembangkan, dan menerapkan gagasan atau solusi baru berbasis keilmuan dan teknologi dalam menjawab berbagai permasalahan.",
+    letter: "N",
+    title: "Non-Discrimination",
+    text: "Menjunjung tinggi kesetaraan hak, keadilan, inklusivitas, dan perlakuan setara yang bebas dari segala bentuk diskriminasi.",
+  },
+];
+
+const LEAMICA_VALUES: ValueItem[] = [
+  {
+    letter: "L",
+    title: "Leadership",
+    text: "Kemampuan memimpin, merumuskan arah strategis, dan menginspirasi tim fungsionaris untuk mencapai tujuan bersama.",
+  },
+  {
+    letter: "E",
+    title: "Entrepreneurship",
+    text: "Semangat proaktif, jeli melihat peluang terobosan, dan berani mengambil inisiatif inovasi yang berorientasi solusi nyata.",
+  },
+  {
+    letter: "A",
+    title: "Analytical Thinking",
+    text: "Berpikir kritis, logis, terstruktur, dan berbasis data ilmiah dalam membedah serta menyelesaikan tantangan organisasi.",
+  },
+  {
+    letter: "M",
+    title: "Maturity",
+    text: "Kematangan emosional, ketahanan mental, serta kebijaksanaan dan etika profesional dalam bersikap maupun bertindak.",
+  },
+  {
+    letter: "I",
+    title: "Interpersonal Relationship",
+    text: "Kecakapan membina relasi interpersonal yang harmonis, saling menghargai, dan memperkuat sinergi tim lintas disiplin.",
+  },
+  {
+    letter: "C",
+    title: "Communication",
+    text: "Keterampilan mengartikulasikan ide dan aspirasi secara efektif, lugas, empatik, serta persuasif dalam berbagai forum.",
+  },
+  {
+    letter: "A",
+    title: "Achievement",
+    text: "Dorongan gigih untuk konsisten melampaui batasan diri, meraih target kelembagaan, dan menciptakan kontribusi bermakna.",
   },
 ];
 
@@ -147,20 +200,6 @@ export default async function AboutPage() {
       .map((m: string) => m.trim().replace(/^(?:(?:\d+[.)]|[-*•.])\s*)+/, "").trim())
       .filter(Boolean)
     : FALLBACK_MISSION_POINTS;
-
-  // Organizational Values
-  const valuesData =
-    org?.nilai && org.nilai.length > 0
-      ? org.nilai.map((v) => {
-        const match = DEFAULT_ORGANIZATIONAL_VALUES.find(
-          (def) => def.title.toLowerCase() === v.toLowerCase()
-        );
-        return {
-          title: v,
-          text: match ? match.text : "Nilai fundamental pergerakan mahasiswa STEM SISO Prasmul.",
-        };
-      })
-      : DEFAULT_ORGANIZATIONAL_VALUES;
 
   // Logo Philosophy
   const rawPhilosophy = org?.filosofi_logo || "";
@@ -345,51 +384,139 @@ export default async function AboutPage() {
         <section className={`${styles.valuesSection} ${styles.altBg}`}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <span className={styles.sectionBadge}>Nilai Dasar Organisasi</span>
-            <h2 className={styles.sectionTitle}>6 Fundamental Values</h2>
+            <span className={styles.sectionBadge}>Nilai &amp; Karakter Keorganisasian</span>
+            <h2 className={styles.sectionTitle}>CHAIN &amp; LEAMICA Values</h2>
             <p className={styles.sectionSubtitle}>
-              Enam nilai dasar keorganisasian yang menjadi pedoman perilaku, etika pergerakan, dan budaya kerja seluruh fungsionaris SISO Universitas Prasetiya Mulya.
+              Internalisasi nilai inti CHAIN dan kompetensi karakter LEAMICA Universitas Prasetiya Mulya yang menjadi pedoman perilaku, etika pergerakan, dan budaya kerja seluruh fungsionaris SISO.
             </p>
           </div>
 
-          <div className={styles.valuesGrid}>
-            {valuesData.map((val, i) => (
-              <div key={val.title + i} className={styles.valueCard}>
-                <div className={styles.valueIconWrapper}>
-                  {i === 0 && (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                  )}
-                  {i === 1 && (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                      <circle cx="9" cy="7" r="4" stroke="currentColor" strokeWidth="2" />
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="2" />
-                      <circle cx="19" cy="11" r="3" stroke="currentColor" strokeWidth="2" />
-                      <path d="M23 21v-2a3 3 0 0 0-3-3" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  )}
-                  {i === 2 && (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  )}
-                  {i === 3 && (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" strokeWidth="2" />
-                    </svg>
-                  )}
-                  {i > 3 && (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-                      <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                  )}
+          {/* Block 1: CHAIN */}
+          <div className={styles.valuesBlock}>
+            <div className={styles.valuesBlockHeader}>
+              <span className={styles.valuesBlockBadge}>Nilai Inti Universitas</span>
+              <h3 className={styles.valuesBlockTitle}>
+                CHAIN (Caring, Humility, Achieving, Integrity, and Non-Discrimination)
+              </h3>
+              <p className={styles.valuesBlockDesc}>
+                Lima nilai fondasi utama Universitas Prasetiya Mulya yang diinternalisasi dalam kepribadian dan etika pergerakan setiap fungsionaris SISO.
+              </p>
+            </div>
+
+            <div className={styles.chainGrid}>
+              {CHAIN_VALUES.map((val, i) => (
+                <div key={val.title} className={styles.valueCard}>
+                  <div className={styles.valueCardHeader}>
+                    <div className={styles.valueIconWrapper}>
+                      {i === 0 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                        </svg>
+                      )}
+                      {i === 1 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M8 12h8" />
+                          <path d="m12 16-4-4 4-4" />
+                        </svg>
+                      )}
+                      {i === 2 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                      )}
+                      {i === 3 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                          <path d="m9 12 2 2 4-4" />
+                        </svg>
+                      )}
+                      {i === 4 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10" />
+                          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                          <path d="M2 12h20" />
+                        </svg>
+                      )}
+                    </div>
+                    <span className={styles.valueLetterBadge}>{val.letter}</span>
+                  </div>
+                  <h4 className={styles.valueTitle}>{val.title}</h4>
+                  <p className={styles.valueText}>{val.text}</p>
                 </div>
-                <h3 className={styles.valueTitle}>{val.title}</h3>
-                <p className={styles.valueText}>{val.text}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Block 2: LEAMICA */}
+          <div className={styles.valuesBlock}>
+            <div className={styles.valuesBlockHeader}>
+              <span className={styles.valuesBlockBadge}>Kompetensi &amp; Atribut Karakter</span>
+              <h3 className={styles.valuesBlockTitle}>
+                LEAMICA (Leadership, Entrepreneurship, Analytical Thinking, Maturity, Interpersonal Relationship, Communication, and Achievement)
+              </h3>
+              <p className={styles.valuesBlockDesc}>
+                Tujuh atribut karakter dan kompetensi perilaku unggul yang diasah melalui dinamika organisasi kemahasiswaan SISO.
+              </p>
+            </div>
+
+            <div className={styles.leamicaGrid}>
+              {LEAMICA_VALUES.map((val, i) => (
+                <div key={val.title + i} className={styles.valueCard}>
+                  <div className={styles.valueCardHeader}>
+                    <div className={styles.valueIconWrapper}>
+                      {i === 0 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10" />
+                          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                        </svg>
+                      )}
+                      {i === 1 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                        </svg>
+                      )}
+                      {i === 2 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="18" cy="18" r="3" />
+                          <circle cx="6" cy="6" r="3" />
+                          <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+                          <line x1="6" y1="9" x2="6" y2="21" />
+                        </svg>
+                      )}
+                      {i === 3 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                      )}
+                      {i === 4 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                          <circle cx="9" cy="7" r="4" />
+                          <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                      )}
+                      {i === 5 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                      )}
+                      {i === 6 && (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="8" r="6" />
+                          <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                        </svg>
+                      )}
+                    </div>
+                    <span className={styles.valueLetterBadge}>{val.letter}</span>
+                  </div>
+                  <h4 className={styles.valueTitle}>{val.title}</h4>
+                  <p className={styles.valueText}>{val.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         </section>
